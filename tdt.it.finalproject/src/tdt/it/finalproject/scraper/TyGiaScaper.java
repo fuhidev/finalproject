@@ -15,6 +15,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import tdt.it.finalproject.jsondata.AssetPrice;
 import tdt.it.finalproject.jsondata.DollarPrice;
 import tdt.it.finalproject.jsondata.GoldPrice;
 
@@ -136,10 +137,12 @@ public class TyGiaScaper {
 		for (int j = 0; j < link.size(); j++) {
 			for (int i = 0; i < tmpExp.size() - 1; i++) {
 				if (i != tmpExp.size() - 2) {
-
+					date = this.link.get(j).substring(6, 8) + "-"
+							+ this.link.get(j).substring(4, 6) + "-"
+							+ this.link.get(j).substring(0, 4);
 					GoldPrice js = new GoldPrice(i, tmpExp.get(i).toString(),
 							tmpExp.get(i + 1).toString(), tmpExp.get(i + 2)
-									.toString(), this.link.get(j));
+									.toString(), date);
 					rs.add(js);
 				}
 				i += 2;
@@ -152,23 +155,23 @@ public class TyGiaScaper {
 		ArrayList<String> tmpExp = new ArrayList<String>();
 		ArrayList<DollarPrice> rs = new ArrayList<DollarPrice>();
 		tmpExp = this.exportDB();
-		for (int i = 0; i < tmpExp.size() - 1; i++) {
-			if (i != tmpExp.size() - 3) {
-				DollarPrice js = new DollarPrice(i, tmpExp.get(i).toString(),
-						tmpExp.get(i + 1).toString(), tmpExp.get(i + 2)
-								.toString(), tmpExp.get(i + 3).toString());
-				// GoldPrice js = new GoldPrice(i,tmpExp.get(i),
-				// Double.parseDouble(tmpExp.get(i+1).replace(",","")),Double.parseDouble(tmpExp.get(i+2).replace(",","")));
-				rs.add(js);
-				i += 3;
+		for (int j = 0; j < link.size(); j++) {
+			for (int i = 0; i < tmpExp.size() - 1; i++) {
+				if (i != tmpExp.size() - 3) {
+					DollarPrice js = new DollarPrice(i, tmpExp.get(i)
+							.toString(), tmpExp.get(i + 1).toString(), tmpExp
+							.get(i + 2).toString(), tmpExp.get(i + 3)
+							.toString(),date);
+					rs.add(js);
+					i += 3;
+				}
 			}
-
 		}
 		return rs;
 
 	}
-
-	public void export(List<GoldPrice> goldPrices, String fileName) {
+	
+	public void export(List<AssetPrice> goldPrices, String fileName) {
 		System.out.println("Dang doc du lieu");
 		String JSONResult = JSONArray.toJSONString(goldPrices);
 		System.out.println("Tien hanh ghi du lieu");
@@ -181,15 +184,15 @@ public class TyGiaScaper {
 	}
 
 	public static void main(String[] args) throws IOException {
-		TyGiaScaper jsoup = new TyGiaScaper(
-				"https://www.tygia.com/?nganhang=VIETCOM&ngay=",
-				"#gold_tb #goldtb td.c1 b,#gold_tb #goldtb .c2,#gold_tb #goldtb .c4",
-				"20170312", "20170313");
-		// TyGiaScaper jsoup2 = new TyGiaScaper(
-		// "https://www.tygia.com/?nganhang=VIETCOM&ngay=",
-		// "#ratetb tr:first-child td.c1 b,#ratetb tr:first-child td span.c2,#ratetb tr:first-child td span.c3, #ratetb tr:first-child td span.c4",
-		// "20170313", "20170313");
-		// System.out.println(jsoup.getGoldData());
-		jsoup.export(jsoup.getGoldData(), "test");
+//		TyGiaScaper jsoup = new TyGiaScaper(
+//				"https://www.tygia.com/?nganhang=VIETCOM&ngay=",
+//				"#gold_tb #goldtb td.c1 b,#gold_tb #goldtb .c2,#gold_tb #goldtb .c4",
+//				"20170312", "20170313");
+//		jsoup.export(jsoup.getGoldData(), "test");
+		 TyGiaScaper jsoup2 = new TyGiaScaper(
+		 "https://www.tygia.com/?nganhang=VIETCOM&ngay=",
+		 "#ratetb tr:first-child td.c1 b,#ratetb tr:first-child td span.c2,#ratetb tr:first-child td span.c3, #ratetb tr:first-child td span.c4",
+		 "20170313", "20170313");
+//		 jsoup2.export(jsoup2.getGoldData(), "test");
 	}
 }
