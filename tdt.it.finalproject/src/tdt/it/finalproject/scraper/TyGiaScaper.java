@@ -15,6 +15,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import tdt.it.finalproject.jsondata.DollarPrice;
 import tdt.it.finalproject.jsondata.GoldPrice;
 
 public class TyGiaScaper {
@@ -24,8 +25,9 @@ public class TyGiaScaper {
 	private String dateStart;
 	private String dateEnd;
 	private static Document doc;
+	private String date;
 	private List<String> link = null;
-	
+
 	public Document getDoc() {
 		return doc;
 	}
@@ -47,7 +49,7 @@ public class TyGiaScaper {
 		this.url = url;
 		this.cssQuery = cssQuery;
 	}
-	
+
 	public String getDateStart() {
 		return dateStart;
 	}
@@ -64,6 +66,14 @@ public class TyGiaScaper {
 		this.dateEnd = dateEnd;
 	}
 
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
 	public TyGiaScaper(String url, String cssQuery, String dateStart,
 			String dateEnd) {
 		super();
@@ -71,7 +81,7 @@ public class TyGiaScaper {
 		this.cssQuery = cssQuery;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
-		
+
 	}
 
 	/**
@@ -105,31 +115,52 @@ public class TyGiaScaper {
 	}
 
 	private ArrayList<String> exportDB() throws IOException {
-		this.link = new GenerateDay().generate(this.getDateStart(), this.getDateEnd());
+		this.link = new GenerateDay().generate(this.getDateStart(),
+				this.getDateEnd());
 		ArrayList<String> result = new ArrayList<String>();
-		for(String item: link){
-		doc = Jsoup.connect(this.getUrl() + item).get();
+		for (String item : link) {
+			doc = Jsoup.connect(this.getUrl() + item).get();
 			Elements aElements = doc.select(this.getCssQuery());
 			for (Element aElement : aElements) {
 				result.add(aElement.text());
 			}
 		}
 		return result;
+
 	}
 
-	public List<GoldPrice> getData() throws IOException {
+	public List<GoldPrice> getGoldData() throws IOException {
 		ArrayList<String> tmpExp = new ArrayList<String>();
 		ArrayList<GoldPrice> rs = new ArrayList<GoldPrice>();
 		tmpExp = this.exportDB();
+		for (int j = 0; j < link.size(); j++) {
+			for (int i = 0; i < tmpExp.size() - 1; i++) {
+				if (i != tmpExp.size() - 2) {
+
+					GoldPrice js = new GoldPrice(i, tmpExp.get(i).toString(),
+							tmpExp.get(i + 1).toString(), tmpExp.get(i + 2)
+									.toString(), this.link.get(j));
+					rs.add(js);
+				}
+				i += 2;
+			}
+		}
+		return rs;
+	}
+
+	public List<DollarPrice> getDollarData() throws IOException {
+		ArrayList<String> tmpExp = new ArrayList<String>();
+		ArrayList<DollarPrice> rs = new ArrayList<DollarPrice>();
+		tmpExp = this.exportDB();
 		for (int i = 0; i < tmpExp.size() - 1; i++) {
-			if (i != tmpExp.size() - 2) {
-				GoldPrice js = new GoldPrice(i, tmpExp.get(i).toString(),
+			if (i != tmpExp.size() - 3) {
+				DollarPrice js = new DollarPrice(i, tmpExp.get(i).toString(),
 						tmpExp.get(i + 1).toString(), tmpExp.get(i + 2)
-								.toString());
+								.toString(), tmpExp.get(i + 3).toString());
 				// GoldPrice js = new GoldPrice(i,tmpExp.get(i),
 				// Double.parseDouble(tmpExp.get(i+1).replace(",","")),Double.parseDouble(tmpExp.get(i+2).replace(",","")));
 				rs.add(js);
-				i += 2;
+				i += 3;
 			}
 
 		}
@@ -152,9 +183,13 @@ public class TyGiaScaper {
 	public static void main(String[] args) throws IOException {
 		TyGiaScaper jsoup = new TyGiaScaper(
 				"https://www.tygia.com/?nganhang=VIETCOM&ngay=",
-				"#gold_tb #goldtb td.c1 b,#gold_tb #goldtb .c2,#gold_tb #goldtb .c4","20100101","20170313");
-		System.out.println();
-		// System.out.println(jsoup.getData());
-			jsoup.export(jsoup.getData(), "output");
-		}
+				"#gold_tb #goldtb td.c1 b,#gold_tb #goldtb .c2,#gold_tb #goldtb .c4",
+				"20170312", "20170313");
+		// TyGiaScaper jsoup2 = new TyGiaScaper(
+		// "https://www.tygia.com/?nganhang=VIETCOM&ngay=",
+		// "#ratetb tr:first-child td.c1 b,#ratetb tr:first-child td span.c2,#ratetb tr:first-child td span.c3, #ratetb tr:first-child td span.c4",
+		// "20170313", "20170313");
+		// System.out.println(jsoup.getGoldData());
+		jsoup.export(jsoup.getGoldData(), "test");
+	}
 }

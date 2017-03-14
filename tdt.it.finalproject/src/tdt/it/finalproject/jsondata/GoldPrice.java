@@ -2,16 +2,22 @@ package tdt.it.finalproject.jsondata;
 
 import org.json.simple.JSONAware;
 
-public class GoldPrice implements JSONAware {
-	private int id;
-	private String name;
-	// private double buyPrice;
-	// private double sellPrice;
+public class GoldPrice extends AssetPrice implements JSONAware {
 	private String buyPrice;
 	private String sellPrice;
 	private String dateTime;
-	public GoldPrice() {
 
+	public GoldPrice(int id, String name, String buyPrice, String sellPrice, String dateTime) {
+		super(id, name);
+		this.buyPrice = buyPrice;
+		this.sellPrice = sellPrice;
+		this.dateTime = dateTime;
+	}
+	
+	public GoldPrice(int id, String name, String buyPrice, String sellPrice) {
+		super(id, name);
+		this.buyPrice = buyPrice;
+		this.sellPrice = sellPrice;
 	}
 
 	public String getDateTime() {
@@ -21,65 +27,6 @@ public class GoldPrice implements JSONAware {
 	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
 	}
-
-	public GoldPrice(int id, String name, String buyPrice, String sellPrice) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.buyPrice = buyPrice;
-		this.sellPrice = sellPrice;
-	}
-
-	public GoldPrice(int id, String name, String buyPrice, String sellPrice,
-			String dateTime) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.buyPrice = buyPrice;
-		this.sellPrice = sellPrice;
-		this.dateTime = dateTime;
-	}
-
-	// public GoldPrice(int id, String name, double buyPrice, double sellPrice)
-	// {
-	// super();
-	// this.id = id;
-	// this.name = name;
-	// this.buyPrice = buyPrice;
-	// this.sellPrice = sellPrice;
-	// }
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	// public double getBuyPrice() {
-	// return buyPrice;
-	// }
-	//
-	// public void setBuyPrice(float buyPrice) {
-	// this.buyPrice = buyPrice;
-	// }
-	//
-	// public double getSellPrice() {
-	// return sellPrice;
-	// }
-	//
-	// public void setSellPrice(float sellPrice) {
-	// this.sellPrice = sellPrice;
-	// }
 
 	public String getBuyPrice() {
 		return buyPrice;
@@ -114,7 +61,7 @@ public class GoldPrice implements JSONAware {
 
 		sb.append("\"sellPrice\":\"" + getSellPrice() + "\"");
 		sb.append(",");
-		
+
 		sb.append("\"date\":\"" + getDateTime() + "\"");
 
 		sb.append("}"); // Kết thúc một đối tượng JSON là dấu đóng ngoặc nhọn
