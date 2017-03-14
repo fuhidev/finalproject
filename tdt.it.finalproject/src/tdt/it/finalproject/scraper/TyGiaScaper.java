@@ -130,9 +130,9 @@ public class TyGiaScaper {
 
 	}
 
-	public List<GoldPrice> getGoldData() throws IOException {
+	public List<AssetPrice> getGoldData() throws IOException {
 		ArrayList<String> tmpExp = new ArrayList<String>();
-		ArrayList<GoldPrice> rs = new ArrayList<GoldPrice>();
+		List<AssetPrice> rs = new ArrayList<AssetPrice>();
 		tmpExp = this.exportDB();
 		for (int j = 0; j < link.size(); j++) {
 			for (int i = 0; i < tmpExp.size() - 1; i++) {
@@ -151,9 +151,9 @@ public class TyGiaScaper {
 		return rs;
 	}
 
-	public List<DollarPrice> getDollarData() throws IOException {
+	public List<AssetPrice> getDollarData() throws IOException {
 		ArrayList<String> tmpExp = new ArrayList<String>();
-		ArrayList<DollarPrice> rs = new ArrayList<DollarPrice>();
+		List<AssetPrice> rs = new ArrayList<AssetPrice>();
 		tmpExp = this.exportDB();
 		for (int j = 0; j < link.size(); j++) {
 			for (int i = 0; i < tmpExp.size() - 1; i++) {
@@ -193,6 +193,6 @@ public class TyGiaScaper {
 		 "https://www.tygia.com/?nganhang=VIETCOM&ngay=",
 		 "#ratetb tr:first-child td.c1 b,#ratetb tr:first-child td span.c2,#ratetb tr:first-child td span.c3, #ratetb tr:first-child td span.c4",
 		 "20170313", "20170313");
-//		 jsoup2.export(jsoup2.getGoldData(), "test");
+		 jsoup2.export(jsoup2.getDollarData(), "ok1");
 	}
 }
