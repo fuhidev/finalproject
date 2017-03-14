@@ -1,13 +1,9 @@
 package tdt.it.finalproject.scraper;
 
-import tdt.it.finalproject.generateDay.GenerateDay;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.json.simple.JSONArray;
 import org.jsoup.Jsoup;
@@ -15,6 +11,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import tdt.it.finalproject.generateDay.GenerateDay;
 import tdt.it.finalproject.jsondata.AssetPrice;
 import tdt.it.finalproject.jsondata.DollarPrice;
 import tdt.it.finalproject.jsondata.GoldPrice;

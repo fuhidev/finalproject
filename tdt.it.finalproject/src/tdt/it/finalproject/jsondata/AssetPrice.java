@@ -1,8 +1,8 @@
 package tdt.it.finalproject.jsondata;
 
 public abstract class  AssetPrice {
-	private int id;
-	private String name;
+	protected int id;
+	protected String name;
 	public AssetPrice(int id, String name) {
 		super();
 		this.id = id;
