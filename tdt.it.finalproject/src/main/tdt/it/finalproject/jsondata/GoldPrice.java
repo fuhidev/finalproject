@@ -1,4 +1,4 @@
-package tdt.it.finalproject.jsondata;
+package main.tdt.it.finalproject.jsondata;
 
 import org.json.simple.JSONAware;
 

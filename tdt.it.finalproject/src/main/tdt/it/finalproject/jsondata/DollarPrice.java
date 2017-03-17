@@ -1,16 +1,15 @@
-package tdt.it.finalproject.jsondata;
+package main.tdt.it.finalproject.jsondata;
 
 import org.json.simple.JSONAware;
 
-public class DollarPrice extends AssetPrice implements JSONAware{
-	
+public class DollarPrice extends AssetPrice implements JSONAware {
+
 	public String buyCash;
 	public String buyTransfer;
 	public String sellPrice;
 	public String date;
-	
-	public DollarPrice(int id, String name, String buyCash, String buyTransfer,
-			String sellPrice, String date) {
+
+	public DollarPrice(int id, String name, String buyCash, String buyTransfer, String sellPrice, String date) {
 		super(id, name);
 		this.buyCash = buyCash;
 		this.buyTransfer = buyTransfer;
@@ -68,16 +67,29 @@ public class DollarPrice extends AssetPrice implements JSONAware{
 
 		sb.append("\"buyTransfer\":\"" + getBuyTransfer() + "\"");
 		sb.append(",");
-		
+
 		sb.append("\"sellPrice\":\"" + getSellPrice() + "\"");
 		sb.append(",");
-		
+
 		sb.append("\"date\":\"" + getDate() + "\"");
 
 		sb.append("}"); // Kết thúc một đối tượng JSON là dấu đóng ngoặc nhọn
 
 		return sb.toString();
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		DollarPrice price = (DollarPrice) obj;
+		return super.equals(obj) && this.buyCash.equals(price.getBuyCash())
+				&& this.sellPrice.equals(price.getSellPrice()) && this.buyTransfer.equals(price.getBuyTransfer())
+				&& this.date.equals(price.getDate());
+	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString() + this.toJSONString();
+	}
+
 }

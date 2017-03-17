@@ -1,4 +1,4 @@
-package tdt.it.finalproject.jsondata;
+package main.tdt.it.finalproject.jsondata;
 
 public abstract class  AssetPrice {
 	protected int id;
@@ -19,6 +19,17 @@ public abstract class  AssetPrice {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		AssetPrice price = (AssetPrice)obj;
+		return this.id == price.getId() && this.name.equals(price.getName());
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.name + " " + this.id;
 	}
 	
 }

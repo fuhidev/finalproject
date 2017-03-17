@@ -1,4 +1,4 @@
-package tdt.it.finalproject.generateDay;
+package main.tdt.it.finalproject.generateDay;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,13 +9,10 @@ import java.util.Date;
 import java.util.List;
 
 public class GenerateDay {
-	private Date beginDate;
-	private Date endDate;
-	
 	/**
-	 * Tạo ra một chuỗi th�?i gian kiểu String từ th�?i gian bắt đầu đến th�?i gian kết thúc
-	 * @param beginDate Th�?i gian bắt đầu ở định đang yyyyMMdd ví dụ "20121212"
-	 * @param endDate Th�?i gian kết thúc ở định đang yyyyMMdd ví dụ "20121212"
+	 * Tạo ra một chuỗi th�?i gian kiểu String từ th�?i gian bắt đầu đến th�?i gian kết thúc
+	 * @param beginDate Th�?i gian bắt đầu ở định đang yyyyMMdd ví dụ "20121212"
+	 * @param endDate Th�?i gian kết thúc ở định đang yyyyMMdd ví dụ "20121212"
 	 * @return Một chuỗi giá trị được tạo ra ở định dạng yyyyMMdd
 	 * @throws ParseException 
 	 */
@@ -31,9 +28,9 @@ public class GenerateDay {
 			e.printStackTrace();
 		}
 		if(_beginDate == null || _endDate == null)
-			throw new NullPointerException("Không thể chuyển th�?i gian ");
+			throw new NullPointerException("Không thể chuyển thời gian ");
 		if(_beginDate.after(_endDate))
-			throw new DateTimeException("Th�?i gian bắt đầu phải trước th�?i gian kết thúc");
+			throw new DateTimeException("Th�?i gian bắt đầu phải trước th�?i gian kết thúc");
 		List<String> result = new ArrayList<>();
 		Calendar c = Calendar.getInstance();
 		
