@@ -9,18 +9,17 @@ public class MultiTyGiaScaper {
 	private TyGiaScaper scaper = new TyGiaScaper();
 	private List<String> dates;
 
-	/**
-	 * Lay danh sach doi tuong Gold nam trong khoang thoi gian dates
-	 * 
-	 * @return danh sach chua cac doi tuong
-	 */
-	public List<AssetPrice> getGoldData() {
-		List<AssetPrice> result = new ArrayList<>();
-		for (String date : dates) {
-			scaper.setDate(date);
-			result.addAll(scaper.getDollarData());
-		}
-		return result;
+	public MultiTyGiaScaper() {
+	}
+
+	public MultiTyGiaScaper(TyGiaScaper scaper, List<String> dates) {
+		super();
+		this.scaper = scaper;
+		this.dates = dates;
+	}
+
+	public List<String> getDates() {
+		return dates;
 	}
 
 	/**
@@ -31,8 +30,24 @@ public class MultiTyGiaScaper {
 	public List<AssetPrice> getDollarData() {
 		List<AssetPrice> result = new ArrayList<>();
 		for (String date : dates) {
+			System.out.println(date + "dollar");
 			scaper.setDate(date);
 			result.addAll(scaper.getDollarData());
+		}
+		return result;
+	}
+
+	/**
+	 * Lay danh sach doi tuong Gold nam trong khoang thoi gian dates
+	 * 
+	 * @return danh sach chua cac doi tuong
+	 */
+	public List<AssetPrice> getGoldData() {
+		List<AssetPrice> result = new ArrayList<>();
+		for (String date : dates) {
+			System.out.println(date + "gold");
+			scaper.setDate(date);
+			result.addAll(scaper.getGoldData());
 		}
 		return result;
 	}
@@ -41,25 +56,12 @@ public class MultiTyGiaScaper {
 		return scaper;
 	}
 
-	public void setScaper(TyGiaScaper scaper) {
-		this.scaper = scaper;
-	}
-
-	public List<String> getDates() {
-		return dates;
-	}
-
 	public void setDates(List<String> dates) {
 		this.dates = dates;
 	}
 
-	public MultiTyGiaScaper(TyGiaScaper scaper, List<String> dates) {
-		super();
+	public void setScaper(TyGiaScaper scaper) {
 		this.scaper = scaper;
-		this.dates = dates;
-	}
-
-	public MultiTyGiaScaper() {
 	}
 
 }

@@ -13,7 +13,7 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 		this.sellPrice = sellPrice;
 		this.dateTime = dateTime;
 	}
-	
+
 	public GoldPrice(int id, String name, String buyPrice, String sellPrice) {
 		super(id, name);
 		this.buyPrice = buyPrice;
@@ -67,6 +67,19 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 		sb.append("}"); // Kết thúc một đối tượng JSON là dấu đóng ngoặc nhọn
 
 		return sb.toString();
+	}
+
+	@Override
+	public String toString() {
+		return super.toString()
+				+ String.format("buyPrice:%s sellPrice:%s dateTime:%s", this.buyPrice, this.sellPrice, this.dateTime);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		GoldPrice g = (GoldPrice) obj;
+		return super.equals(obj) && this.buyPrice.equals(g.getBuyPrice()) && this.dateTime.equals(g.getDateTime())
+				&& this.sellPrice.equals(g.getSellPrice());
 	}
 
 }
