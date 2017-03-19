@@ -30,7 +30,7 @@ public class MultiTyGiaScaper {
 	public List<AssetPrice> getDollarData() {
 		List<AssetPrice> result = new ArrayList<>();
 		for (String date : dates) {
-			System.out.println(date + "dollar");
+			System.out.println(String.format("Dang duyet du lieu cua Dollar vao ngay %s", date));
 			scaper.setDate(date);
 			result.addAll(scaper.getDollarData());
 		}
@@ -45,7 +45,7 @@ public class MultiTyGiaScaper {
 	public List<AssetPrice> getGoldData() {
 		List<AssetPrice> result = new ArrayList<>();
 		for (String date : dates) {
-			System.out.println(date + "gold");
+			System.out.println(String.format("Dang duyet du lieu cua Gold vao ngay %s", date));
 			scaper.setDate(date);
 			result.addAll(scaper.getGoldData());
 		}
