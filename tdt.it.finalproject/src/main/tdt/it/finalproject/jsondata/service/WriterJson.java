@@ -44,6 +44,7 @@ public class WriterJson {
 		File file = new File(PATH + fileName+".json");
 		try {
 			JSONArray.writeJSONString(datas, new FileWriter(file, file.exists()));
+		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

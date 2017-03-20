@@ -9,7 +9,7 @@ import main.tdt.it.finalproject.scraper.MultiTyGiaScaper;
 public class MainRun {
 	
 	private static final String END = "20170319";
-	private static final String BEGIN = "20090921";
+	private static final String BEGIN = "20170310";
 
 	public static void main(String[] args) {
 		GenerateDay generateDay = new GenerateDay();
