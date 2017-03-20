@@ -8,9 +8,9 @@ import main.tdt.it.finalproject.scraper.MultiTyGiaScaper;
 
 public class MainRun {
 
-	private static final String END = "20170319";
+	private static final String END = "20170320";
 	private static final String BEGIN = "20170101";
-	private static final int MAX = 2;
+	private static final int MAX = 365*2;
 
 	public static void main(String[] args) {
 		GenerateDay generateDay = new GenerateDay();
@@ -28,7 +28,7 @@ public class MainRun {
 			Thread t1 = new Thread(() -> {
 				System.out.println(String.format("Duyet du lieu Dollar tu ngay %s den %s", days.get(0),
 						days.get(days.size() - 1)));
-				new WriterJson(String.format("dollar %s-%s", days.get(0), days.get(days.size() - 1)))
+				new WriterJson(String.format("dollar_%s-%s", days.get(0), days.get(days.size() - 1)))
 						.export(multiTyGiaScaper.getDollarData());
 				;
 			});
@@ -36,7 +36,7 @@ public class MainRun {
 			Thread t2 = new Thread(() -> {
 				System.out.println(
 						String.format("Duyet du lieu Gold tu ngay %s den %s", days.get(0), days.get(days.size() - 1)));
-				new WriterJson(String.format("gold %s-%s", days.get(0), days.get(days.size() - 1)))
+				new WriterJson(String.format("gold_%s-%s", days.get(0), days.get(days.size() - 1)))
 						.export(multiTyGiaScaper.getGoldData());
 				;
 			});

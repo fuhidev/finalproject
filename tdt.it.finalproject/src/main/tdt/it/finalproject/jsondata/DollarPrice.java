@@ -53,11 +53,11 @@ public class DollarPrice extends AssetPrice implements JSONAware {
 	public String toJSONString() {
 		StringBuffer sb = new StringBuffer();
 
-		sb.append("{"); // Bắt đầu một đối tượng JSON là dấu mở ngoặc nhọn
+		sb.append("{"); // Báº¯t Ä‘áº§u má»™t Ä‘á»‘i tÆ°á»£ng JSON lÃ  dáº¥u má»Ÿ ngoáº·c nhá»�n
 
-		sb.append("\"id\":\"" + getId() + "\""); // dòng này có nghĩa là
-													// "id":"Giá_Trị"
-		sb.append(","); // sau mỗi cặp key/value là một dấu phẩy
+		sb.append("\"id\":\"" + getId() + "\""); // dÃ²ng nÃ y cÃ³ nghÄ©a lÃ 
+													// "id":"GiÃ¡_Trá»‹"
+		sb.append(","); // sau má»—i cáº·p key/value lÃ  má»™t dáº¥u pháº©y
 
 		sb.append("\"name\":\"" + getName() + "\"");
 		sb.append(",");
@@ -73,7 +73,7 @@ public class DollarPrice extends AssetPrice implements JSONAware {
 
 		sb.append("\"date\":\"" + getDate() + "\"");
 
-		sb.append("}"); // Kết thúc một đối tượng JSON là dấu đóng ngoặc nhọn
+		sb.append("}"); // Káº¿t thÃºc má»™t Ä‘á»‘i tÆ°á»£ng JSON lÃ  dáº¥u Ä‘Ã³ng ngoáº·c nhá»�n
 
 		return sb.toString();
 	}
@@ -89,7 +89,7 @@ public class DollarPrice extends AssetPrice implements JSONAware {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return super.toString() + this.toJSONString();
+		return this.toJSONString();
 	}
 
 }

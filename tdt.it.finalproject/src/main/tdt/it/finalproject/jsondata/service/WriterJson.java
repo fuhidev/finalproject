@@ -43,7 +43,7 @@ public class WriterJson {
 		String JSONResult = JSONArray.toJSONString(datas);
 		System.out.println("Tien hanh ghi du lieu");
 		// tien hanh ghi file
-		try (FileWriter writer = new FileWriter(PATH + fileName + ".json", file.exists())) {
+		try (FileWriter writer = new FileWriter(PATH + fileName + ".txt", file.exists())) {
 			writer.write(JSONResult);
 			System.out.println("Successfully Copied JSON Object to File...");
 		} catch (IOException e) {
