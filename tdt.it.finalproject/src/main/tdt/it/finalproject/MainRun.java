@@ -9,7 +9,7 @@ import main.tdt.it.finalproject.scraper.MultiTyGiaScaper;
 public class MainRun {
 
 	private static final String END = "20170319";
-	private static final String BEGIN = "20130101";
+	private static final String BEGIN = "20170101";
 	private static final int MAX = 2;
 
 	public static void main(String[] args) {

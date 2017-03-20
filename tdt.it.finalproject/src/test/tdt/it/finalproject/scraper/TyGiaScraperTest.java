@@ -16,7 +16,7 @@ public class TyGiaScraperTest {
 	private TyGiaScaper scraper = new TyGiaScaper();
 	@Before
 	public void init(){
-		scraper.setDate("20170317");
+		scraper.setDate("20170101");
 	}
 	@Test
 	public void testDollar() {
@@ -26,14 +26,14 @@ public class TyGiaScraperTest {
 		assertEquals(expecteds.length,dollarData.size());
 		assertArrayEquals(expecteds, dollarData.toArray());
 	}
-	@Test
-	public void testGold() {
-		 List<AssetPrice> goldData = scraper.getGoldData();
-		Object[] expecteds = new GoldPrice[]{};
-		assertArrayEquals(expecteds, goldData.toArray());
-		for(AssetPrice g : goldData){
-			System.out.println(g);
-		}
-	}
+//	@Test
+//	public void testGold() {
+//		 List<AssetPrice> goldData = scraper.getGoldData();
+//		Object[] expecteds = new GoldPrice[]{};
+//		assertArrayEquals(expecteds, goldData.toArray());
+//		for(AssetPrice g : goldData){
+//			System.out.println(g);
+//		}
+//	}
 
 }
