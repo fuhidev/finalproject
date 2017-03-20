@@ -7,9 +7,10 @@ import main.tdt.it.finalproject.jsondata.service.WriterJson;
 import main.tdt.it.finalproject.scraper.MultiTyGiaScaper;
 
 public class MainRun {
-	
+
 	private static final String END = "20170319";
-	private static final String BEGIN = "20090921";
+	private static final String BEGIN = "20130101";
+	private static final int MAX = 2;
 
 	public static void main(String[] args) {
 		GenerateDay generateDay = new GenerateDay();
@@ -17,22 +18,24 @@ public class MainRun {
 
 		MultiTyGiaScaper multiTyGiaScaper = new MultiTyGiaScaper();
 
-		for (int i = 0; i < lstDay.size(); i += 999) {
-			int max = 999;
+		for (int i = 0; i < lstDay.size(); i += MAX) {
+			int max = MAX;
 			if (max > lstDay.size() - i - 1)
 				max = lstDay.size() - 1;
-			List<String> days = lstDay.subList(i, max);
+			List<String> days = lstDay.subList(i, i + max);
 			multiTyGiaScaper.setDates(days);
 
 			Thread t1 = new Thread(() -> {
-				System.out.println(String.format("Duyet du lieu Dollar tu ngay %s den %s", days.get(0), days.get(days.size() - 1)));
+				System.out.println(String.format("Duyet du lieu Dollar tu ngay %s den %s", days.get(0),
+						days.get(days.size() - 1)));
 				new WriterJson(String.format("dollar %s-%s", days.get(0), days.get(days.size() - 1)))
 						.export(multiTyGiaScaper.getDollarData());
 				;
 			});
 
 			Thread t2 = new Thread(() -> {
-				System.out.println(String.format("Duyet du lieu Gold tu ngay %s den %s", days.get(0), days.get(days.size() - 1)));
+				System.out.println(
+						String.format("Duyet du lieu Gold tu ngay %s den %s", days.get(0), days.get(days.size() - 1)));
 				new WriterJson(String.format("gold %s-%s", days.get(0), days.get(days.size() - 1)))
 						.export(multiTyGiaScaper.getGoldData());
 				;

@@ -18,8 +18,6 @@ import main.tdt.it.finalproject.jsondata.AssetPrice;
 public class WriterJson {
 	private final String PATH = "jsonFile/";
 	private String fileName;
-	
-	
 
 	public WriterJson() {
 		super();
@@ -41,11 +39,14 @@ public class WriterJson {
 
 	public void export(List<AssetPrice> datas) {
 		System.out.println("Dang doc du lieu");
-		File file = new File(PATH + fileName+".json");
-		try {
-			JSONArray.writeJSONString(datas, new FileWriter(file, file.exists()));
+		File file = new File(PATH + fileName + ".json");
+		String JSONResult = JSONArray.toJSONString(datas);
+		System.out.println("Tien hanh ghi du lieu");
+		// tien hanh ghi file
+		try (FileWriter writer = new FileWriter(PATH + fileName + ".json", file.exists())) {
+			writer.write(JSONResult);
+			System.out.println("Successfully Copied JSON Object to File...");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
