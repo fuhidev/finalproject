@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import main.tdt.it.finalproject.exception.NotFoundAssetException;
 import main.tdt.it.finalproject.jsondata.AssetPrice;
 import main.tdt.it.finalproject.jsondata.DollarPrice;
 import main.tdt.it.finalproject.jsondata.GoldPrice;
@@ -16,24 +17,30 @@ public class TyGiaScraperTest {
 	private TyGiaScaper scraper = new TyGiaScaper();
 	@Before
 	public void init(){
-		scraper.setDate("20170101");
+		scraper.setDate("20160815");
 	}
 	@Test
-	public void testDollar() {
+	public void testDollar() throws NotFoundAssetException {
 		
 		List<AssetPrice> dollarData = scraper.getDollarData();
 		Object[] expecteds = new DollarPrice[]{new DollarPrice(0, "USD", "22,745", "22,745", "22,815", "20170317")};
 		assertEquals(expecteds.length,dollarData.size());
 		assertArrayEquals(expecteds, dollarData.toArray());
 	}
-//	@Test
-//	public void testGold() {
-//		 List<AssetPrice> goldData = scraper.getGoldData();
-//		Object[] expecteds = new GoldPrice[]{};
-//		assertArrayEquals(expecteds, goldData.toArray());
-//		for(AssetPrice g : goldData){
-//			System.out.println(g);
-//		}
-//	}
+	@Test
+	public void testGold() {
+		 List<AssetPrice> goldData;
+		try {
+			goldData = scraper.getGoldData();
+			Object[] expecteds = new GoldPrice[]{};
+//			assertArrayEquals(expecteds, goldData.toArray());
+			for(AssetPrice g : goldData){
+				System.out.println(g);
+			}
+		} catch (NotFoundAssetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

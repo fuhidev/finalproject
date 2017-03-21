@@ -3,6 +3,7 @@ package main.tdt.it.finalproject.scraper;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.tdt.it.finalproject.exception.NotFoundAssetException;
 import main.tdt.it.finalproject.jsondata.AssetPrice;
 
 public class MultiTyGiaScaper {
@@ -32,7 +33,12 @@ public class MultiTyGiaScaper {
 		for (String date : dates) {
 			System.out.println(String.format("Dang duyet du lieu cua Dollar vao ngay %s", date));
 			scaper.setDate(date);
-			result.addAll(scaper.getDollarData());
+			try {
+				result.addAll(scaper.getDollarData());
+			} catch (NotFoundAssetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return result;
 	}
@@ -47,7 +53,12 @@ public class MultiTyGiaScaper {
 		for (String date : dates) {
 			System.out.println(String.format("Dang duyet du lieu cua Gold vao ngay %s", date));
 			scaper.setDate(date);
-			result.addAll(scaper.getGoldData());
+			try {
+				result.addAll(scaper.getGoldData());
+			} catch (NotFoundAssetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return result;
 	}

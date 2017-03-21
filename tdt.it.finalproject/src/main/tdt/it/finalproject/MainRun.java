@@ -3,42 +3,69 @@ package main.tdt.it.finalproject;
 import java.util.List;
 
 import main.tdt.it.finalproject.generateDay.GenerateDay;
+import main.tdt.it.finalproject.jsondata.AssetPrice;
 import main.tdt.it.finalproject.jsondata.service.WriterJson;
 import main.tdt.it.finalproject.scraper.MultiTyGiaScaper;
 
 public class MainRun {
 
-	private static final String END = "20170320";
-	private static final String BEGIN = "20170101";
-	private static final int MAX = 365*2;
+	private static final String END = "20170201";
+	private static final String BEGIN = "20090921";
+	private static final int MAX = 365 * 2 - 1;// ghi du lieu 2 nam 1 lan
 
 	public static void main(String[] args) {
 		GenerateDay generateDay = new GenerateDay();
 		List<String> lstDay = generateDay.generate(BEGIN, END);
+System.out.println(lstDay.size());//ờ 2 tháng nữa
 
 		MultiTyGiaScaper multiTyGiaScaper = new MultiTyGiaScaper();
-
-		for (int i = 0; i < lstDay.size(); i += MAX) {
-			int max = MAX;
-			if (max > lstDay.size() - i - 1)
-				max = lstDay.size() - 1;
-			List<String> days = lstDay.subList(i, i + max);
+		int max = MAX;// ban dau gan max cho const
+		// step = i+=max + 1, vi du sublist tu 0 den 9, sau do sublist tu 10 den
+		// 19 (MAX=10)
+		for (int i = 0; i < lstDay.size(); i += max + 1) {
+			// kiem tra xem i+max > so ngay hay khong, vi du lstDay co 21 phan
+			// tu, i = 20, max = 10 i+ max > 21 nen sublist tu 20 den 21
+			System.out.println(String.format("Duyet du lieu tu %s den %s", i, (i
+							+ max > lstDay.size() - 1 ? (lstDay.size()) : i
+							+ max)));
+			List<String> days = lstDay
+					.subList(i,
+							i + max > lstDay.size() - 1 ? (lstDay.size())
+									: i + max+1);
+			System.out.println(String.format(
+					"Duyet du lieu Dollar tu ngay %s den %s", days.get(0),
+					days.get(days.size() - 1)));
 			multiTyGiaScaper.setDates(days);
 
 			Thread t1 = new Thread(() -> {
-				System.out.println(String.format("Duyet du lieu Dollar tu ngay %s den %s", days.get(0),
+				System.out.println(String.format(
+						"Duyet du lieu Dollar tu ngay %s den %s", days.get(0),
 						days.get(days.size() - 1)));
-				new WriterJson(String.format("dollar_%s-%s", days.get(0), days.get(days.size() - 1)))
-						.export(multiTyGiaScaper.getDollarData());
-				;
+				List<AssetPrice> dollarData = multiTyGiaScaper.getDollarData();
+				if (dollarData != null && dollarData.size() > 0) {
+					new WriterJson(String.format("dollar_%s-%s", days.get(0),
+							days.get(days.size() - 1))).export(dollarData);
+				} else {
+					System.err.println(String.format(
+							"Khong tim thay du lieu dollar tu ngay %s den %s",
+							days.get(0), days.get(days.size() - 1)));
+				}
+
 			});
 
 			Thread t2 = new Thread(() -> {
-				System.out.println(
-						String.format("Duyet du lieu Gold tu ngay %s den %s", days.get(0), days.get(days.size() - 1)));
-				new WriterJson(String.format("gold_%s-%s", days.get(0), days.get(days.size() - 1)))
-						.export(multiTyGiaScaper.getGoldData());
-				;
+				System.out.println(String.format(
+						"Duyet du lieu Gold tu ngay %s den %s", days.get(0),
+						days.get(days.size() - 1)));
+				List<AssetPrice> goldData = multiTyGiaScaper.getGoldData();
+				if (goldData != null && goldData.size() > 0)
+					new WriterJson(String.format("gold_%s-%s", days.get(0),
+							days.get(days.size() - 1))).export(goldData);
+				else {
+					System.err.println(String.format(
+							"Khong tim thay du lieu gold tu ngay %s den %s",
+							days.get(0), days.get(days.size() - 1)));
+				}
 			});
 
 			try {

@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import main.tdt.it.finalproject.exception.NotFoundAssetException;
 import main.tdt.it.finalproject.jsondata.AssetPrice;
 import main.tdt.it.finalproject.jsondata.DollarPrice;
 import main.tdt.it.finalproject.jsondata.GoldPrice;
@@ -18,7 +19,7 @@ public class TyGiaScaper {
 	private String date;
 	public final String URL = "https://www.tygia.com/?nganhang=VIETCOM&ngay=";
 	private String cssQueryDollar = "#ratetb tr:first-child td.c1 b,#ratetb tr:first-child td span.c2,#ratetb tr:first-child td span.c3, #ratetb tr:first-child td span.c4";
-	private String cssQueryGold = "#gold_tb #goldtb td.c1 b,#gold_tb #goldtb .c2,#gold_tb #goldtb .c4";//sua lai thang nay voi thang cssQueryDollar
+	private String cssQueryGold = "#gold_tb #goldtb td.c1 b,#gold_tb #goldtb .c2,#gold_tb #goldtb .c4";
 
 	public TyGiaScaper() {
 		super();
@@ -84,29 +85,35 @@ public class TyGiaScaper {
 		return URL + date;
 	}
 
-	public List<AssetPrice> getGoldData() {
+	public List<AssetPrice> getGoldData() throws NotFoundAssetException {
 		ArrayList<String> tmpExp = new ArrayList<String>();
 		List<AssetPrice> rs = new ArrayList<AssetPrice>();
 		tmpExp = this.getHtml(this.cssQueryGold);
 		if (tmpExp == null || tmpExp.size() == 0)
-			for (int count = 0, i = 0; i < tmpExp.size(); i += 3, count++) {
-				if (i != tmpExp.size() - 2) {
-					GoldPrice js = new GoldPrice(count, tmpExp.get(i).toString(), tmpExp.get(i + 1).toString(),
-							tmpExp.get(i + 2).toString(), date);
-					rs.add(js);
-				}
+			throw new NotFoundAssetException("Gold in "+this.date);
+		for (int count = 0, i = 0; i < tmpExp.size(); i += 3, count++) {
+			if (i != tmpExp.size() - 2) {
+				GoldPrice js = new GoldPrice(count, tmpExp.get(i).toString(),
+						tmpExp.get(i + 1).toString(), tmpExp.get(i + 2)
+								.toString(), date);
+				rs.add(js);
 			}
+		}
 		return rs;
 	}
 
-	public List<AssetPrice> getDollarData() {
+	public List<AssetPrice> getDollarData() throws NotFoundAssetException {
 		ArrayList<String> tmpExp = new ArrayList<String>();
 		List<AssetPrice> rs = new ArrayList<AssetPrice>();
 		tmpExp = this.getHtml(this.cssQueryDollar);
+		if (tmpExp == null || tmpExp.size() == 0)
+			throw new NotFoundAssetException("Dollar in "+this.date);
 		for (int count = 0, i = 0; i < tmpExp.size(); i += 4, count++) {
+
 			if (i != tmpExp.size() - 3) {
-				DollarPrice js = new DollarPrice(count, tmpExp.get(i).toString(), tmpExp.get(i + 1).toString(),
-						tmpExp.get(i + 2).toString(), tmpExp.get(i + 3).toString(), date);
+				DollarPrice js = new DollarPrice(count, tmpExp.get(i)
+						.toString(), tmpExp.get(i + 1).toString(), tmpExp.get(
+						i + 2).toString(), tmpExp.get(i + 3).toString(), date);
 				rs.add(js);
 
 			}
