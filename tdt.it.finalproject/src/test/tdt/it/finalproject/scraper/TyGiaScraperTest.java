@@ -1,6 +1,7 @@
 package test.tdt.it.finalproject.scraper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
@@ -33,10 +34,7 @@ public class TyGiaScraperTest {
 		try {
 			goldData = scraper.getGoldData();
 			Object[] expecteds = new GoldPrice[]{};
-//			assertArrayEquals(expecteds, goldData.toArray());
-			for(AssetPrice g : goldData){
-				System.out.println(g);
-			}
+			assertArrayEquals(expecteds, goldData.toArray());
 		} catch (NotFoundAssetException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
