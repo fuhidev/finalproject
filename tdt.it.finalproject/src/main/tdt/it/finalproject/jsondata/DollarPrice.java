@@ -20,7 +20,9 @@ public class DollarPrice extends AssetPrice implements JSONAware {
 	public String getBuyCash() {
 		return buyCash;
 	}
-
+	public Float getFloatBuyCash() {
+		return Float.parseFloat(buyCash.replace(",", ""));
+	}
 	public void setBuyCash(String buyCash) {
 		this.buyCash = buyCash;
 	}
@@ -28,7 +30,9 @@ public class DollarPrice extends AssetPrice implements JSONAware {
 	public String getBuyTransfer() {
 		return buyTransfer;
 	}
-
+	public Float getFloatBuyTransfer() {
+		return Float.parseFloat(buyTransfer.replace(",", ""));
+	}
 	public void setBuyTransfer(String buyTransfer) {
 		this.buyTransfer = buyTransfer;
 	}
@@ -36,7 +40,9 @@ public class DollarPrice extends AssetPrice implements JSONAware {
 	public String getSellPrice() {
 		return sellPrice;
 	}
-
+	public Float getFloatSellPrice() {
+		return Float.parseFloat(sellPrice.replace(",", ""));
+	}
 	public void setSellPrice(String sellPrice) {
 		this.sellPrice = sellPrice;
 	}

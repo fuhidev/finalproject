@@ -43,6 +43,15 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 	public void setSellPrice(String sellPrice) {
 		this.sellPrice = sellPrice;
 	}
+	
+	public Float getFloatBuyPrice() {
+		return Float.parseFloat(buyPrice.replace(",", ""));
+	}
+
+
+	public Float getFloatSellPrice() {
+		return Float.parseFloat(sellPrice.replace(",", ""));
+	}
 
 	public String toJSONString() {
 		StringBuffer sb = new StringBuffer();
