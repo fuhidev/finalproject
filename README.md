@@ -10,6 +10,7 @@ __Mục tiêu__
 * Tìm kiếm website cho phép thu thập các dữ liệu giá vàng, dollar trong 10 năm bắt đầu từ hiện tại trở về trước, và dữ liệu này phải được cập nhật liên tục mỗi ngày.
 * Sử dụng các API được hỗ trợ để crawl dữ liệu từ website về để thu thập được dữ liệu mong muốn.
 * Lưu trữ dữ liệu trong dababase để tái sử dụng.
+
 2.2 Các khó khăn trong quá trình thu thập dữ liệu
 * Luồng dữ liệu không đảm bảo thông suốt( nghĩa là vẫn tồn tại những ngày không có dữ liệu truyền về).
 * Dữ liệu thu thập được lớn ban đầu gây khó khăn trong việc xử lý mảng lưu trữ.
