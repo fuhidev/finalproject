@@ -10,13 +10,13 @@ import main.tdt.it.finalproject.scraper.MultiTyGiaScaper;
 public class MainRun {
 
 	private static final String END = "20170201";
-	private static final String BEGIN = "20090921";
+	private static final String BEGIN = "20160101";
 	private static final int MAX = 365 * 2 - 1;// ghi du lieu 2 nam 1 lan
 
 	public static void main(String[] args) {
 		GenerateDay generateDay = new GenerateDay();
 		List<String> lstDay = generateDay.generate(BEGIN, END);
-System.out.println(lstDay.size());//ờ 2 tháng nữa
+System.out.println(lstDay.size());//á»� 2 thÃ¡ng ná»¯a
 
 		MultiTyGiaScaper multiTyGiaScaper = new MultiTyGiaScaper();
 		int max = MAX;// ban dau gan max cho const

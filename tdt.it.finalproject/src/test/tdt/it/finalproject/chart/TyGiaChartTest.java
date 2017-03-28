@@ -7,7 +7,7 @@ import main.tdt.it.finalproject.chart.TyGiaChart;
 public class TyGiaChartTest {
 	public static void main( String[ ] args ) 
 	   {
-	      TyGiaChart chart = new TyGiaChart("Tỷ giá", "Biểu đồ giá vàng và dollar qua các năm?");
+	      TyGiaChart chart = new TyGiaChart("Tỷ giá", "Biểu đồ giá vàng và giá dollar qua các năm.");
 	      chart.pack( );          
 	      RefineryUtilities.centerFrameOnScreen( chart );          
 	      chart.setVisible( true ); 
