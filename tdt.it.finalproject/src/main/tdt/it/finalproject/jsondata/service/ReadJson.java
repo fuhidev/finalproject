@@ -93,7 +93,7 @@ public class ReadJson {
 	}
 	public static void main(String[] args) {
 		List<GoldPrice> datas = new ArrayList<GoldPrice>();
-		ReadJson json = new ReadJson("gold_20160101-20170201");
+		ReadJson json = new ReadJson("gold_20170310-20170318");
 		json.convertGoldObject(datas);
 	}
 }
