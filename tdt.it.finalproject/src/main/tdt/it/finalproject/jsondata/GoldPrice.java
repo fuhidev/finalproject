@@ -3,21 +3,15 @@ package main.tdt.it.finalproject.jsondata;
 import org.json.simple.JSONAware;
 
 public class GoldPrice extends AssetPrice implements JSONAware {
-	private String buyPrice;
-	private String sellPrice;
+	private float buyPrice;
+	private float sellPrice;
 	private String dateTime;
 
-	public GoldPrice(int id, String name, String buyPrice, String sellPrice, String dateTime) {
+	public GoldPrice(int id, String name, float buyPrice, float sellPrice, String dateTime) {
 		super(id, name);
 		this.buyPrice = buyPrice;
 		this.sellPrice = sellPrice;
 		this.dateTime = dateTime;
-	}
-
-	public GoldPrice(int id, String name, String buyPrice, String sellPrice) {
-		super(id, name);
-		this.buyPrice = buyPrice;
-		this.sellPrice = sellPrice;
 	}
 
 	public String getDateTime() {
@@ -28,30 +22,22 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 		this.dateTime = dateTime;
 	}
 
-	public String getBuyPrice() {
+	public float getBuyPrice() {
 		return buyPrice;
 	}
 
 	public void setBuyPrice(String buyPrice) {
-		this.buyPrice = buyPrice;
+		this.buyPrice = Float.parseFloat(buyPrice.replace(",", ""));
 	}
 
-	public String getSellPrice() {
+	public float getSellPrice() {
 		return sellPrice;
 	}
 
 	public void setSellPrice(String sellPrice) {
-		this.sellPrice = sellPrice;
+		this.sellPrice = Float.parseFloat(sellPrice.replace(",", ""));
 	}
 	
-	public Float getFloatBuyPrice() {
-		return Float.parseFloat(buyPrice.replace(",", ""));
-	}
-
-
-	public Float getFloatSellPrice() {
-		return Float.parseFloat(sellPrice.replace(",", ""));
-	}
 
 	public String toJSONString() {
 		StringBuffer sb = new StringBuffer();
@@ -80,15 +66,39 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 
 	@Override
 	public String toString() {
-		return super.toString()
-				+ String.format("buyPrice:%s sellPrice:%s dateTime:%s", this.buyPrice, this.sellPrice, this.dateTime);
+		return "GoldPrice [buyPrice=" + buyPrice + ", sellPrice=" + sellPrice + ", dateTime=" + dateTime + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Float.floatToIntBits(buyPrice);
+		result = prime * result + ((dateTime == null) ? 0 : dateTime.hashCode());
+		result = prime * result + Float.floatToIntBits(sellPrice);
+		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		GoldPrice g = (GoldPrice) obj;
-		return super.equals(obj) && this.buyPrice.equals(g.getBuyPrice()) && this.dateTime.equals(g.getDateTime())
-				&& this.sellPrice.equals(g.getSellPrice());
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		GoldPrice other = (GoldPrice) obj;
+		if (Float.floatToIntBits(buyPrice) != Float.floatToIntBits(other.buyPrice))
+			return false;
+		if (dateTime == null) {
+			if (other.dateTime != null)
+				return false;
+		} else if (!dateTime.equals(other.dateTime))
+			return false;
+		if (Float.floatToIntBits(sellPrice) != Float.floatToIntBits(other.sellPrice))
+			return false;
+		return true;
 	}
+
 
 }

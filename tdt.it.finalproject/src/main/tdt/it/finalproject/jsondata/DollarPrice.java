@@ -4,12 +4,12 @@ import org.json.simple.JSONAware;
 
 public class DollarPrice extends AssetPrice implements JSONAware {
 
-	public String buyCash;
-	public String buyTransfer;
-	public String sellPrice;
+	public float buyCash;
+	public float buyTransfer;
+	public float sellPrice;
 	public String date;
 
-	public DollarPrice(int id, String name, String buyCash, String buyTransfer, String sellPrice, String date) {
+	public DollarPrice(int id, String name, float buyCash, float buyTransfer, float sellPrice, String date) {
 		super(id, name);
 		this.buyCash = buyCash;
 		this.buyTransfer = buyTransfer;
@@ -17,34 +17,25 @@ public class DollarPrice extends AssetPrice implements JSONAware {
 		this.date = date;
 	}
 
-	public String getBuyCash() {
+	public float getBuyCash() {
 		return buyCash;
 	}
-	public Float getFloatBuyCash() {
-		return Float.parseFloat(buyCash.replace(",", ""));
-	}
 	public void setBuyCash(String buyCash) {
-		this.buyCash = buyCash;
+		this.buyCash = Float.parseFloat(buyCash.replace(",", ""));
 	}
 
-	public String getBuyTransfer() {
+	public float getBuyTransfer() {
 		return buyTransfer;
 	}
-	public Float getFloatBuyTransfer() {
-		return Float.parseFloat(buyTransfer.replace(",", ""));
-	}
 	public void setBuyTransfer(String buyTransfer) {
-		this.buyTransfer = buyTransfer;
+		this.buyTransfer = Float.parseFloat(buyTransfer.replace(",", ""));
 	}
 
-	public String getSellPrice() {
+	public float getSellPrice() {
 		return sellPrice;
 	}
-	public Float getFloatSellPrice() {
-		return Float.parseFloat(sellPrice.replace(",", ""));
-	}
 	public void setSellPrice(String sellPrice) {
-		this.sellPrice = sellPrice;
+		this.sellPrice = Float.parseFloat(sellPrice.replace(",", ""));
 	}
 
 	public String getDate() {
@@ -87,8 +78,9 @@ public class DollarPrice extends AssetPrice implements JSONAware {
 	@Override
 	public boolean equals(Object obj) {
 		DollarPrice price = (DollarPrice) obj;
-		return super.equals(obj) && this.buyCash.equals(price.getBuyCash())
-				&& this.sellPrice.equals(price.getSellPrice()) && this.buyTransfer.equals(price.getBuyTransfer())
+		return super.equals(obj) && this.buyCash == price.getBuyCash()
+				&& this.sellPrice==price.getSellPrice()
+				&& this.buyTransfer==price.getBuyTransfer()
 				&& this.date.equals(price.getDate());
 	}
 	
