@@ -3,11 +3,11 @@ package main.tdt.it.finalproject.jsondata;
 import org.json.simple.JSONAware;
 
 public class GoldPrice extends AssetPrice implements JSONAware {
-	private float buyPrice;
-	private float sellPrice;
+	private double buyPrice;
+	private double sellPrice;
 	private String dateTime;
 
-	public GoldPrice(int id, String name, float buyPrice, float sellPrice, String dateTime) {
+	public GoldPrice(int id, String name, double buyPrice, double sellPrice, String dateTime) {
 		super(id, name);
 		this.buyPrice = buyPrice;
 		this.sellPrice = sellPrice;
@@ -27,28 +27,28 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 		this.dateTime = dateTime;
 	}
 
-	public float getBuyPrice() {
+	public double getBuyPrice() {
 		return buyPrice;
 	}
 
 	public void setBuyPrice(String buyPrice) {
-		this.buyPrice = Float.parseFloat(buyPrice.replace(",", ""));
+		this.buyPrice = Double.parseDouble(buyPrice.replace(",", ""));
 	}
 
-	public float getSellPrice() {
+	public double getSellPrice() {
 		return sellPrice;
 	}
 
 	public void setSellPrice(String sellPrice) {
-		this.sellPrice = Float.parseFloat(sellPrice.replace(",", ""));
+		this.sellPrice = Double.parseDouble(sellPrice.replace(",", ""));
 	}
 	
 
-	public void setBuyPrice(float buyPrice) {
+	public void setBuyPrice(double buyPrice) {
 		this.buyPrice = buyPrice;
 	}
 
-	public void setSellPrice(float sellPrice) {
+	public void setSellPrice(double sellPrice) {
 		this.sellPrice = sellPrice;
 	}
 
@@ -85,17 +85,18 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 		return "GoldPrice [buyPrice=" + buyPrice + ", sellPrice=" + sellPrice + ", dateTime=" + dateTime + ", id=" + id
 				+ ", name=" + name + "]";
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Float.floatToIntBits(buyPrice);
+		long temp;
+		temp = Double.doubleToLongBits(buyPrice);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((dateTime == null) ? 0 : dateTime.hashCode());
-		result = prime * result + Float.floatToIntBits(sellPrice);
+		temp = Double.doubleToLongBits(sellPrice);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -105,14 +106,14 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 		if (!(obj instanceof GoldPrice))
 			return false;
 		GoldPrice other = (GoldPrice) obj;
-		if (Float.floatToIntBits(buyPrice) != Float.floatToIntBits(other.buyPrice))
+		if (Double.doubleToLongBits(buyPrice) != Double.doubleToLongBits(other.buyPrice))
 			return false;
 		if (dateTime == null) {
 			if (other.dateTime != null)
 				return false;
 		} else if (!dateTime.equals(other.dateTime))
 			return false;
-		if (Float.floatToIntBits(sellPrice) != Float.floatToIntBits(other.sellPrice))
+		if (Double.doubleToLongBits(sellPrice) != Double.doubleToLongBits(other.sellPrice))
 			return false;
 		return true;
 	}

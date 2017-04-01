@@ -48,12 +48,11 @@ public class ReadGoldJson implements IReadJson{
 				JSONObject jsonObject = (JSONObject) jsonArray.get(i);
 				int id = Integer.parseInt((String) jsonObject.get("id"));
 				String name = (String) jsonObject.get("name");
-				String buyPrice = (String) jsonObject.get("buyPrice");
-				String sellPrice = (String) jsonObject.get("sellPrice");
+				double buyPrice = (double) jsonObject.get("buyPrice");
+				double sellPrice = (double) jsonObject.get("sellPrice");
 				String date = (String) jsonObject.get("date");
 				result.add(new GoldPrice(id, name, buyPrice, sellPrice, date));
 				GoldPrice gold = new GoldPrice(id, name, buyPrice, sellPrice, date);
-				System.out.println(gold.toString());
 				
 			}
 			file.close();

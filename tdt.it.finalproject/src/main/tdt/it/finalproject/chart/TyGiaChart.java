@@ -1,5 +1,6 @@
 package main.tdt.it.finalproject.chart;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.jfree.chart.ChartFactory;
@@ -13,6 +14,7 @@ import main.tdt.it.finalproject.exception.NotFoundAssetException;
 import main.tdt.it.finalproject.jsondata.AssetPrice;
 import main.tdt.it.finalproject.jsondata.DollarPrice;
 import main.tdt.it.finalproject.jsondata.GoldPrice;
+import main.tdt.it.finalproject.util.AssetPriceUtil;
 
 public class TyGiaChart extends ApplicationFrame {
 
@@ -49,14 +51,16 @@ public class TyGiaChart extends ApplicationFrame {
 			throw new NotFoundAssetException(DOLLAR+" please call setDollar");
 		}
 		
+		Collection<AssetPrice> golds2 = AssetPriceUtil.getGolds(this.golds);
 		//add value of golds on dataset
-		this.golds.forEach(f->{
-			dataset.addValue((((GoldPrice) f).getSellPrice()), GOLD, ((GoldPrice) f).getDateTime());
+		golds2.forEach(f->{
+			dataset.addValue((((GoldPrice) f).getSellPrice()), GOLD+" "+f.getName(), ((GoldPrice) f).getDateTime());
 		});
 		
 		//add value of dollar on dataset
-		this.dollars.forEach(f->{
-			dataset.addValue(((DollarPrice)f).getSellPrice(), DOLLAR, ((DollarPrice)f).getDate());
+		Collection<AssetPrice> dollars2 = AssetPriceUtil.getDollars(dollars);
+		dollars2.forEach(f->{
+			dataset.addValue(((DollarPrice)f).getSellPrice(), DOLLAR+" "+f.getName(), ((DollarPrice)f).getDate());
 		});
 		
 		return dataset;

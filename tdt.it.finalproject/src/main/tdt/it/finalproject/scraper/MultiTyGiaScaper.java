@@ -31,7 +31,7 @@ public class MultiTyGiaScaper {
 	public List<AssetPrice> getDollarData() {
 		List<AssetPrice> result = new ArrayList<>();
 		for (String date : dates) {
-			System.out.println(String.format("Dang duyet du lieu cua Dollar vao ngay %s", date));
+
 			scaper.setDate(date);
 			try {
 				result.addAll(scaper.getDollarData());
@@ -51,7 +51,7 @@ public class MultiTyGiaScaper {
 	public List<AssetPrice> getGoldData() {
 		List<AssetPrice> result = new ArrayList<>();
 		for (String date : dates) {
-			System.out.println(String.format("Dang duyet du lieu cua Gold vao ngay %s", date));
+
 			scaper.setDate(date);
 			try {
 				result.addAll(scaper.getGoldData());
@@ -63,8 +63,21 @@ public class MultiTyGiaScaper {
 		return result;
 	}
 
-	public TyGiaScaper getScaper() {
-		return scaper;
+	public void getData(List<AssetPrice> golds, List<AssetPrice> dollars) {
+		for (String date : dates) {
+			scaper.setDate(date);
+			try {
+				golds.addAll(scaper.getGoldData());
+			} catch (NotFoundAssetException e1) {
+				System.err.println(e1.getMessage());
+			}
+			try {
+				dollars.addAll(scaper.getDollarData());
+			} catch (NotFoundAssetException e) {
+				// TODO Auto-generated catch block
+				System.err.println(e.getMessage());
+			}
+		}
 	}
 
 	public void setDates(List<String> dates) {

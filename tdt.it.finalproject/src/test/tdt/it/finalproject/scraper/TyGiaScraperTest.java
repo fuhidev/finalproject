@@ -18,7 +18,7 @@ public class TyGiaScraperTest {
 	private TyGiaScaper scraper = new TyGiaScaper();
 	@Before
 	public void init(){
-		scraper.setDate("20160815");
+		scraper.setDate("20160101");
 	}
 	@Test
 	public void testDollar() throws NotFoundAssetException {

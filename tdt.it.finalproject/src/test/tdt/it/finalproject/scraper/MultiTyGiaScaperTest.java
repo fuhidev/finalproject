@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import main.tdt.it.finalproject.generateDay.GenerateDay;
+import main.tdt.it.finalproject.generateday.GenerateDay;
 import main.tdt.it.finalproject.jsondata.AssetPrice;
 import main.tdt.it.finalproject.jsondata.DollarPrice;
 import main.tdt.it.finalproject.scraper.MultiTyGiaScaper;

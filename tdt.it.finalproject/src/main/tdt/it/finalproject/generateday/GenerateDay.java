@@ -1,4 +1,4 @@
-package main.tdt.it.finalproject.generateDay;
+package main.tdt.it.finalproject.generateday;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

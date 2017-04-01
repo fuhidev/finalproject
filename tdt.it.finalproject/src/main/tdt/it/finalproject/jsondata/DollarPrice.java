@@ -4,12 +4,12 @@ import org.json.simple.JSONAware;
 
 public class DollarPrice extends AssetPrice implements JSONAware {
 
-	public float buyCash;
-	public float buyTransfer;
-	public float sellPrice;
+	public double buyCash;
+	public double buyTransfer;
+	public double sellPrice;
 	public String date;
 
-	public DollarPrice(int id, String name, float buyCash, float buyTransfer, float sellPrice, String date) {
+	public DollarPrice(int id, String name, double buyCash, double buyTransfer, double sellPrice, String date) {
 		super(id, name);
 		this.buyCash = buyCash;
 		this.buyTransfer = buyTransfer;
@@ -23,25 +23,25 @@ public class DollarPrice extends AssetPrice implements JSONAware {
 		this.setSellPrice(sellPrice);
 		this.date = date;
 	}
-	public float getBuyCash() {
+	public double getBuyCash() {
 		return buyCash;
 	}
 	public void setBuyCash(String buyCash) {
-		this.buyCash = Float.parseFloat(buyCash.replace(",", ""));
+		this.buyCash = Double.parseDouble(buyCash.replace(",", ""));
 	}
 
-	public float getBuyTransfer() {
+	public double getBuyTransfer() {
 		return buyTransfer;
 	}
 	public void setBuyTransfer(String buyTransfer) {
-		this.buyTransfer = Float.parseFloat(buyTransfer.replace(",", ""));
+		this.buyTransfer = Double.parseDouble(buyTransfer.replace(",", ""));
 	}
 
-	public float getSellPrice() {
+	public double getSellPrice() {
 		return sellPrice;
 	}
 	public void setSellPrice(String sellPrice) {
-		this.sellPrice = Float.parseFloat(sellPrice.replace(",", ""));
+		this.sellPrice = Double.parseDouble(sellPrice.replace(",", ""));
 	}
 
 	public String getDate() {
@@ -53,15 +53,15 @@ public class DollarPrice extends AssetPrice implements JSONAware {
 	}
 	
 
-	public void setBuyCash(float buyCash) {
+	public void setBuyCash(double buyCash) {
 		this.buyCash = buyCash;
 	}
 
-	public void setBuyTransfer(float buyTransfer) {
+	public void setBuyTransfer(double buyTransfer) {
 		this.buyTransfer = buyTransfer;
 	}
 
-	public void setSellPrice(float sellPrice) {
+	public void setSellPrice(double sellPrice) {
 		this.sellPrice = sellPrice;
 	}
 
@@ -100,24 +100,20 @@ public class DollarPrice extends AssetPrice implements JSONAware {
 		return "DollarPrice [buyCash=" + buyCash + ", buyTransfer=" + buyTransfer + ", sellPrice=" + sellPrice
 				+ ", date=" + date + ", id=" + id + ", name=" + name + "]";
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Float.floatToIntBits(buyCash);
-		result = prime * result + Float.floatToIntBits(buyTransfer);
+		long temp;
+		temp = Double.doubleToLongBits(buyCash);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(buyTransfer);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + Float.floatToIntBits(sellPrice);
+		temp = Double.doubleToLongBits(sellPrice);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -127,16 +123,16 @@ public class DollarPrice extends AssetPrice implements JSONAware {
 		if (!(obj instanceof DollarPrice))
 			return false;
 		DollarPrice other = (DollarPrice) obj;
-		if (Float.floatToIntBits(buyCash) != Float.floatToIntBits(other.buyCash))
+		if (Double.doubleToLongBits(buyCash) != Double.doubleToLongBits(other.buyCash))
 			return false;
-		if (Float.floatToIntBits(buyTransfer) != Float.floatToIntBits(other.buyTransfer))
+		if (Double.doubleToLongBits(buyTransfer) != Double.doubleToLongBits(other.buyTransfer))
 			return false;
 		if (date == null) {
 			if (other.date != null)
 				return false;
 		} else if (!date.equals(other.date))
 			return false;
-		if (Float.floatToIntBits(sellPrice) != Float.floatToIntBits(other.sellPrice))
+		if (Double.doubleToLongBits(sellPrice) != Double.doubleToLongBits(other.sellPrice))
 			return false;
 		return true;
 	}

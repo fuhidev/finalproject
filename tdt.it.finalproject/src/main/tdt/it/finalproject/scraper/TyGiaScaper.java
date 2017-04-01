@@ -20,6 +20,7 @@ public class TyGiaScaper {
 	public final String URL = "https://www.tygia.com/?nganhang=VIETCOM&ngay=";
 	private String cssQueryDollar = "#ratetb tr:first-child td.c1 b,#ratetb tr:first-child td span.c2,#ratetb tr:first-child td span.c3, #ratetb tr:first-child td span.c4";
 	private String cssQueryGold = "#gold_tb #goldtb td.c1 b,#gold_tb #goldtb .c2,#gold_tb #goldtb .c4";
+	private Document doc = null;
 
 	public TyGiaScaper() {
 		super();
@@ -62,11 +63,17 @@ public class TyGiaScaper {
 		this.date = date;
 	}
 
+	public Document getDoc() throws IOException {
+		if (doc == null)
+			return Jsoup.connect(this.getUrl()).get();
+		return doc;
+	}
+
 	private ArrayList<String> getHtml(String cssQuery) {
 		ArrayList<String> result = new ArrayList<String>();
-		Document doc = null;
+
 		try {
-			doc = Jsoup.connect(this.getUrl()).get();
+			doc = getDoc();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -86,16 +93,16 @@ public class TyGiaScaper {
 	}
 
 	public List<AssetPrice> getGoldData() throws NotFoundAssetException {
+		System.out.println(String.format("Dang duyet du lieu cua Gold vao ngay %s", date));
 		ArrayList<String> tmpExp = new ArrayList<String>();
 		List<AssetPrice> rs = new ArrayList<AssetPrice>();
 		tmpExp = this.getHtml(this.cssQueryGold);
 		if (tmpExp == null || tmpExp.size() == 0)
-			throw new NotFoundAssetException("Gold in "+this.date);
+			throw new NotFoundAssetException("Gold in " + this.date);
 		for (int count = 0, i = 0; i < tmpExp.size(); i += 3, count++) {
 			if (i != tmpExp.size() - 2) {
-				GoldPrice js = new GoldPrice(count, tmpExp.get(i).toString(),
-						tmpExp.get(i + 1).toString(), tmpExp.get(i + 2)
-								.toString(), date);
+				GoldPrice js = new GoldPrice(count, tmpExp.get(i).toString(), tmpExp.get(i + 1).toString(),
+						tmpExp.get(i + 2).toString(), date);
 				rs.add(js);
 			}
 		}
@@ -103,17 +110,17 @@ public class TyGiaScaper {
 	}
 
 	public List<AssetPrice> getDollarData() throws NotFoundAssetException {
+		System.out.println(String.format("Dang duyet du lieu cua Dollar vao ngay %s", date));
 		ArrayList<String> tmpExp = new ArrayList<String>();
 		List<AssetPrice> rs = new ArrayList<AssetPrice>();
 		tmpExp = this.getHtml(this.cssQueryDollar);
 		if (tmpExp == null || tmpExp.size() == 0)
-			throw new NotFoundAssetException("Dollar in "+this.date);
+			throw new NotFoundAssetException("Dollar in " + this.date);
 		for (int count = 0, i = 0; i < tmpExp.size(); i += 4, count++) {
 
 			if (i != tmpExp.size() - 3) {
-				DollarPrice js = new DollarPrice(count, tmpExp.get(i)
-						.toString(), tmpExp.get(i + 1).toString(), tmpExp.get(
-						i + 2).toString(), tmpExp.get(i + 3).toString(), date);
+				DollarPrice js = new DollarPrice(count, tmpExp.get(i).toString(), tmpExp.get(i + 1).toString(),
+						tmpExp.get(i + 2).toString(), tmpExp.get(i + 3).toString(), date);
 				rs.add(js);
 
 			}
