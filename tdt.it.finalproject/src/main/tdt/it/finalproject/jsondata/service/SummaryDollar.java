@@ -11,7 +11,7 @@ public class SummaryDollar extends SummaryAsset {
 		for (AssetPrice f : datas) {
 			//Cast Asset to Dollar
 			DollarPrice data = (DollarPrice) f;
-			sum+=data.getFloatBuyCash();
+			sum+=data.getBuyCash();
 		}
 		return sum;
 	}

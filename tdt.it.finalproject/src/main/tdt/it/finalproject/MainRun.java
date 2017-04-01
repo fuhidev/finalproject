@@ -10,7 +10,7 @@ import main.tdt.it.finalproject.scraper.MultiTyGiaScaper;
 public class MainRun {
 
 	private static final String END = "20170201";
-	private static final String BEGIN = "20160101";
+	private static final String BEGIN = "20170101";
 	private static final int MAX = 365 * 2 - 1;// ghi du lieu 2 nam 1 lan
 
 	public static void main(String[] args) {

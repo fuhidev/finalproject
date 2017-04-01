@@ -13,7 +13,12 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 		this.sellPrice = sellPrice;
 		this.dateTime = dateTime;
 	}
-
+	public GoldPrice(int id, String name, String buyPrice, String sellPrice, String dateTime) {
+		super(id, name);
+		this.setBuyPrice(buyPrice);
+		this.setSellPrice(sellPrice);
+		this.dateTime = dateTime;
+	}
 	public String getDateTime() {
 		return dateTime;
 	}
@@ -59,10 +64,10 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 		sb.append("\"name\":\"" + getName() + "\"");
 		sb.append(",");
 
-		sb.append("\"buyPrice\":\"" + getBuyPrice() + "\"");
+		sb.append("\"buyPrice\":" + getBuyPrice() + "");
 		sb.append(",");
 
-		sb.append("\"sellPrice\":\"" + getSellPrice() + "\"");
+		sb.append("\"sellPrice\":" + getSellPrice() + "");
 		sb.append(",");
 
 		sb.append("\"date\":\"" + getDateTime() + "\"");

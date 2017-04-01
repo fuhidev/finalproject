@@ -16,7 +16,13 @@ public class DollarPrice extends AssetPrice implements JSONAware {
 		this.sellPrice = sellPrice;
 		this.date = date;
 	}
-
+	public DollarPrice(int id, String name, String buyCash, String buyTransfer, String sellPrice, String date) {
+		super(id, name);
+		this.setBuyCash(buyCash);
+		this.setBuyTransfer(buyTransfer);
+		this.setSellPrice(sellPrice);
+		this.date = date;
+	}
 	public float getBuyCash() {
 		return buyCash;
 	}
@@ -72,13 +78,13 @@ public class DollarPrice extends AssetPrice implements JSONAware {
 		sb.append("\"name\":\"" + getName() + "\"");
 		sb.append(",");
 
-		sb.append("\"buyCash\":\"" + getBuyCash() + "\"");
+		sb.append("\"buyCash\":" + getBuyCash() + "");
 		sb.append(",");
 
-		sb.append("\"buyTransfer\":\"" + getBuyTransfer() + "\"");
+		sb.append("\"buyTransfer\":" + getBuyTransfer() + "");
 		sb.append(",");
 
-		sb.append("\"sellPrice\":\"" + getSellPrice() + "\"");
+		sb.append("\"sellPrice\":" + getSellPrice() + "");
 		sb.append(",");
 
 		sb.append("\"date\":\"" + getDate() + "\"");

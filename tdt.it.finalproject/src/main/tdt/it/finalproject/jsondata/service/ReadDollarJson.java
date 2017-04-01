@@ -46,10 +46,10 @@ public class ReadDollarJson implements IReadJson {
 				JSONObject jsonObject = (JSONObject) jsonArray.get(i);
 				int id = Integer.parseInt((String) jsonObject.get("id"));
 				String name = (String) jsonObject.get("name");
-				String buyCash = (String) jsonObject.get("buyCash");
-				String buyTransfer = (String) jsonObject.get("buyCash");
-				String sellPrice = (String) jsonObject.get("buyCash");
-				String date = (String) jsonObject.get("buyCash");
+				float buyCash = (Float) jsonObject.get("buyCash");
+				float buyTransfer = (Float) jsonObject.get("buyTransfer");
+				float sellPrice = (Float) jsonObject.get("sellPrice");
+				String date = (String) jsonObject.get("date");
 				result.add(new DollarPrice(id, name, buyCash, buyTransfer, sellPrice, date));
 
 			}

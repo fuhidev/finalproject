@@ -51,12 +51,12 @@ public class TyGiaChart extends ApplicationFrame {
 		
 		//add value of golds on dataset
 		this.golds.forEach(f->{
-			dataset.addValue((((GoldPrice) f).getFloatSellPrice()), GOLD, ((GoldPrice) f).getDateTime());
+			dataset.addValue((((GoldPrice) f).getSellPrice()), GOLD, ((GoldPrice) f).getDateTime());
 		});
 		
 		//add value of dollar on dataset
 		this.dollars.forEach(f->{
-			dataset.addValue(((DollarPrice)f).getFloatSellPrice(), DOLLAR, ((DollarPrice)f).getDate());
+			dataset.addValue(((DollarPrice)f).getSellPrice(), DOLLAR, ((DollarPrice)f).getDate());
 		});
 		
 		return dataset;

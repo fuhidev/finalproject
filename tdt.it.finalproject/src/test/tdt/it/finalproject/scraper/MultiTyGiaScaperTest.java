@@ -16,11 +16,11 @@ public class MultiTyGiaScaperTest {
 
 	@Test
 	public void test() {
-		List<String> dates = new GenerateDay().generate("20170316", "20170317");
+		List<String> dates = new GenerateDay().generate("20170310", "20170317");
 		scraper.setDates(dates);
 		List<AssetPrice> dollarData = scraper.getDollarData();
-		Object[] expecteds = new DollarPrice[] { new DollarPrice(0, "USD", "22,740", "22,740", "22,810", "20170316"),
-				new DollarPrice(1, "USD", "22,745", "22,745", "22,815", "20170317") };
+		Object[] expecteds = new DollarPrice[] { new DollarPrice(0, "USD", 22740, 22740, 22810, "20170316"),
+				new DollarPrice(1, "USD", 22745, 22745, 22815, "20170317") };
 		assertArrayEquals(expecteds, dollarData.toArray());
 	}
 }
