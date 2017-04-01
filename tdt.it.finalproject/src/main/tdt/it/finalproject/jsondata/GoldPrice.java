@@ -39,6 +39,14 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 	}
 	
 
+	public void setBuyPrice(float buyPrice) {
+		this.buyPrice = buyPrice;
+	}
+
+	public void setSellPrice(float sellPrice) {
+		this.sellPrice = sellPrice;
+	}
+
 	public String toJSONString() {
 		StringBuffer sb = new StringBuffer();
 
@@ -64,15 +72,19 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 		return sb.toString();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "GoldPrice [buyPrice=" + buyPrice + ", sellPrice=" + sellPrice + ", dateTime=" + dateTime + "]";
+		return "GoldPrice [buyPrice=" + buyPrice + ", sellPrice=" + sellPrice + ", dateTime=" + dateTime + ", id=" + id
+				+ ", name=" + name + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + Float.floatToIntBits(buyPrice);
 		result = prime * result + ((dateTime == null) ? 0 : dateTime.hashCode());
 		result = prime * result + Float.floatToIntBits(sellPrice);
@@ -85,7 +97,7 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 			return true;
 		if (!super.equals(obj))
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof GoldPrice))
 			return false;
 		GoldPrice other = (GoldPrice) obj;
 		if (Float.floatToIntBits(buyPrice) != Float.floatToIntBits(other.buyPrice))
@@ -99,6 +111,7 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 			return false;
 		return true;
 	}
+
 
 
 }
