@@ -1,5 +1,6 @@
 package main.tdt.it.finalproject.jsondata.service;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,10 +38,11 @@ public class ReadDollarJson implements IReadJson {
 
 	public List<AssetPrice> getData() {
 		List<AssetPrice> result = new ArrayList<>();
+		FileReader file=null;
 		try {
 			JSONParser parser = new JSONParser();
 			System.out.println("Dang doc du lieu");
-			FileReader file = new FileReader(PATH + fileName + ".json");
+			file = new FileReader(PATH + fileName + ".json");
 			JSONArray jsonArray = (JSONArray) parser.parse(file);
 			for (int i = 0; i < jsonArray.size(); i++) {
 				JSONObject jsonObject = (JSONObject) jsonArray.get(i);
@@ -51,17 +53,18 @@ public class ReadDollarJson implements IReadJson {
 				double sellPrice = (double) jsonObject.get("sellPrice");
 				String date = (String) jsonObject.get("date");
 				result.add(new DollarPrice(id, name, buyCash, buyTransfer, sellPrice, date));
-
 			}
-			file.close();
-		} catch (IOException e) {
-			System.err.println(e);
-			e.printStackTrace();
-		} catch (ParseException e) {
-			System.err.println(e);
+			
+		} catch (ParseException | IOException e) {
 			e.printStackTrace();
 		} finally {
-
+			if(file!=null)
+				try {
+					file.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 		return result;
 	}
