@@ -1,5 +1,6 @@
 package main.tdt.it.finalproject.chart;
 
+import java.awt.Dimension;
 import java.util.Collection;
 import java.util.List;
 
@@ -30,16 +31,19 @@ public class TyGiaChart extends ApplicationFrame {
 	private List<AssetPrice> golds;
 	private List<AssetPrice> dollars;
 
-	public TyGiaChart(String applicationTitle) {
+	public TyGiaChart(String applicationTitle, String chartTitle,List<AssetPrice> golds,List<AssetPrice> dollars) throws NotFoundAssetException {
 		super(applicationTitle);
-	}
-	public void showChart(String chartTitle) throws NotFoundAssetException{
+		this.dollars=dollars;
+		this.golds=golds;
 		JFreeChart lineChart = ChartFactory.createLineChart(chartTitle, YEAR, MONEY, createDataset(),
 				PlotOrientation.VERTICAL, true, true, false);
 
 		ChartPanel chartPanel = new ChartPanel(lineChart);
 		chartPanel.setPreferredSize(new java.awt.Dimension(560, 367));
 		setContentPane(chartPanel);
+	}
+	public void showChart(String chartTitle) throws NotFoundAssetException{
+		
 	}
 	private DefaultCategoryDataset createDataset() throws NotFoundAssetException {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
