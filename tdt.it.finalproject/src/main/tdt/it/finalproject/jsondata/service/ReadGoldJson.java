@@ -36,6 +36,7 @@ public class ReadGoldJson implements IReadJson{
 		this.fileName = fileName;
 	}
 
+	@Override
 	public List<AssetPrice> getData() {
 		List<AssetPrice> result = new ArrayList<>();
 		try {

@@ -1,6 +1,5 @@
 package main.tdt.it.finalproject.jsondata.service;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,6 +35,7 @@ public class ReadDollarJson implements IReadJson {
 		this.fileName = fileName;
 	}
 
+	@Override
 	public List<AssetPrice> getData() {
 		List<AssetPrice> result = new ArrayList<>();
 		FileReader file=null;

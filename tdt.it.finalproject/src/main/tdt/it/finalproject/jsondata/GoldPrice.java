@@ -52,6 +52,7 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 		this.sellPrice = sellPrice;
 	}
 
+	@Override
 	public String toJSONString() {
 		StringBuffer sb = new StringBuffer();
 
