@@ -36,6 +36,7 @@ public class ReadGoldJson implements IReadJson{
 		this.fileName = fileName;
 	}
 
+	@Override
 	public List<AssetPrice> getData() {
 		List<AssetPrice> result = new ArrayList<>();
 		try {
@@ -52,8 +53,6 @@ public class ReadGoldJson implements IReadJson{
 				double sellPrice = (double) jsonObject.get("sellPrice");
 				String date = (String) jsonObject.get("date");
 				result.add(new GoldPrice(id, name, buyPrice, sellPrice, date));
-				GoldPrice gold = new GoldPrice(id, name, buyPrice, sellPrice, date);
-				
 			}
 			file.close();
 		} catch (IOException e) {

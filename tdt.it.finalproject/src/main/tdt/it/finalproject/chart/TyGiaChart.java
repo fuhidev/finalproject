@@ -1,6 +1,5 @@
 package main.tdt.it.finalproject.chart;
 
-import java.awt.Dimension;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class TyGiaChart extends ApplicationFrame {
 	 */
 	private static final long serialVersionUID = -1257782022271171807L;
 	private static final String GOLD = "Vàng";
-	private static final String DOLLAR = "Dola";
+	private static final String DOLLAR = "Đô la";
 	private static final String YEAR = "Năm";
 	private static final String MONEY = "Tiền";
 	
@@ -55,16 +54,18 @@ public class TyGiaChart extends ApplicationFrame {
 			throw new NotFoundAssetException(DOLLAR+" please call setDollar");
 		}
 		
-		Collection<AssetPrice> golds2 = AssetPriceUtil.getGolds(this.golds);
-		//add value of golds on dataset
+		Collection<AssetPrice> golds2 = AssetPriceUtil.getGolds(this.golds,true);
+		//add value of golds on datasebe
 		golds2.forEach(f->{
-			dataset.addValue((((GoldPrice) f).getSellPrice()), GOLD+" "+f.getName(), ((GoldPrice) f).getDateTime());
+			dataset.addValue((((GoldPrice) f).getSellPrice()), GOLD+" sell", ((GoldPrice) f).getDateTime());
+			dataset.addValue((((GoldPrice) f).getBuyPrice()), GOLD+" buy ", ((GoldPrice) f).getDateTime());
 		});
 		
 		//add value of dollar on dataset
-		Collection<AssetPrice> dollars2 = AssetPriceUtil.getDollars(dollars);
+		Collection<AssetPrice> dollars2 = AssetPriceUtil.getDollars(dollars,true);
 		dollars2.forEach(f->{
-			dataset.addValue(((DollarPrice)f).getSellPrice(), DOLLAR+" "+f.getName(), ((DollarPrice)f).getDate());
+			dataset.addValue(((DollarPrice)f).getSellPrice(), DOLLAR+" sell", ((DollarPrice)f).getDate());
+			dataset.addValue(((DollarPrice)f).getBuyCash(), DOLLAR+" BuyCash", ((DollarPrice)f).getDate());
 		});
 		
 		return dataset;
