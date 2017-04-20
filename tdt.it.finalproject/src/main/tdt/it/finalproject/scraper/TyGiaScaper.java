@@ -20,6 +20,7 @@ public class TyGiaScaper {
 	public final String URL = "https://www.tygia.com/?nganhang=VIETCOM&ngay=";
 	private String cssQueryDollar = "#ratetb tr:first-child td.c1 b,#ratetb tr:first-child td span.c2,#ratetb tr:first-child td span.c3, #ratetb tr:first-child td span.c4";
 	private String cssQueryGold = "#gold_tb #goldtb td.c1 b,#gold_tb #goldtb span.c2,#gold_tb #goldtb span.c4";
+	private String cssQueryWorldGold = "";
 	private Document doc = null;
 
 	public TyGiaScaper() {
