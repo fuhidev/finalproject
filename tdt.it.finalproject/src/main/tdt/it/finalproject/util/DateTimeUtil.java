@@ -6,15 +6,19 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateTimeUtil {
+	
+	public static String formatDateToString(Date date,String format) {
+		SimpleDateFormat sdf = 
+			      new SimpleDateFormat(format);
+		return sdf.format(date);
+	}
 	/**
 	 * Convert Date to String 
 	 * @param date
 	 * @return String with Format yyyyMMdd
 	 */
 	public static String formatDateToString(Date date) {
-		SimpleDateFormat sdf = 
-			      new SimpleDateFormat("yyyyMMdd");
-		return sdf.format(date);
+		return formatDateToString(date, "yyyyMMdd");
 	}
 	/**
 	 * Convert String to Date

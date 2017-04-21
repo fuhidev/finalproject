@@ -7,6 +7,7 @@ import java.util.List;
 import main.tdt.it.finalproject.jdbc.ConnectionUtils;
 import main.tdt.it.finalproject.jsondata.DollarPrice;
 import main.tdt.it.finalproject.jsondata.GoldPrice;
+import main.tdt.it.finalproject.jsondata.WorldGold;
 
 import java.sql.PreparedStatement;
 
@@ -43,7 +44,7 @@ public class Gold_DollarPreparedStatement {
 	}
 	
 	public void addDollar(List<DollarPrice> dollars) {
-		String sql = "Insert into VNGold values(?,?,?)";
+		String sql = "Insert into  values(?,?,?)";
 		try {
 			Connection connection = ConnectionUtils.getMyConnection();
 			if (connection != null)
@@ -71,8 +72,32 @@ public class Gold_DollarPreparedStatement {
 			}
 		}
 	}
-	public void addWorldGold() {
-		// TODO Auto-generated method stub
+	public void addWorldGold(List<WorldGold> worldGolds) {
+		String sql = "Insert into  values(?,?,?)";
+		try {
+			Connection connection = ConnectionUtils.getMyConnection();
+			if (connection != null)
+				pstm = connection.prepareStatement(sql);
+			for (WorldGold wgold : worldGolds) {
+				pstm.setString(1, wgold.getName());
+				pstm.setDouble(2, wgold.getVnPrice());
+				pstm.setDouble(3, wgold.getUsPrice());
+				pstm.setString(4, wgold.getDateTime());
+				pstm.executeQuery();
+			}
 
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			try {
+				if (pstm != null)
+					pstm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 }
