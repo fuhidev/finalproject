@@ -1,39 +1,26 @@
 package main.tdt.it.finalproject.jsondata;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Iterator;
-
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.DateUtil;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
-import org.apache.poi.ss.usermodel.Row;
+import java.util.Date;
 
 public class WorldGold {
 	private String name;
 	private double usPrice;
 	private double vnPrice;
-	private String dateTime;
+	private Date dateTime;
 	public WorldGold(String name, double usPrice, double vnPrice, String dateTime) {
 		super();
 		this.name = name;
 		this.usPrice = usPrice;
 		this.vnPrice = vnPrice;
-		this.dateTime = dateTime;
+//		this.dateTime = dateTime;
 	}
 	
-	public WorldGold(double usPrice, double vnPrice, String dateTime) {
+	public WorldGold(double usPrice, double vnPrice, Date dateTime2) {
 		super();
 		this.name = "us";
 		this.usPrice = usPrice;
 		this.vnPrice = vnPrice;
-		this.dateTime = dateTime;
+		this.dateTime = dateTime2;
 	}
 
 	public WorldGold() {
@@ -57,10 +44,18 @@ public class WorldGold {
 	public void setVnPrice(double vnPrice) {
 		this.vnPrice = vnPrice;
 	}
-	public String getDateTime() {
+//	public String getDateTime() {
+//		return dateTime;
+//	}
+//	public void setDateTime(String dateTime) {
+//		this.dateTime = dateTime;
+//	}
+
+	public Date getDateTime() {
 		return dateTime;
 	}
-	public void setDateTime(String dateTime) {
+
+	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
 	}
 	

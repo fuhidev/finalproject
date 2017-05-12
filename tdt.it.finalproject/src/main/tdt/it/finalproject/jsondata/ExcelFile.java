@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -112,8 +113,8 @@ public class ExcelFile {
 						.getNumericCellValue();
 				double vnPrice = row.getCell(1)
 						.getNumericCellValue();
-				String dateTime = DateTimeUtil.formatDateToString(row
-						.getCell(0).getDateCellValue(), "dd/MM/yyy");
+				Date dateTime = row
+						.getCell(0).getDateCellValue();
 				WorldGold wg = new WorldGold(usPrice, vnPrice, dateTime);
 				rs.add(wg);
 			}
@@ -136,9 +137,4 @@ public class ExcelFile {
 		return rs;
 	}
 
-	public static void main(String[] args) {
-		ExcelFile excelFile = new ExcelFile();
-		List<WorldGold> readFileFromExcel = excelFile.readFileFromExcel("C:/Users/TIEN/Desktop/Data.xls");
-//		System.out.println(readFileFromExcel.size());
-	}
 }
