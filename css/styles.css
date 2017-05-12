@@ -1,0 +1,29 @@
+#line_top_x > div{
+	margin: 100px auto;
+}
+.navbar-inverse{
+	background-color: #37a2eb;
+	border-bottom: 0px;
+	border:0px;
+	border-radius: 0px;
+}
+.logo{
+	width: 50px;
+	margin-top: -7px;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+	    background-color: #286090;
+}
+.navbar-inverse .navbar-nav>li>a{
+	color:#fff;
+}
+.footer{
+	margin-top: 20px;
+	padding: 10px 0px;
+	background-color: #7f8c8d;
+}
+.text-muted{
+	padding: 10px 0px;
+	margin-bottom: 0px;
+	color:#fff;
+}
