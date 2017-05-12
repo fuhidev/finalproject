@@ -7,7 +7,7 @@ Services use php-cruid-api GNU.
 # Features
 ## Get Json Data
 ```url
-  localhost/services.php?{table}/{id}
+  localhost/services.php/{table}/{id}
 ```
 # Example:
 
