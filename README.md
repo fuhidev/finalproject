@@ -14,7 +14,7 @@ Services use php-cruid-api GNU.
 ## Get list jsondata with table usgold
 
 ```
-localhost/services.php?usgold
+localhost/services.php/usgold
 ```
 ### Return
 ```json
@@ -40,7 +40,7 @@ localhost/services.php?usgold
 ## Get a jsondata with table usgold and id
 
 ```
-localhost/services.php?usgold/1
+localhost/services.php/usgold/1
 ```
 ### Return
 
