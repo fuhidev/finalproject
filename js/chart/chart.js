@@ -44,52 +44,44 @@ google.charts.setOnLoadCallback(function () {
     // addRows(loadData());
     // chart.draw(data, google.charts.Line.convertOptions(options))
 
-    $('#fromDate').on('change', changeTimer);
-    $('#toDate').on('change', changeTimer);
+    $('#fromDate').on('change', redraw);
+    $('#toDate').on('change', redraw);
     $("button[name='period']").on('click', function (event) {
         var period = event.target.getAttribute('data-period');
          var date = new Date();
+         setToDate(getCurrentTime());
         switch (period) {
             case '1w':
-               
-                setToDate(getCurrentTime());
                 setFromDate(getTime(date.addDays('week',-1)))
-
                 break;
             case '3m':
-            setToDate(getCurrentTime());
                 setFromDate(getTime(date.addDays('week',-3)))
                 break;
             case '6m':
-            setToDate(getCurrentTime());
                 setFromDate(getTime(date.addDays('week',-6)))
                 break;
             case '1y':
-            setToDate(getCurrentTime());
                 setFromDate(getTime(date.addDays('year',-1)))
                 break;
             case '3y':
-            setToDate(getCurrentTime());
                 setFromDate(getTime(date.addDays('year',-3)))
                 break;
             case '10y':
-            setToDate(getCurrentTime());
                 setFromDate(getTime(date.addDays('year',-10)))
                 break;
             default:
-                setToDate(getCurrentTime());
                 setFromDate(new Date(1900,01,01));
 
         }
-        changeTimer();
+
+        redraw();
 
     });
     var date = new Date();
 
-    setFromDate(date.getFullYear() + "-01-01");
-    setToDate(getCurrentTime());
+    
 
-    changeTimer();
+    redraw();
 });
 
 function setToDate(val) {
@@ -139,7 +131,7 @@ function addRows(records) {
 }
 
 
-function changeTimer() {
+function redraw() {
     var from = $('#fromDate').val();
     var to = $('#toDate').val();
     if (from != undefined && from != '' && to != undefined && to != '') {

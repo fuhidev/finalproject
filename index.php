@@ -60,7 +60,7 @@
 				</div>
 			</div>
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-				<div class="btn-group">
+				<div class="btn-group btn-time">
 					<button type="button" name="period" class="btn btn-default" data-period='1w'>1w</button>
 					<button type="button" name="period" class="btn btn-default" data-period='3m'>3m</button>
 					<button type="button" name="period" class="btn btn-default" data-period='6m'>6m</button>
@@ -88,9 +88,16 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="js/download.js"></script>
-    <script type="text/javascript" src="js/loadingoverlay.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="js/chart/chart.js"></script>
-    
+    <script type="text/javascript" charset="utf-8" async defer>
+        $(document).ready(function() {
+            $(".btn-time").children().click(function(){
+              $(".btn-time").children().removeClass("active");
+              $(this).addClass("active");
+            });
+        });
+      </script>
   </body>
+
 </html>
