@@ -11,7 +11,7 @@ import main.tdt.it.finalproject.jsondata.service.WriterJson;
 import main.tdt.it.finalproject.scraper.MultiTyGiaScaper;
 
 public class MainRun {
-	private static final String END = "20170516";
+	private static final String END = "20170517";
 	private static final String BEGIN = "20090921";
 	private static final int MAX = 365 * 2 - 1;// ghi du lieu 2 nam 1 lan
 

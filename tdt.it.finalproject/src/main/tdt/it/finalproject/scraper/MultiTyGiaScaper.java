@@ -65,6 +65,7 @@ public class MultiTyGiaScaper {
 
 	public void getData(List<AssetPrice> golds, List<AssetPrice> dollars) {
 		for (String date : dates) {
+			scaper = new TyGiaScaper();
 			scaper.setDate(date);
 			try {
 				golds.addAll(scaper.getGoldData());
