@@ -70,7 +70,7 @@ google.charts.setOnLoadCallback(function () {
                 setFromDate(getTime(date.addDays('year',-10)))
                 break;
             default:
-                setFromDate(new Date(1900,01,01));
+                setFromDate(getTime(new Date(1900,01,01)));
 
         }
 
