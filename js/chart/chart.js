@@ -106,7 +106,7 @@ function getTime(date) {
     return time;
 }
 
-function loadData(url = 'http://localhost/FinalProject/services.php/goldworld') {
+function loadData(url = 'services.php/goldworld') {
     var datas;
     $.ajax({
         url: url,
@@ -136,7 +136,7 @@ function redraw() {
     var to = $('#toDate').val();
     if (from != undefined && from != '' && to != undefined && to != '') {
 
-        var records = loadData('http://localhost/FinalProject/services.php/goldworld?filter=datetime,bt,' + from + ',' + to);
+        var records = loadData( 'services.php/goldworld?filter=datetime,bt,' + from + ',' + to);
         addRows(records);
 
         chart.draw(data, google.charts.Line.convertOptions(options));
