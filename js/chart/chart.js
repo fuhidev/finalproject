@@ -36,6 +36,7 @@ Date.prototype.addDays = function (unit, num) {
 
 
 google.charts.setOnLoadCallback(function () {
+    
     data = new google.visualization.DataTable();
     data.addColumn('string', 'Time');
     data.addColumn('number', 'VN Gold');
@@ -47,6 +48,7 @@ google.charts.setOnLoadCallback(function () {
     $('#fromDate').on('change', redraw);
     $('#toDate').on('change', redraw);
     $("button[name='period']").on('click', function (event) {
+          $('#loading').html("<img src='images/loading2.gif'id='loaded'/>").fadeIn();
         var period = event.target.getAttribute('data-period');
          var date = new Date();
          setToDate(getCurrentTime());
@@ -73,13 +75,13 @@ google.charts.setOnLoadCallback(function () {
                 setFromDate(getTime(new Date(1900,01,01)));
 
         }
-
+       
         redraw();
 
     });
     var date = new Date();
 
-    
+
 
     redraw();
 });
@@ -106,15 +108,20 @@ function getTime(date) {
     return time;
 }
 
-function loadData(url = 'services.php/goldworld') {
+function loadData(url = 'http://localhost:8080/finalproject/services.php/goldworld') {
     var datas;
+   
     $.ajax({
         url: url,
         async: false,
+        beforeSend: function(){
+             $('#loading').html("<img src='images/loading2.gif'id='loaded'/>").fadeIn();
+        },
         success: function (respone, status, xhr) {
             if (respone != undefined) {
+                 $('#loading').fadeOut(1500);
                 datas = respone.goldworld.records;
-
+               
             }
         }
     });
@@ -136,7 +143,7 @@ function redraw() {
     var to = $('#toDate').val();
     if (from != undefined && from != '' && to != undefined && to != '') {
 
-        var records = loadData( 'services.php/goldworld?filter=datetime,bt,' + from + ',' + to);
+        var records = loadData( 'http://localhost:8080/finalproject/services.php/goldworld?filter=datetime,bt,' + from + ',' + to);
         addRows(records);
 
         chart.draw(data, google.charts.Line.convertOptions(options));
