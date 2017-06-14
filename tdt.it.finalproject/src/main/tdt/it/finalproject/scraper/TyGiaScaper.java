@@ -137,6 +137,7 @@ public class TyGiaScaper {
 		return rs;
 
 	}
+	
 	public List<InterestRate> getInterestRate() throws NotFoundAssetException {
 		System.out.println(String.format("Dang duyet du lieu của lãi suat "));
 		ArrayList<String> tmpExp = new ArrayList<String>();
