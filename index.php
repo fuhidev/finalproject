@@ -75,6 +75,9 @@
 			</div>
 		</div>
     </div><!-- /.container -->
+    <div id="loading">
+      
+    </div>
 	<footer class="footer">
       <div class="container">
         <p class="text-muted text-center text-info">This website served for display gold and dollar chart</p>
