@@ -3,6 +3,8 @@ package main.tdt.it.finalproject.scraper;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,14 +15,16 @@ import main.tdt.it.finalproject.exception.NotFoundAssetException;
 import main.tdt.it.finalproject.jsondata.AssetPrice;
 import main.tdt.it.finalproject.jsondata.DollarPrice;
 import main.tdt.it.finalproject.jsondata.GoldPrice;
+import main.tdt.it.finalproject.jsondata.InterestRate;
 
 public class TyGiaScaper {
 
 	private String date;
-	public final String URL = "https://www.tygia.com/?nganhang=VIETCOM&ngay=";
+//	public final String URL = "https://www.tygia.com/?nganhang=VIETCOM&ngay=";
+	public final String URL ="http://vietbao.vn/vn/lai-suat-tiet-kiem/";
 	private String cssQueryDollar = "#ratetb tr:first-child td.c1 b,#ratetb tr:first-child td span.c2,#ratetb tr:first-child td span.c3, #ratetb tr:first-child td span.c4";
 	private String cssQueryGold = "#gold_tb #goldtb td.c1 b,#gold_tb #goldtb span.c2,#gold_tb #goldtb span.c4";
-	private String cssQueryWorldGold = "";
+	private String cssQueryInterestRate = ".ruler1 tr:gt(0) td:nth-child(1),.ruler1 tr:gt(0) td:nth-child(2) img[src],.ruler1 tr:gt(0) td:nth-child(3)";
 	private Document doc = null;
 
 	public TyGiaScaper() {
@@ -82,7 +86,11 @@ public class TyGiaScaper {
 		if (doc != null) {
 			Elements aElements = doc.select(cssQuery);
 			for (Element aElement : aElements) {
-				result.add(aElement.text());
+				if(aElement.hasText()){
+					result.add(aElement.text());
+					
+				}
+				result.add(aElement.attr("src"));
 			}
 		}
 		return result;
@@ -128,6 +136,39 @@ public class TyGiaScaper {
 		}
 		return rs;
 
+	}
+	public List<InterestRate> getInterestRate() throws NotFoundAssetException {
+		System.out.println(String.format("Dang duyet du lieu của lãi suat "));
+		ArrayList<String> tmpExp = new ArrayList<String>();
+		List<InterestRate> rs = new ArrayList<InterestRate>();
+		tmpExp = this.getHtml(this.cssQueryInterestRate);
+		if (tmpExp == null || tmpExp.size() == 0)
+			throw new NotFoundAssetException("Khong tim thay trang ");
+		for (int i = 0; i < tmpExp.size(); i += 5) {
+
+			if (i != tmpExp.size() - 4) {
+				
+				InterestRate js = new InterestRate(tmpExp.get(i).toString(), tmpExp.get(i + 2).toString(),
+						tmpExp.get(i + 3).toString());
+				
+				Pattern pattern = Pattern.compile("/images/v2011/logo/");
+				Matcher matcher = pattern.matcher(js.getNameBank());
+				if(matcher.find()){
+					
+					js.setNameBank(js.getNameBank().substring(matcher.end(0),js.getNameBank().length()-4));
+					Matcher matcher2 = Pattern.compile("_").matcher(js.getNameBank());
+					if(matcher2.find()){
+						int start = matcher2.start();
+						js.setNameBank(js.getNameBank().substring(0,start));
+						int lastIndex = js.getNameBank().lastIndexOf("-");
+						js.setNameBank(js.getNameBank().substring(lastIndex+1));
+					}
+				}
+				rs.add(js);
+				System.out.println(js.getKyHan() + "-" + js.getNameBank() + "-" + js.getPercentInterestRate());
+			}
+		}
+		return rs;
 	}
 
 }

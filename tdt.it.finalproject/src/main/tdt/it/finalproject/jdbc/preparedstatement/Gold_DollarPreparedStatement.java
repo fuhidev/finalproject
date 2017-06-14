@@ -83,7 +83,7 @@ public class Gold_DollarPreparedStatement {
 				pstm.setDouble(2, wgold.getVnPrice());
 				pstm.setDouble(3, wgold.getUsPrice());
 				pstm.setString(4, wgold.getDateTime());
-				pstm.executeQuery();
+				pstm.executeUpdate();
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
