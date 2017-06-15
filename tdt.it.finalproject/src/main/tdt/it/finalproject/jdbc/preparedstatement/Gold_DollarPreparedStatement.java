@@ -1,6 +1,7 @@
 package main.tdt.it.finalproject.jdbc.preparedstatement;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class Gold_DollarPreparedStatement {
 	}
 	
 	public void addDollar(List<DollarPrice> dollars) {
-		String sql = "Insert into  values(?,?,?)";
+		String sql = "Insert into dollar values(?,?,?)";
 		try {
 			Connection connection = ConnectionUtils.getMyConnection();
 			if (connection != null)
@@ -73,7 +74,7 @@ public class Gold_DollarPreparedStatement {
 		}
 	}
 	public void addWorldGold(List<WorldGold> worldGolds) {
-		String sql = "Insert into  values(?,?,?)";
+		String sql = "INSERT INTO goldworld(name,vnprice,usprice,datetime) VALUES(?,?,?,?)";
 		try {
 			Connection connection = ConnectionUtils.getMyConnection();
 			if (connection != null)
@@ -83,6 +84,8 @@ public class Gold_DollarPreparedStatement {
 				pstm.setDouble(2, wgold.getVnPrice());
 				pstm.setDouble(3, wgold.getUsPrice());
 				pstm.setString(4, wgold.getDateTime());
+				java.sql.Date sqlDate = new java.sql.Date(wgold.getDateTime().getTime());
+				pstm.setDate(4, sqlDate);
 				pstm.executeUpdate();
 			}
 

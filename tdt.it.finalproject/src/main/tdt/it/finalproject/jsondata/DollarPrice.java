@@ -3,7 +3,7 @@ package main.tdt.it.finalproject.jsondata;
 import org.json.simple.JSONAware;
 
 public class DollarPrice extends AssetPrice implements JSONAware {
-
+	
 	public double buyCash;
 	public double buyTransfer;
 	public double sellPrice;
