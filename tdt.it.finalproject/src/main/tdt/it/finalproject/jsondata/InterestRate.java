@@ -1,13 +1,11 @@
 package main.tdt.it.finalproject.jsondata;
 
-public class InterestRate {
+public class InterestRate extends AssetPrice {
 	private String kyHan;
-	private String nameBank;
 	private String percentInterestRate;
 	public InterestRate(String kyHan, String nameBank, String percentInterestRate) {
-		super();
 		this.kyHan = kyHan;
-		this.nameBank = nameBank;
+		this.name = nameBank;
 		this.percentInterestRate = percentInterestRate;
 	}
 	public String getKyHan() {
@@ -17,10 +15,10 @@ public class InterestRate {
 		this.kyHan = kyHan;
 	}
 	public String getNameBank() {
-		return nameBank;
+		return this.getName();
 	}
 	public void setNameBank(String nameBank) {
-		this.nameBank = nameBank;
+		this.setName(nameBank);
 	}
 	public String getPercentInterestRate() {
 		return percentInterestRate;

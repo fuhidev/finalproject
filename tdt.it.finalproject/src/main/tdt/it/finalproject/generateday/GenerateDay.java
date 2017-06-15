@@ -6,11 +6,9 @@ import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
-import javax.naming.directory.InvalidAttributesException;
-
+@SuppressWarnings("unused")
 public class GenerateDay {
 	/**
 	 * Táº¡o ra má»™t chuá»—i thï¿½?i gian kiá»ƒu String tá»« thï¿½?i gian báº¯t

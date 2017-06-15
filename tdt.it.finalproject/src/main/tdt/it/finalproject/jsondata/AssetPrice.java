@@ -3,6 +3,11 @@ package main.tdt.it.finalproject.jsondata;
 public abstract class  AssetPrice {
 	protected int id;
 	protected String name;
+	
+	public AssetPrice() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public AssetPrice(int id, String name) {
 		super();
 		this.id = id;

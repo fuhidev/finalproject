@@ -1,5 +1,6 @@
 package main.tdt.it.finalproject.util;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,5 +42,10 @@ public class DateTimeUtil {
 		Calendar instance = Calendar.getInstance();
 		instance.setTime(formatStringToDate(date));
 		return instance.get(Calendar.YEAR);
+	}
+	
+	public static int toTimeStamp(Date time) {
+		Timestamp timestamp = new Timestamp(time.getTime());
+		return timestamp.getNanos();
 	}
 }

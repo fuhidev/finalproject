@@ -5,7 +5,7 @@ import java.util.List;
 
 import main.tdt.it.finalproject.exception.NotFoundAssetException;
 import main.tdt.it.finalproject.jsondata.AssetPrice;
-
+@Deprecated
 public class MultiTyGiaScaper {
 	private TyGiaScaper scaper = new TyGiaScaper();
 	private List<String> dates;

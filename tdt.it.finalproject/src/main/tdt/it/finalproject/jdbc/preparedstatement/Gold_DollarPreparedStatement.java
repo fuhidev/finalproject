@@ -1,7 +1,6 @@
 package main.tdt.it.finalproject.jdbc.preparedstatement;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -83,7 +82,6 @@ public class Gold_DollarPreparedStatement {
 				pstm.setString(1, wgold.getName());
 				pstm.setDouble(2, wgold.getVnPrice());
 				pstm.setDouble(3, wgold.getUsPrice());
-				pstm.setString(4, wgold.getDateTime());
 				java.sql.Date sqlDate = new java.sql.Date(wgold.getDateTime().getTime());
 				pstm.setDate(4, sqlDate);
 				pstm.executeUpdate();

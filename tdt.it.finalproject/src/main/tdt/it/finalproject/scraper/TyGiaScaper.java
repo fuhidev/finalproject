@@ -16,7 +16,7 @@ import main.tdt.it.finalproject.jsondata.AssetPrice;
 import main.tdt.it.finalproject.jsondata.DollarPrice;
 import main.tdt.it.finalproject.jsondata.GoldPrice;
 import main.tdt.it.finalproject.jsondata.InterestRate;
-
+@Deprecated
 public class TyGiaScaper {
 
 	private String date;
