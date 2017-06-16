@@ -18,33 +18,6 @@ public class DollarDatabase extends BaseDB<DollarPrice, Boolean, Integer> {
 	}
 
 
-	public void insert(GoldPrice goldPrice) {
-		String sql = "Insert into VNGold values(?,?,?)";
-		PreparedStatement pstm = null;
-		try {
-			Connection connection = ConnectionUtils.getMyConnection();
-			if (connection != null)
-				pstm = connection.prepareStatement(sql);
-				pstm.setString(1, goldPrice.getName());
-				pstm.setDouble(2, goldPrice.getBuyPrice());
-				pstm.setDouble(3, goldPrice.getSellPrice());
-				pstm.setString(4, goldPrice.getDateTime());
-				pstm.executeQuery();
-
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-
-			try {
-				if (pstm != null)
-					pstm.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
 
 
 	@Override
@@ -101,6 +74,13 @@ public class DollarDatabase extends BaseDB<DollarPrice, Boolean, Integer> {
 
 	@Override
 	public List<DollarPrice> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Boolean adds(DollarPrice e) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -5,10 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
+import main.tdt.it.finalproject.jdbc.BaseDB;
 import main.tdt.it.finalproject.jdbc.ConnectionUtils;
 import main.tdt.it.finalproject.jsondata.GoldPrice;
 
-public class GoldDatabase implements IDB<GoldPrice, Boolean, Integer> {
+public class GoldDatabase extends BaseDB<GoldPrice, Boolean, Integer> {
 
 	public void insert(GoldPrice goldPrice) {
 		String sql = "Insert into VNGold values(?,?,?)";
@@ -64,6 +65,12 @@ public class GoldDatabase implements IDB<GoldPrice, Boolean, Integer> {
 
 	@Override
 	public List<GoldPrice> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean adds(GoldPrice e) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -13,7 +13,7 @@ import main.tdt.it.finalproject.jdbc.ConnectionUtils;
 import main.tdt.it.finalproject.jsondata.DollarPrice;
 import main.tdt.it.finalproject.jsondata.GoldPrice;
 import main.tdt.it.finalproject.jsondata.WorldGold;
-
+@Deprecated
 public class Gold_DollarPreparedStatement {
 	public PreparedStatement pstm = null;
 
