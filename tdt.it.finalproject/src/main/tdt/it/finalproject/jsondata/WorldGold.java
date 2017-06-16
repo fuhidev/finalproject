@@ -2,7 +2,9 @@ package main.tdt.it.finalproject.jsondata;
 
 import java.util.Date;
 
-public class WorldGold {
+import main.tdt.it.finalproject.util.ScraperUtil;
+
+public class WorldGold  extends AssetPrice{
 	private String name;
 	private double usPrice;
 	private double vnPrice;
@@ -12,6 +14,14 @@ public class WorldGold {
 		this.name = name;
 		this.usPrice = usPrice;
 		this.vnPrice = vnPrice;
+//		this.dateTime = dateTime;
+	}
+	
+	public WorldGold(String name, String usPrice, String vnPrice, String dateTime) {
+		super();
+		this.name = name;
+		this.setUsPrice(usPrice);
+		this.setVnPrice(vnPrice);
 //		this.dateTime = dateTime;
 	}
 	
@@ -38,11 +48,17 @@ public class WorldGold {
 	public void setUsPrice(double usPrice) {
 		this.usPrice = usPrice;
 	}
+	public void setUsPrice(String usPrice) {
+		this.usPrice = ScraperUtil.convertStringToDouble(usPrice);
+	}
 	public double getVnPrice() {
 		return vnPrice;
 	}
 	public void setVnPrice(double vnPrice) {
 		this.vnPrice = vnPrice;
+	}
+	public void setVnPrice(String vnPrice) {
+		this.vnPrice = ScraperUtil.convertStringToDouble(vnPrice);
 	}
 //	public String getDateTime() {
 //		return dateTime;

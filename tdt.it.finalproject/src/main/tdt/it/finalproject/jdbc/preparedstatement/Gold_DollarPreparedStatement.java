@@ -2,12 +2,15 @@ package main.tdt.it.finalproject.jdbc.preparedstatement;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import com.mysql.cj.api.jdbc.Statement;
 
 import main.tdt.it.finalproject.jdbc.ConnectionUtils;
 import main.tdt.it.finalproject.jsondata.DollarPrice;
@@ -59,18 +62,27 @@ public class Gold_DollarPreparedStatement {
 	}
 	
 	public void addDollar(List<DollarPrice> dollars) {
-		String sql = "Insert into dollar values(?,?,?)";
+		String sql = "Insert into dollar(name,price,date) values(?,?,?)";
 		try {
 			Connection connection = ConnectionUtils.getMyConnection();
 			if (connection != null)
 				pstm = connection.prepareStatement(sql);
 			for (DollarPrice dollar : dollars) {
 				pstm.setString(1, dollar.getName());
-				pstm.setDouble(2, dollar.getBuyCash());
-				pstm.setDouble(3, dollar.getBuyTransfer());
-				pstm.setDouble(4, dollar.getSellPrice());
-				pstm.setString(5, dollar.getDate());
-				pstm.executeQuery();
+				pstm.setDouble(2, dollar.getSellPrice());
+				SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		        Date parsed;
+		        try {
+					parsed = format.parse(dollar.getDate());
+					java.sql.Date date = new java.sql.Date(parsed.getTime());
+					pstm.setDate(3, date );
+					System.out.println(date + "-" + dollar.getName()+ "-" +  dollar.getSellPrice());
+					pstm.executeUpdate();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
@@ -89,17 +101,26 @@ public class Gold_DollarPreparedStatement {
 	}
 	public void addWorldGold(List<WorldGold> worldGolds) {
 		String sql = "INSERT INTO goldworld(name,vnprice,usprice,datetime) VALUES(?,?,?,?)";
+		
 		try {
 			Connection connection = ConnectionUtils.getMyConnection();
 			if (connection != null)
 				pstm = connection.prepareStatement(sql);
 			for (WorldGold wgold : worldGolds) {
+				String sqlDollarPrice = "SELECT price FROM dollar WHERE" + wgold.getDateTime() ;
+				Statement statement = (Statement) connection.createStatement();
+				ResultSet rs = statement.executeQuery(sqlDollarPrice);
 				pstm.setString(1, wgold.getName());
+				if(rs.next()){
+					pstm.setDouble(2, wgold.getUsPrice() * rs.getDouble("price"));
+					System.out.println(wgold.getUsPrice() * rs.getDouble("price"));
+				}
 				pstm.setDouble(2, wgold.getVnPrice());
 				pstm.setDouble(3, wgold.getUsPrice());
 				java.sql.Date sqlDate = new java.sql.Date(wgold.getDateTime().getTime());
 				pstm.setDate(4, sqlDate);
-				pstm.executeUpdate();
+				
+//				pstm.executeUpdate();
 			}
 
 		} catch (ClassNotFoundException | SQLException e) {
