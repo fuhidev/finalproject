@@ -9,6 +9,7 @@ import main.tdt.it.finalproject.jsondata.WorldGold;
 import main.tdt.it.finalproject.modal.AbstractPrice;
 import main.tdt.it.finalproject.modal.DollarPrice;
 import main.tdt.it.finalproject.modal.GoldPrice;
+import main.tdt.it.finalproject.modal.InterestRatePrices;
 import main.tdt.it.finalproject.scraper.ContextDocument;
 import main.tdt.it.finalproject.scraper.ContextDocumentInterestRate;
 import main.tdt.it.finalproject.scraper.DollarScraper;
@@ -100,7 +101,7 @@ public class MainRun {
 		InterestRateScraper interestRateScaper = new InterestRateScraper();
 		interestRateScaper.setElements(contextDocumentInterestRate.getElements());
 		
-			List<AbstractPrice> irs = interestRateScaper.getDatas();
+			InterestRatePrices irs = interestRateScaper.getDatas();
 			irs.forEach(f-> System.out.println(f));
 		} catch (ScraperException e) {
 			// TODO Auto-generated catch block
