@@ -1,10 +1,11 @@
+
 package main.tdt.it.finalproject.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class MySQLConnUtils {
+public class MySQLConnUtils implements IConnection {
 	public static Connection getMySQLConnection() throws SQLException,
 			ClassNotFoundException {
 		String hostName = "localhost";
@@ -22,5 +23,29 @@ public class MySQLConnUtils {
 		Connection conn = DriverManager.getConnection(connectionURL, userName,
 				password);
 		return conn;
+	}
+
+	@Override
+	public void open() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Connection getConnection() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getConnectString() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
