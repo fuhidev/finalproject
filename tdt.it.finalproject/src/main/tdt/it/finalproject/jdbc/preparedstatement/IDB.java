@@ -1,7 +1,7 @@
 package main.tdt.it.finalproject.jdbc.preparedstatement;
 
 import java.util.List;
-
+@Deprecated
 public interface IDB<Model,ReturnType,IdType> {
 	/*
 	 * add

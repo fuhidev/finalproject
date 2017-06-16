@@ -1,44 +1,46 @@
 package main.tdt.it.finalproject.jdbc.preparedstatement;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 
-import main.tdt.it.finalproject.jdbc.ConnectionUtils;
-import main.tdt.it.finalproject.jsondata.InterestRate;
+import main.tdt.it.finalproject.jdbc.AbstractDB;
+import main.tdt.it.finalproject.modal.InterestRate;
 
-public class InterestRateDatabase {
-	public PreparedStatement pstm = null;
-	public void addInterestRage(List<InterestRate> interestRate) {
-		String sql = "INSERT INTO interestrate(kyhan,namebank,percentinterestrate,datetime) VALUES(?,?,?,?)";
-		try {
-			Connection connection = ConnectionUtils.getMyConnection();
-			if (connection != null)
-				pstm = connection.prepareStatement(sql);
-			for (InterestRate interestRatePrice : interestRate) {
-				pstm.setString(1, interestRatePrice.getKyHan());
-				pstm.setString(2, interestRatePrice.getNameBank());
-				pstm.setString(3, interestRatePrice.getPercentInterestRate());
-				long millis=System.currentTimeMillis();  
-				Date date=new java.sql.Date(millis);  
-				pstm.setDate(4, date);
-				pstm.executeUpdate();
-			}
+public class InterestRateDatabase extends AbstractDB<InterestRate, Boolean, Integer> {
 
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+	@Override
+	public Boolean add(InterestRate model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-			try {
-				if (pstm != null)
-					pstm.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+	@Override
+	public Boolean adds(Iterator<InterestRate> iterator) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean delete(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean update(InterestRate model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public InterestRate find(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<InterestRate> getAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

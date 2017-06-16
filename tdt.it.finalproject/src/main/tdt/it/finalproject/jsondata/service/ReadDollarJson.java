@@ -10,8 +10,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import main.tdt.it.finalproject.jsondata.AssetPrice;
-import main.tdt.it.finalproject.jsondata.DollarPrice;
+import main.tdt.it.finalproject.jsondata.DollarPrice1;
+import main.tdt.it.finalproject.modal.AbstractPrice;
 
 public class ReadDollarJson implements IReadJson {
 	private final String PATH = "jsonFile/";
@@ -36,8 +36,8 @@ public class ReadDollarJson implements IReadJson {
 	}
 
 	@Override
-	public List<AssetPrice> getData() {
-		List<AssetPrice> result = new ArrayList<>();
+	public List<AbstractPrice> getData() {
+		List<AbstractPrice> result = new ArrayList<>();
 		FileReader file=null;
 		try {
 			JSONParser parser = new JSONParser();
@@ -52,7 +52,7 @@ public class ReadDollarJson implements IReadJson {
 				double buyTransfer = (double) jsonObject.get("buyTransfer");
 				double sellPrice = (double) jsonObject.get("sellPrice");
 				String date = (String) jsonObject.get("date");
-				result.add(new DollarPrice(id, name, buyCash, buyTransfer, sellPrice, date));
+				result.add(new DollarPrice1(id, name, buyCash, buyTransfer, sellPrice, date));
 			}
 			
 		} catch (ParseException | IOException e) {

@@ -2,9 +2,10 @@ package main.tdt.it.finalproject.jsondata;
 
 import java.util.Date;
 
+import main.tdt.it.finalproject.modal.AbstractPrice;
 import main.tdt.it.finalproject.util.ScraperUtil;
 
-public class WorldGold  extends AssetPrice{
+public class WorldGold  extends AbstractPrice{
 	private String name;
 	private double usPrice;
 	private double vnPrice;

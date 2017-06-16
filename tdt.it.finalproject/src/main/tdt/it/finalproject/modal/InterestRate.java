@@ -1,11 +1,13 @@
-package main.tdt.it.finalproject.jsondata;
+package main.tdt.it.finalproject.modal;
 
-public class InterestRate extends AssetPrice {
+public class InterestRate extends AbstractPrice {
 	private String kyHan;
+	private String nameBank;
 	private String percentInterestRate;
+	
 	public InterestRate(String kyHan, String nameBank, String percentInterestRate) {
 		this.kyHan = kyHan;
-		this.name = nameBank;
+		this.nameBank = nameBank;
 		this.percentInterestRate = percentInterestRate;
 	}
 	public String getKyHan() {
@@ -14,11 +16,12 @@ public class InterestRate extends AssetPrice {
 	public void setKyHan(String kyHan) {
 		this.kyHan = kyHan;
 	}
+	
 	public String getNameBank() {
-		return this.getName();
+		return nameBank;
 	}
 	public void setNameBank(String nameBank) {
-		this.setName(nameBank);
+		this.nameBank = nameBank;
 	}
 	public String getPercentInterestRate() {
 		return percentInterestRate;

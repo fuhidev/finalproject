@@ -5,10 +5,10 @@ import java.util.List;
 import main.tdt.it.finalproject.exception.ScraperException;
 import main.tdt.it.finalproject.generateday.GenerateDay;
 import main.tdt.it.finalproject.jdbc.preparedstatement.Gold_DollarPreparedStatement;
-import main.tdt.it.finalproject.jsondata.AssetPrice;
-import main.tdt.it.finalproject.jsondata.DollarPrice;
-import main.tdt.it.finalproject.jsondata.GoldPrice;
 import main.tdt.it.finalproject.jsondata.WorldGold;
+import main.tdt.it.finalproject.modal.AbstractPrice;
+import main.tdt.it.finalproject.modal.DollarPrice;
+import main.tdt.it.finalproject.modal.GoldPrice;
 import main.tdt.it.finalproject.scraper.ContextDocument;
 import main.tdt.it.finalproject.scraper.ContextDocumentInterestRate;
 import main.tdt.it.finalproject.scraper.DollarScraper;
@@ -34,7 +34,7 @@ public class MainRun {
 				WorldGoldScraper worldGoldScraper = new WorldGoldScraper();
 				worldGoldScraper.setDate(lstDay.get(i));
 				worldGoldScraper.setElements(contextDocument.getElements());
-				List<? extends AssetPrice> worldGold = worldGoldScraper.getDatas();
+				List<? extends AbstractPrice> worldGold = worldGoldScraper.getDatas();
 				statement.addWorldGold((List<WorldGold>) worldGold);
 			} catch (ScraperException e) {
 				// TODO Auto-generated catch block
@@ -58,7 +58,7 @@ public class MainRun {
 				GoldScraper goldScaper = new GoldScraper();
 				goldScaper.setDate(lstDay.get(i));
 				goldScaper.setElements(contextDocument.getElements());
-				List<? extends AssetPrice> golds = goldScaper.getDatas();
+				List<? extends AbstractPrice> golds = goldScaper.getDatas();
 				statement.addVNGold((List<GoldPrice>) golds);
 			} catch (ScraperException e) {
 				// TODO Auto-generated catch block
@@ -81,7 +81,7 @@ public class MainRun {
 				DollarScraper dollarScaper = new DollarScraper();
 				dollarScaper.setDate(lstDay.get(i));
 				dollarScaper.setElements(contextDocument.getElements());
-				List<? extends AssetPrice> dollar = dollarScaper.getDatas();
+				List<? extends AbstractPrice> dollar = dollarScaper.getDatas();
 				statement.addDollar((List<DollarPrice>) dollar);
 			} catch (ScraperException e) {
 				// TODO Auto-generated catch block
@@ -100,7 +100,7 @@ public class MainRun {
 		InterestRateScraper interestRateScaper = new InterestRateScraper();
 		interestRateScaper.setElements(contextDocumentInterestRate.getElements());
 		
-			List<AssetPrice> irs = interestRateScaper.getDatas();
+			List<AbstractPrice> irs = interestRateScaper.getDatas();
 			irs.forEach(f-> System.out.println(f));
 		} catch (ScraperException e) {
 			// TODO Auto-generated catch block

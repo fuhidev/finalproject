@@ -7,7 +7,7 @@ import java.util.Iterator;
 import org.jsoup.nodes.Element;
 
 import main.tdt.it.finalproject.exception.ScraperException;
-
+@Deprecated
 public interface IContextDocument {
 	
 	ArrayList<String> getElements() throws ScraperException;

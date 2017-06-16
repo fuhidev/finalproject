@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.json.simple.JSONArray;
 
-import main.tdt.it.finalproject.jsondata.AssetPrice;
+import main.tdt.it.finalproject.modal.AbstractPrice;
 
 /**
  * Ghi dung lieu ra file json
@@ -37,7 +37,7 @@ public class WriterJson {
 		this.fileName = fileName;
 	}
 
-	public void export(List<AssetPrice> datas) {
+	public void export(List<AbstractPrice> datas) {
 		System.out.println("Dang doc du lieu");
 		File file = new File(PATH + fileName + ".json");
 		String JSONResult = JSONArray.toJSONString(datas);

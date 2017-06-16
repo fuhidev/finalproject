@@ -1,12 +1,8 @@
-package main.tdt.it.finalproject.jsondata;
+package main.tdt.it.finalproject.modal;
 
 import java.util.Date;
 
-import org.json.simple.JSONAware;
-
-import main.tdt.it.finalproject.modal.ForeignCurrencyPrice;
-
-public class DollarPrice extends ForeignCurrencyPrice implements JSONAware{
+public class DollarPrice extends ForeignCurrencyPrice{
 	private Date dateTime;
 	
 	public DollarPrice(String name, double price, Date dateTime) {
@@ -30,12 +26,5 @@ public class DollarPrice extends ForeignCurrencyPrice implements JSONAware{
 	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
 	}
-
-	@Override
-	public String toJSONString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 
 }

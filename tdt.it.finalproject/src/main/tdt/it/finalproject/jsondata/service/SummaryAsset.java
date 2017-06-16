@@ -2,26 +2,26 @@ package main.tdt.it.finalproject.jsondata.service;
 
 import java.util.List;
 
-import main.tdt.it.finalproject.jsondata.AssetPrice;
+import main.tdt.it.finalproject.modal.AbstractPrice;
 
 public abstract class SummaryAsset {
-	protected List<AssetPrice> datas;
+	protected List<AbstractPrice> datas;
 
 	public SummaryAsset() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public SummaryAsset(List<AssetPrice> datas) {
+	public SummaryAsset(List<AbstractPrice> datas) {
 		super();
 		this.datas = datas;
 	}
 
-	public List<AssetPrice> getDatas() {
+	public List<AbstractPrice> getDatas() {
 		return datas;
 	}
 
-	public void setDatas(List<AssetPrice> datas) {
+	public void setDatas(List<AbstractPrice> datas) {
 		this.datas = datas;
 	}
 	/**

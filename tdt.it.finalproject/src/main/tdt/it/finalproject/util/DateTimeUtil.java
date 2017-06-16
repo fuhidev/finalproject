@@ -48,4 +48,7 @@ public class DateTimeUtil {
 		Timestamp timestamp = new Timestamp(time.getTime());
 		return timestamp.getNanos();
 	}
+	public static java.sql.Date convertUtilToSQL(Date date) {
+		return new java.sql.Date(date.getTime());
+	}
 }

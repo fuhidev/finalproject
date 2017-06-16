@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.tdt.it.finalproject.exception.NotFoundAssetException;
-import main.tdt.it.finalproject.jsondata.AssetPrice;
+import main.tdt.it.finalproject.modal.AbstractPrice;
 @Deprecated
 public class MultiTyGiaScaper {
 	private TyGiaScaper scaper = new TyGiaScaper();
@@ -28,8 +28,8 @@ public class MultiTyGiaScaper {
 	 * 
 	 * @return danh sach chua cac doi tuong
 	 */
-	public List<AssetPrice> getDollarData() {
-		List<AssetPrice> result = new ArrayList<>();
+	public List<AbstractPrice> getDollarData() {
+		List<AbstractPrice> result = new ArrayList<>();
 		for (String date : dates) {
 
 			scaper.setDate(date);
@@ -48,8 +48,8 @@ public class MultiTyGiaScaper {
 	 * 
 	 * @return danh sach chua cac doi tuong
 	 */
-	public List<AssetPrice> getGoldData() {
-		List<AssetPrice> result = new ArrayList<>();
+	public List<AbstractPrice> getGoldData() {
+		List<AbstractPrice> result = new ArrayList<>();
 		for (String date : dates) {
 
 			scaper.setDate(date);
@@ -63,7 +63,7 @@ public class MultiTyGiaScaper {
 		return result;
 	}
 
-	public void getData(List<AssetPrice> golds, List<AssetPrice> dollars) {
+	public void getData(List<AbstractPrice> golds, List<AbstractPrice> dollars) {
 		for (String date : dates) {
 			scaper = new TyGiaScaper();
 			scaper.setDate(date);

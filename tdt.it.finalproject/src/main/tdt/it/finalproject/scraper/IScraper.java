@@ -2,12 +2,12 @@ package main.tdt.it.finalproject.scraper;
 
 import java.util.List;
 
-import main.tdt.it.finalproject.jsondata.AssetPrice;
+import main.tdt.it.finalproject.modal.AbstractPrice;
 
 public interface IScraper {
 
 	void setElements(List<String> elements);
 	
 	
-	List<AssetPrice> getDatas() throws Exception;
+	List<AbstractPrice> getDatas() throws Exception;
 }
