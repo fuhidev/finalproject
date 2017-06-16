@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import main.tdt.it.finalproject.jdbc.AbstractDB;
-import main.tdt.it.finalproject.jdbc.ConnectionUtils;
 import main.tdt.it.finalproject.modal.GoldPrice;
 
 public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
@@ -47,7 +46,7 @@ public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 	public Boolean adds(Iterator<GoldPrice> iterator) {
 		PreparedStatement pstm = null;
 		try {
-			Connection connection = ConnectionUtils.getMyConnection();
+			Connection connection = this.condb.getConnection();
 			pstm = connection.prepareStatement(SQL_INSERT);
 			if (connection != null) {
 				while (iterator.hasNext()) {
@@ -62,7 +61,7 @@ public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 				return true;
 			}
 
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {

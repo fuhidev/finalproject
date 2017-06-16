@@ -1,29 +1,86 @@
 package main.tdt.it.finalproject.jdbc.preparedstatement;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
 import main.tdt.it.finalproject.jdbc.AbstractDB;
 import main.tdt.it.finalproject.modal.InterestRate;
 
-public class InterestRateDatabase extends AbstractDB<InterestRate, Boolean, Integer> {
+public class InterestRateDatabase extends AbstractDB<InterestRate, Boolean, Long> {
+	private final String SQL_INSERT = "INSERT INTO interestrate(kyhan,namebank,percentinterestrate,datetime) VALUES(?,?,?,?)";
 
 	@Override
 	public Boolean add(InterestRate model) {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement pstm = null;
+		try {
+			Connection connection = this.condb.getConnection();
+			if (connection != null)
+				pstm = connection.prepareStatement(SQL_INSERT);
+			pstm.setString(1, model.getKyHan());
+
+			pstm.setString(2, model.getNameBank());
+			pstm.setString(3, model.getPercentInterestRate());
+			long millis = System.currentTimeMillis();
+			Date date = new java.sql.Date(millis);
+			pstm.setDate(4, date);
+			// pstm.executeUpdate();
+			return true;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			try {
+				if (pstm != null)
+					pstm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 
 	@Override
 	public Boolean adds(Iterator<InterestRate> iterator) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		PreparedStatement pstm = null;
+		try {
+			Connection connection = this.condb.getConnection();
+			if (connection != null)
+				pstm = connection.prepareStatement(SQL_INSERT);
+			while (iterator.hasNext()) {
+				InterestRate iRate = iterator.next();
+				pstm.setString(1, iRate.getKyHan());
+				pstm.setString(2, iRate.getNameBank());
+				pstm.setString(3, iRate.getPercentInterestRate());
+				long millis = System.currentTimeMillis();
+				Date date = new java.sql.Date(millis);
+				pstm.setDate(4, date);
+				System.out.println("Kỳ hạn: " + iRate.getKyHan() + "- Tên ngân hàng: " + iRate.getNameBank() + "- Phần trăm: " + iRate.getPercentInterestRate() + "- Ngày: " + date);
+				pstm.addBatch();
+			}
+			pstm.executeBatch();
+			return true;
 
-	@Override
-	public Boolean delete(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			try {
+				if (pstm != null)
+					pstm.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -33,13 +90,19 @@ public class InterestRateDatabase extends AbstractDB<InterestRate, Boolean, Inte
 	}
 
 	@Override
-	public InterestRate find(Integer id) {
+	public List<InterestRate> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<InterestRate> getAll() {
+	public Boolean delete(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public InterestRate find(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

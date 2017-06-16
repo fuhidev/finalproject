@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.tdt.it.finalproject.exception.NotFoundAssetException;
-import main.tdt.it.finalproject.jsondata.WorldGold;
 import main.tdt.it.finalproject.modal.AbstractPrice;
+import main.tdt.it.finalproject.modal.WorldGold;
 
 public class WorldGoldScraper implements IScraper{
 	private String date;

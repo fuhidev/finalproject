@@ -30,17 +30,16 @@ public class InterestRateScraper implements IScraper {
 		List<AbstractPrice> rs = new ArrayList<AbstractPrice>();
 		if (this.elements == null || this.elements.size() == 0)
 			throw new NotFoundAssetException("InterestRate in " + this.date);
-		for (int i = 0; i < this.elements.size(); i += 5) {
+		for (int i = 0; i < this.elements.size(); i += 3) {
 
-			if (i != this.elements.size() - 4) {
+			if (i != this.elements.size() - 3) {
 				
-				InterestRate js = new InterestRate(this.elements.get(i).toString(), this.elements.get(i + 2).toString(),
-						this.elements.get(i + 3).toString());
+				InterestRate js = new InterestRate(this.elements.get(i).toString(), this.elements.get(i + 1).toString(),
+						this.elements.get(i + 2).toString());
 				
 				Pattern pattern = Pattern.compile("/images/v2011/logo/");
 				Matcher matcher = pattern.matcher(js.getNameBank());
 				if(matcher.find()){
-					
 					js.setNameBank(js.getNameBank().substring(matcher.end(0),js.getNameBank().length()-4));
 					Matcher matcher2 = Pattern.compile("_").matcher(js.getNameBank());
 					if(matcher2.find()){
