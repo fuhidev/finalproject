@@ -5,13 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-import main.tdt.it.finalproject.jdbc.BaseDB;
+import main.tdt.it.finalproject.jdbc.AbstractDB;
 import main.tdt.it.finalproject.jdbc.ConnectionUtils;
 import main.tdt.it.finalproject.jdbc.IConnection;
 import main.tdt.it.finalproject.jsondata.DollarPrice;
 import main.tdt.it.finalproject.jsondata.GoldPrice;
 
-public class DollarDatabase extends BaseDB<DollarPrice, Boolean, Integer> {
+public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 
 	public DollarDatabase(IConnection condb) {
 		super(condb);

@@ -2,14 +2,14 @@ package main.tdt.it.finalproject.jdbc;
 
 import java.util.List;
 
-public abstract class BaseDB<Model,ReturnType,IdType> {
+public abstract class AbstractDB<Model,ReturnType,IdType> {
 	protected IConnection condb;
 	
-	public BaseDB() {
+	public AbstractDB() {
 		super();
 		this.condb = new MySQLConnUtils();
 	}
-	public BaseDB(IConnection condb) {
+	public AbstractDB(IConnection condb) {
 		super();
 		this.condb = condb;
 	}

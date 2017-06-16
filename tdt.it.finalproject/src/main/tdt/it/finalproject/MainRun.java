@@ -7,7 +7,7 @@ import main.tdt.it.finalproject.generateday.GenerateDay;
 import main.tdt.it.finalproject.jdbc.preparedstatement.Gold_DollarPreparedStatement;
 import main.tdt.it.finalproject.jsondata.AssetPrice;
 import main.tdt.it.finalproject.jsondata.GoldPrice;
-import main.tdt.it.finalproject.scraper.BaseContextDocument;
+import main.tdt.it.finalproject.scraper.AbstractContextDocument;
 import main.tdt.it.finalproject.scraper.ContextDocument;
 import main.tdt.it.finalproject.scraper.ContextDocumentInterestRate;
 import main.tdt.it.finalproject.scraper.DollarScraper;
@@ -224,7 +224,7 @@ public class MainRun {
 		for (int i = 0; i < lstDay.size(); i++) {
 			Gold_DollarPreparedStatement statement = new Gold_DollarPreparedStatement();
 			try {
-				BaseContextDocument contextDocument = new ContextDocument(
+				AbstractContextDocument contextDocument = new ContextDocument(
 						"https://www.tygia.com/?nganhang=VIETCOM&ngay=" + lstDay.get(i));
 				contextDocument.setCssQuery(ContextDocument.CSS_QUERY_GOLD);
 				GoldScraper goldScaper = new GoldScraper();
@@ -243,7 +243,7 @@ public class MainRun {
 	public static void getScaperInDay() {
 		//Get Gold and dollar at 01/01/2016, tygia.com 
 		String date = "20160101";		
-		BaseContextDocument contextDocument = new ContextDocument("https://www.tygia.com/?nganhang=VIETCOM&ngay="+date);
+		AbstractContextDocument contextDocument = new ContextDocument("https://www.tygia.com/?nganhang=VIETCOM&ngay="+date);
 		
 		try {
 			//get gold
@@ -267,7 +267,7 @@ public class MainRun {
 		}
 		try {
 		//Get InterestRate at TIME NOW, vietbao.vn
-		BaseContextDocument contextDocumentInterestRate = new ContextDocumentInterestRate("http://vietbao.vn/vn/lai-suat-tiet-kiem/");
+		AbstractContextDocument contextDocumentInterestRate = new ContextDocumentInterestRate("http://vietbao.vn/vn/lai-suat-tiet-kiem/");
 		contextDocumentInterestRate.setCssQuery(ContextDocument.CSS_QUERY_INTERESTRATE);
 		InterestRateScraper interestRateScaper = new InterestRateScraper();
 		interestRateScaper.setElements(contextDocumentInterestRate.getElements());

@@ -2,10 +2,10 @@ package main.tdt.it.finalproject.jdbc.preparedstatement;
 
 import java.util.List;
 
-import main.tdt.it.finalproject.jdbc.BaseDB;
+import main.tdt.it.finalproject.jdbc.AbstractDB;
 import main.tdt.it.finalproject.jsondata.InterestRate;
 
-public class InterestRateDatabase extends BaseDB<InterestRate, Boolean, Integer> {
+public class InterestRateDatabase extends AbstractDB<InterestRate, Boolean, Integer> {
 	@Override
 	public Boolean add(InterestRate e) {
 		// TODO Auto-generated method stub

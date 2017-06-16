@@ -10,7 +10,7 @@ import org.jsoup.nodes.Element;
 
 import main.tdt.it.finalproject.exception.ScraperException;
 
-public abstract class BaseContextDocument {
+public abstract class AbstractContextDocument {
 
 	public static final String CSS_QUERY_DOLLAR = "#ratetb tr:first-child td.c1 b,#ratetb tr:first-child td span.c2,#ratetb tr:first-child td span.c3, #ratetb tr:first-child td span.c4";
 	public static final String CSS_QUERY_GOLD = "#gold_tb #goldtb td.c1 b,#gold_tb #goldtb span.c2,#gold_tb #goldtb span.c4";

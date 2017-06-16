@@ -11,7 +11,7 @@ import main.tdt.it.finalproject.exception.NullContextDocumentException;
 import main.tdt.it.finalproject.exception.NullCssQueryException;
 import main.tdt.it.finalproject.exception.ScraperException;
 
-public class ContextDocument extends BaseContextDocument {
+public class ContextDocument extends AbstractContextDocument {
 
 	public ContextDocument(String URL) {
 		super();
