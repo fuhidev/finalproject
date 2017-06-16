@@ -6,4 +6,5 @@ public interface IConnection {
 	void open();
 	void close();
 	Connection getConnection();
+	String getConnectString();
 }
