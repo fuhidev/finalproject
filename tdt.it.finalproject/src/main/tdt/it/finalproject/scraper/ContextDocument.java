@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -13,13 +11,7 @@ import main.tdt.it.finalproject.exception.NullContextDocumentException;
 import main.tdt.it.finalproject.exception.NullCssQueryException;
 import main.tdt.it.finalproject.exception.ScraperException;
 
-public class ContextDocument implements IContextDocument {
-	protected String URL;
-	protected String cssQuery = null;
-	protected Document document;
-	public static final String CSS_QUERY_DOLLAR = "#ratetb tr:first-child td.c1 b,#ratetb tr:first-child td span.c2,#ratetb tr:first-child td span.c3, #ratetb tr:first-child td span.c4";
-	public static final String CSS_QUERY_GOLD = "#gold_tb #goldtb td.c1 b,#gold_tb #goldtb span.c2,#gold_tb #goldtb span.c4";
-	public static final String CSS_QUERY_INTERESTRATE = ".ruler1 tr:gt(0) td:nth-child(1),.ruler1 tr:gt(0) td:nth-child(2) img[src],.ruler1 tr:gt(0) td:nth-child(3)";
+public class ContextDocument extends BaseContextDocument {
 
 	public ContextDocument(String URL) {
 		super();
@@ -31,28 +23,13 @@ public class ContextDocument implements IContextDocument {
 		}
 	}
 
-	public String getURL() {
-		return URL;
-	}
-
-	public void setURL(String uRL) throws IOException {
-		URL = uRL;
-		this.document = Jsoup.connect(this.getURL()).get();
-	}
-
-	public String getCssQuery() {
-		return cssQuery;
-	}
-
-	public void setCssQuery(String cssQuery) {
-		this.cssQuery = cssQuery;
-	}
-
+	@Override
 	public ArrayList<String> getElements() throws ScraperException {
 		return getElements(this.cssQuery);
 
 	}
 
+	@Override
 	public ArrayList<String> getElements(String cssQuery) throws ScraperException {
 		ArrayList<String> result = new ArrayList<String>();
 		Iterator<Element> aElements = getContextDocument(cssQuery);
