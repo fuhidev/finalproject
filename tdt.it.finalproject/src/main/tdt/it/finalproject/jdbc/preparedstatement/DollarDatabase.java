@@ -3,40 +3,29 @@ package main.tdt.it.finalproject.jdbc.preparedstatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 
 import main.tdt.it.finalproject.jdbc.AbstractDB;
-import main.tdt.it.finalproject.jdbc.ConnectionUtils;
-import main.tdt.it.finalproject.jdbc.IConnection;
-import main.tdt.it.finalproject.jsondata.DollarPrice;
-import main.tdt.it.finalproject.jsondata.GoldPrice;
+import main.tdt.it.finalproject.modal.DollarPrice;
+import main.tdt.it.finalproject.util.DateTimeUtil;
 
 public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 
-	public DollarDatabase(IConnection condb) {
-		super(condb);
-	}
-
-
-
-
+	private final String SQL_INSERT ="Insert into dollar(price,date) values(?,?)"; 
 	@Override
 	public Boolean add(DollarPrice dollar) {
-		String sql = "Insert into dollar values(?,?,?)";
 		PreparedStatement pstm = null;
 		try {
-			Connection connection = ConnectionUtils.getMyConnection();
+			Connection connection = this.condb.getConnection();
 			
 			if (connection != null)
-				pstm = connection.prepareStatement(sql);
-				pstm.setString(1, dollar.getName());
-				pstm.setDouble(2, dollar.getBuyCash());
-				pstm.setDouble(3, dollar.getBuyTransfer());
-				pstm.setDouble(4, dollar.getSellPrice());
-				pstm.setString(5, dollar.getDate());
+				pstm = connection.prepareStatement(this.SQL_INSERT);
+				pstm.setDouble(0, dollar.getPrice());
+				pstm.setDate(1, DateTimeUtil.convertUtilToSQL(dollar.getDateTime()));
 				pstm.executeQuery();
 
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -53,24 +42,28 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 	}
 
 	@Override
-	public Boolean update(DollarPrice e) {
+	public Boolean adds(Iterator<DollarPrice> iterator) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public DollarPrice find(Integer k) {
+	public Boolean delete(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 	@Override
-	public Boolean delete(Integer k) {
+	public Boolean update(DollarPrice model) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	public DollarPrice find(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public List<DollarPrice> getAll() {
@@ -78,11 +71,5 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 		return null;
 	}
 
-
-	@Override
-	public Boolean adds(DollarPrice e) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

@@ -5,8 +5,8 @@ import java.util.List;
 import main.tdt.it.finalproject.exception.ScraperException;
 import main.tdt.it.finalproject.generateday.GenerateDay;
 import main.tdt.it.finalproject.jdbc.preparedstatement.Gold_DollarPreparedStatement;
-import main.tdt.it.finalproject.jsondata.AssetPrice;
-import main.tdt.it.finalproject.jsondata.GoldPrice;
+import main.tdt.it.finalproject.modal.AbstractPrice;
+import main.tdt.it.finalproject.modal.GoldPrice;
 import main.tdt.it.finalproject.scraper.AbstractContextDocument;
 import main.tdt.it.finalproject.scraper.ContextDocument;
 import main.tdt.it.finalproject.scraper.ContextDocumentInterestRate;
@@ -230,7 +230,7 @@ public class MainRun {
 				GoldScraper goldScaper = new GoldScraper();
 				goldScaper.setDate(lstDay.get(i));
 				goldScaper.setElements(contextDocument.getElements());
-				List<? extends AssetPrice> golds = goldScaper.getDatas();
+				List<? extends AbstractPrice> golds = goldScaper.getDatas();
 				statement.addVNGold((List<GoldPrice>) golds);
 			} catch (ScraperException e) {
 				// TODO Auto-generated catch block
@@ -251,14 +251,14 @@ public class MainRun {
 			GoldScraper goldScaper = new GoldScraper();
 			goldScaper.setDate(date);
 			goldScaper.setElements(contextDocument.getElements());
-			List<AssetPrice> golds = goldScaper.getDatas();
+			List<AbstractPrice> golds = goldScaper.getDatas();
 			golds.forEach(f-> System.out.println(f));
 			//get dollar
 			contextDocument.setCssQuery(ContextDocument.CSS_QUERY_DOLLAR);
 			DollarScraper dollarScaper = new DollarScraper();
 			dollarScaper.setDate(date);
 			dollarScaper.setElements(contextDocument.getElements());
-			List<AssetPrice> dollars = dollarScaper.getDatas();
+			List<AbstractPrice> dollars = dollarScaper.getDatas();
 			dollars.forEach(f-> System.out.println(f));
 			
 		} catch (ScraperException e) {
@@ -272,7 +272,7 @@ public class MainRun {
 		InterestRateScraper interestRateScaper = new InterestRateScraper();
 		interestRateScaper.setElements(contextDocumentInterestRate.getElements());
 		
-			List<AssetPrice> irs = interestRateScaper.getDatas();
+			List<AbstractPrice> irs = interestRateScaper.getDatas();
 			irs.forEach(f-> System.out.println(f));
 		} catch (ScraperException e) {
 			// TODO Auto-generated catch block

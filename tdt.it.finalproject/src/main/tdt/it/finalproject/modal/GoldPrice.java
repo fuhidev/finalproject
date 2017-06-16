@@ -1,31 +1,40 @@
-package main.tdt.it.finalproject.jsondata;
+package main.tdt.it.finalproject.modal;
 
 import java.util.Date;
 
-import org.json.simple.JSONAware;
-
-public class GoldPrice extends AssetPrice implements JSONAware {
+public class GoldPrice extends AbstractPrice {
+	private String name;
 	private double buyPrice;
 	private double sellPrice;
 	private String dateTime;
 	private Date date;
 	public GoldPrice(int id, String name, double buyPrice, double sellPrice, String dateTime) {
-		super(id, name);
+		super(id);
+		this.setName(name);
 		this.buyPrice = buyPrice;
 		this.sellPrice = sellPrice;
 		this.dateTime = dateTime;
 	}
 	public GoldPrice(int id, String name, String buyPrice, String sellPrice, String dateTime) {
-		super(id, name);
+		super(id);
+		this.setName(name);
 		this.setBuyPrice(buyPrice);
 		this.setSellPrice(sellPrice);
 		this.dateTime = dateTime;
 	}
 	public GoldPrice(int id, String name, String buyPrice, String sellPrice, Date dateTime) {
-		super(id, name);
+		super(id);
+		this.setName(name);
 		this.setBuyPrice(buyPrice);
 		this.setSellPrice(sellPrice);
 		this.date = dateTime;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getDateTime() {
 		return dateTime;
@@ -68,31 +77,6 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 		this.sellPrice = sellPrice;
 	}
 
-	@Override
-	public String toJSONString() {
-		StringBuffer sb = new StringBuffer();
-
-		sb.append("{"); // Báº¯t Ä‘áº§u má»™t Ä‘á»‘i tÆ°á»£ng JSON lĂ  dáº¥u má»Ÿ ngoáº·c nhá»�n
-
-		sb.append("\"id\":\"" + getId() + "\""); // dĂ²ng nĂ y cĂ³ nghÄ©a lĂ 
-													// "id":"GiĂ¡_Trá»‹"
-		sb.append(","); // sau má»—i cáº·p key/value lĂ  má»™t dáº¥u pháº©y
-
-		sb.append("\"name\":\"" + getName() + "\"");
-		sb.append(",");
-
-		sb.append("\"buyPrice\":" + getBuyPrice() + "");
-		sb.append(",");
-
-		sb.append("\"sellPrice\":" + getSellPrice() + "");
-		sb.append(",");
-
-		sb.append("\"date\":\"" + getDateTime() + "\"");
-
-		sb.append("}"); // Káº¿t thĂºc má»™t Ä‘á»‘i tÆ°á»£ng JSON lĂ  dáº¥u Ä‘Ă³ng ngoáº·c nhá»�n
-
-		return sb.toString();
-	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

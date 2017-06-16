@@ -10,9 +10,9 @@ import java.util.Date;
 import java.util.List;
 
 import main.tdt.it.finalproject.jdbc.ConnectionUtils;
-import main.tdt.it.finalproject.jsondata.DollarPrice;
-import main.tdt.it.finalproject.jsondata.GoldPrice;
+import main.tdt.it.finalproject.jsondata.DollarPrice1;
 import main.tdt.it.finalproject.jsondata.WorldGold;
+import main.tdt.it.finalproject.modal.GoldPrice;
 @Deprecated
 public class Gold_DollarPreparedStatement {
 	public PreparedStatement pstm = null;
@@ -58,13 +58,13 @@ public class Gold_DollarPreparedStatement {
 		}
 	}
 	
-	public void addDollar(List<DollarPrice> dollars) {
+	public void addDollar(List<DollarPrice1> dollars) {
 		String sql = "Insert into dollar values(?,?,?)";
 		try {
 			Connection connection = ConnectionUtils.getMyConnection();
 			if (connection != null)
 				pstm = connection.prepareStatement(sql);
-			for (DollarPrice dollar : dollars) {
+			for (DollarPrice1 dollar : dollars) {
 				pstm.setString(1, dollar.getName());
 				pstm.setDouble(2, dollar.getBuyCash());
 				pstm.setDouble(3, dollar.getBuyTransfer());

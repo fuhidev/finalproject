@@ -12,10 +12,10 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import main.tdt.it.finalproject.exception.NotFoundAssetException;
-import main.tdt.it.finalproject.jsondata.AssetPrice;
-import main.tdt.it.finalproject.jsondata.DollarPrice;
-import main.tdt.it.finalproject.jsondata.GoldPrice;
-import main.tdt.it.finalproject.jsondata.InterestRate;
+import main.tdt.it.finalproject.jsondata.DollarPrice1;
+import main.tdt.it.finalproject.modal.AbstractPrice;
+import main.tdt.it.finalproject.modal.GoldPrice;
+import main.tdt.it.finalproject.modal.InterestRate;
 @Deprecated
 public class TyGiaScaper {
 
@@ -101,10 +101,10 @@ public class TyGiaScaper {
 		return URL + date;
 	}
 
-	public List<AssetPrice> getGoldData() throws NotFoundAssetException {
+	public List<AbstractPrice> getGoldData() throws NotFoundAssetException {
 		System.out.println(String.format("Dang duyet du lieu cua Gold vao ngay %s", date));
 		ArrayList<String> tmpExp = new ArrayList<String>();
-		List<AssetPrice> rs = new ArrayList<AssetPrice>();
+		List<AbstractPrice> rs = new ArrayList<AbstractPrice>();
 		tmpExp = this.getHtml(this.cssQueryGold);
 		if (tmpExp == null || tmpExp.size() == 0)
 			throw new NotFoundAssetException("Gold in " + this.date);
@@ -118,17 +118,17 @@ public class TyGiaScaper {
 		return rs;
 	}
 
-	public List<AssetPrice> getDollarData() throws NotFoundAssetException {
+	public List<AbstractPrice> getDollarData() throws NotFoundAssetException {
 		System.out.println(String.format("Dang duyet du lieu cua Dollar vao ngay %s", date));
 		ArrayList<String> tmpExp = new ArrayList<String>();
-		List<AssetPrice> rs = new ArrayList<AssetPrice>();
+		List<AbstractPrice> rs = new ArrayList<AbstractPrice>();
 		tmpExp = this.getHtml(this.cssQueryDollar);
 		if (tmpExp == null || tmpExp.size() == 0)
 			throw new NotFoundAssetException("Dollar in " + this.date);
 		for (int count = 0, i = 0; i < tmpExp.size(); i += 4, count++) {
 
 			if (i != tmpExp.size() - 3) {
-				DollarPrice js = new DollarPrice(count, tmpExp.get(i).toString(), tmpExp.get(i + 1).toString(),
+				DollarPrice1 js = new DollarPrice1(count, tmpExp.get(i).toString(), tmpExp.get(i + 1).toString(),
 						tmpExp.get(i + 2).toString(), tmpExp.get(i + 3).toString(), date);
 				rs.add(js);
 

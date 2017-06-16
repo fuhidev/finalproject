@@ -6,8 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import main.tdt.it.finalproject.exception.NotFoundAssetException;
-import main.tdt.it.finalproject.jsondata.AssetPrice;
-import main.tdt.it.finalproject.jsondata.InterestRate;
+import main.tdt.it.finalproject.modal.AbstractPrice;
+import main.tdt.it.finalproject.modal.InterestRate;
 
 public class InterestRateScraper implements IScraper {
 
@@ -26,8 +26,8 @@ public class InterestRateScraper implements IScraper {
 	}
 
 	@Override
-	public List<AssetPrice> getDatas() throws NotFoundAssetException {
-		List<AssetPrice> rs = new ArrayList<AssetPrice>();
+	public List<AbstractPrice> getDatas() throws NotFoundAssetException {
+		List<AbstractPrice> rs = new ArrayList<AbstractPrice>();
 		if (this.elements == null || this.elements.size() == 0)
 			throw new NotFoundAssetException("InterestRate in " + this.date);
 		for (int i = 0; i < this.elements.size(); i += 5) {

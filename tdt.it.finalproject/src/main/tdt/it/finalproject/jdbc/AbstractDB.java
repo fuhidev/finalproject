@@ -1,5 +1,6 @@
 package main.tdt.it.finalproject.jdbc;
 
+import java.util.Iterator;
 import java.util.List;
 
 public abstract class AbstractDB<Model,ReturnType,IdType> {
@@ -13,10 +14,15 @@ public abstract class AbstractDB<Model,ReturnType,IdType> {
 		super();
 		this.condb = condb;
 	}
-	public abstract ReturnType add(Model e);
-	public abstract ReturnType adds(Model e);	
-	public abstract ReturnType delete (IdType k);
-	public abstract ReturnType update (Model e);
-	public abstract Model find(IdType k);
+	public abstract ReturnType add(Model model);
+	public abstract ReturnType adds(Iterator<Model> iterator);	
+	public abstract ReturnType delete (IdType id);
+	public abstract ReturnType update (Model model);
+	public abstract Model find(IdType id);
 	public abstract List<Model> getAll();
+	@Override
+	protected void finalize() throws Throwable {
+		this.condb.close();
+		super.finalize();
+	}
 }

@@ -10,8 +10,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import main.tdt.it.finalproject.jsondata.AssetPrice;
-import main.tdt.it.finalproject.jsondata.GoldPrice;
+import main.tdt.it.finalproject.modal.AbstractPrice;
+import main.tdt.it.finalproject.modal.GoldPrice;
 
 public class ReadGoldJson implements IReadJson{
 	private final String PATH = "jsonFile/";
@@ -37,8 +37,8 @@ public class ReadGoldJson implements IReadJson{
 	}
 
 	@Override
-	public List<AssetPrice> getData() {
-		List<AssetPrice> result = new ArrayList<>();
+	public List<AbstractPrice> getData() {
+		List<AbstractPrice> result = new ArrayList<>();
 		try {
 			
 			JSONParser parser = new JSONParser();

@@ -5,4 +5,4 @@ eclipse.preferences.version=1
 encoding//src/main/tdt/it/finalproject/generateday/GenerateDay.java=UTF-8
 encoding//src/main/tdt/it/finalproject/jdbc/ConnectionUtils.java=UTF-8
 encoding//src/main/tdt/it/finalproject/jsondata/ExcelFile.java=UTF-8
-encoding//src/main/tdt/it/finalproject/jsondata/GoldPrice.java=UTF-8
+encoding//src/main/tdt/it/finalproject/modal/GoldPrice.java=UTF-8
