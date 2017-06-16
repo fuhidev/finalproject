@@ -9,7 +9,7 @@ import java.util.List;
 import main.tdt.it.finalproject.jdbc.ConnectionUtils;
 import main.tdt.it.finalproject.jsondata.InterestRate;
 
-public class InterestRatePreparedStatement {
+public class InterestRateDatabase {
 	public PreparedStatement pstm = null;
 	public void addInterestRage(List<InterestRate> interestRate) {
 		String sql = "INSERT INTO interestrate(kyhan,namebank,percentinterestrate,datetime) VALUES(?,?,?,?)";
