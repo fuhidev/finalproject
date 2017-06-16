@@ -1,12 +1,14 @@
 package main.tdt.it.finalproject.jsondata;
 
+import java.util.Date;
+
 import org.json.simple.JSONAware;
 
 public class GoldPrice extends AssetPrice implements JSONAware {
 	private double buyPrice;
 	private double sellPrice;
 	private String dateTime;
-
+	private Date date;
 	public GoldPrice(int id, String name, double buyPrice, double sellPrice, String dateTime) {
 		super(id, name);
 		this.buyPrice = buyPrice;
@@ -19,6 +21,12 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 		this.setSellPrice(sellPrice);
 		this.dateTime = dateTime;
 	}
+	public GoldPrice(int id, String name, String buyPrice, String sellPrice, Date dateTime) {
+		super(id, name);
+		this.setBuyPrice(buyPrice);
+		this.setSellPrice(sellPrice);
+		this.date = dateTime;
+	}
 	public String getDateTime() {
 		return dateTime;
 	}
@@ -26,7 +34,15 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
 	}
+	
+	
 
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
 	public double getBuyPrice() {
 		return buyPrice;
 	}
@@ -56,11 +72,11 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 	public String toJSONString() {
 		StringBuffer sb = new StringBuffer();
 
-		sb.append("{"); // Bắt đầu một đối tượng JSON là dấu mở ngoặc nhọn
+		sb.append("{"); // Báº¯t Ä‘áº§u má»™t Ä‘á»‘i tÆ°á»£ng JSON lĂ  dáº¥u má»Ÿ ngoáº·c nhá»�n
 
-		sb.append("\"id\":\"" + getId() + "\""); // dòng này có nghĩa là
-													// "id":"Giá_Trị"
-		sb.append(","); // sau mỗi cặp key/value là một dấu phẩy
+		sb.append("\"id\":\"" + getId() + "\""); // dĂ²ng nĂ y cĂ³ nghÄ©a lĂ 
+													// "id":"GiĂ¡_Trá»‹"
+		sb.append(","); // sau má»—i cáº·p key/value lĂ  má»™t dáº¥u pháº©y
 
 		sb.append("\"name\":\"" + getName() + "\"");
 		sb.append(",");
@@ -73,7 +89,7 @@ public class GoldPrice extends AssetPrice implements JSONAware {
 
 		sb.append("\"date\":\"" + getDateTime() + "\"");
 
-		sb.append("}"); // Kết thúc một đối tượng JSON là dấu đóng ngoặc nhọn
+		sb.append("}"); // Káº¿t thĂºc má»™t Ä‘á»‘i tÆ°á»£ng JSON lĂ  dáº¥u Ä‘Ă³ng ngoáº·c nhá»�n
 
 		return sb.toString();
 	}

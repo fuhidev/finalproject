@@ -4,10 +4,10 @@ import org.json.simple.JSONAware;
 
 public class DollarPrice extends AssetPrice implements JSONAware {
 	
-	public double buyCash;
-	public double buyTransfer;
-	public double sellPrice;
-	public String date;
+	private double buyCash;
+	private double buyTransfer;
+	private double sellPrice;
+	private String date;
 
 	public DollarPrice(int id, String name, double buyCash, double buyTransfer, double sellPrice, String date) {
 		super(id, name);

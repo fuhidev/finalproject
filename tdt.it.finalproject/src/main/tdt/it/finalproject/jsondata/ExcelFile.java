@@ -41,67 +41,6 @@ public class ExcelFile {
 					continue;
 
 				}
-//				// Lấy Iterator cho tất cả các cell của dòng hiện tại.
-//				Iterator<Cell> cellIterator = row.cellIterator();
-
-//				
-//
-//				while (cellIterator.hasNext()) {
-//					Cell cell = cellIterator.next();
-//
-//					// Đổi thành getCellType() nếu sử dụng POI 4.x
-//					CellType cellType = cell.getCellTypeEnum();
-//					switch (cellType) {
-//					case _NONE:
-//						System.out.print("");
-//						System.out.print("\t");
-//						break;
-//					case BOOLEAN:
-//						System.out.print(cell.getBooleanCellValue());
-//						System.out.print("\t");
-//						break;
-//					case BLANK:
-//						System.out.print("");
-//						System.out.print("\t");
-//						break;
-//					case FORMULA:
-//						// Công thức
-//						System.out.print(cell.getCellFormula());
-//						System.out.print("\t");
-//
-//						FormulaEvaluator evaluator = workbook
-//								.getCreationHelper().createFormulaEvaluator();
-//
-//						// In ra giá trị từ công thức
-//						System.out.print(evaluator.evaluate(cell)
-//								.getNumberValue());
-//						break;
-//					case NUMERIC:
-//						if (DateUtil.isCellDateFormatted(cell)) {
-//							// ??????
-//							SimpleDateFormat sdf = new SimpleDateFormat(
-//									"dd/MM/yyy");
-//							String s = sdf.format(cell.getDateCellValue());
-//							System.out.print(s);
-//						} else {
-//							// ????
-//							System.out.print((Double) cell
-//									.getNumericCellValue());
-//						}
-//
-//						System.out.print("\t");
-//						break;
-//					case STRING:
-//						System.out.print(cell.getStringCellValue());
-//						System.out.print("\t");
-//						break;
-//					case ERROR:
-//						System.out.print("!");
-//						System.out.print("\t");
-//						break;
-//					}
-//
-//				}
 				if(row.getCell(0).getCellTypeEnum() == CellType._NONE || 
 						row.getCell(0).getCellTypeEnum() == CellType.BLANK ||
 						row.getCell(0).getCellTypeEnum() == CellType.ERROR){
