@@ -9,7 +9,7 @@ import main.tdt.it.finalproject.exception.NotFoundAssetException;
 import main.tdt.it.finalproject.modal.InterestRate;
 import main.tdt.it.finalproject.modal.InterestRatePrices;
 
-public class InterestRateScraper implements IScraper {
+public class InterestRateScraper implements IScraper<InterestRatePrices> {
 
 	private ArrayList<String> elements;
 	private String date;

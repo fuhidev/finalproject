@@ -7,7 +7,7 @@ import main.tdt.it.finalproject.exception.NotFoundAssetException;
 import main.tdt.it.finalproject.jsondata.DollarPrice1;
 import main.tdt.it.finalproject.modal.DollarPrices;
 
-public class DollarScraper implements IScraper {
+public class DollarScraper implements IScraper<DollarPrices> {
 
 	private ArrayList<String> elements;
 	private String date;

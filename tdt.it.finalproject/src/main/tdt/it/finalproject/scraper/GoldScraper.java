@@ -7,7 +7,7 @@ import main.tdt.it.finalproject.exception.NotFoundAssetException;
 import main.tdt.it.finalproject.modal.GoldPrice;
 import main.tdt.it.finalproject.modal.GoldPrices;
 
-public class GoldScraper implements IScraper {
+public class GoldScraper implements IScraper<GoldPrices> {
 
 	private ArrayList<String> elements;
 	private String date;

@@ -5,10 +5,10 @@ import java.util.List;
 
 import main.tdt.it.finalproject.modal.AbstractPrice;
 
-public interface IScraper {
+public interface IScraper<T extends ArrayList<? extends AbstractPrice>> {
 
 	void setElements(List<String> elements);
 	
 	
-	ArrayList<? extends AbstractPrice> getDatas() throws Exception;
+	T getDatas() throws Exception;
 }
