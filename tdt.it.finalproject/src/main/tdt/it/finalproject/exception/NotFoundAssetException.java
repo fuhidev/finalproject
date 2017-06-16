@@ -1,6 +1,6 @@
 package main.tdt.it.finalproject.exception;
 
-public class NotFoundAssetException extends Exception{
+public class NotFoundAssetException extends ScraperException{
 	private final static String MESS ="Cannot found asset "; 
 	/**
 	 * 

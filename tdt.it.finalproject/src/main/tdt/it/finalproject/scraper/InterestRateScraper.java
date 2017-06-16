@@ -9,14 +9,14 @@ import main.tdt.it.finalproject.exception.NotFoundAssetException;
 import main.tdt.it.finalproject.jsondata.AssetPrice;
 import main.tdt.it.finalproject.jsondata.InterestRate;
 
-public class InterestRateScaper implements IScaper {
+public class InterestRateScraper implements IScraper {
 
 	private ArrayList<String> elements;
 	private String date;
 	
 	
 
-	public InterestRateScaper() {
+	public InterestRateScraper() {
 		super();
 	}
 
@@ -51,7 +51,6 @@ public class InterestRateScaper implements IScaper {
 					}
 				}
 				rs.add(js);
-				System.out.println(js.getKyHan() + "-" + js.getNameBank() + "-" + js.getPercentInterestRate());
 			}
 		}
 		return rs;

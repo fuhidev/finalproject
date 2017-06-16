@@ -2,13 +2,13 @@ package main.tdt.it.finalproject;
 
 import java.util.List;
 
-import main.tdt.it.finalproject.exception.NotFoundAssetException;
+import main.tdt.it.finalproject.exception.ScraperException;
 import main.tdt.it.finalproject.jsondata.AssetPrice;
 import main.tdt.it.finalproject.scraper.ContextDocument;
 import main.tdt.it.finalproject.scraper.ContextDocumentInterestRate;
-import main.tdt.it.finalproject.scraper.DollarScaper;
-import main.tdt.it.finalproject.scraper.GoldScaper;
-import main.tdt.it.finalproject.scraper.InterestRateScaper;
+import main.tdt.it.finalproject.scraper.DollarScraper;
+import main.tdt.it.finalproject.scraper.GoldScraper;
+import main.tdt.it.finalproject.scraper.InterestRateScraper;
 
 public class MainRun {
 	private static final String END = "20170517";
@@ -222,33 +222,33 @@ public class MainRun {
 		try {
 			//get gold
 			contextDocument.setCssQuery(ContextDocument.CSS_QUERY_GOLD);
-			GoldScaper goldScaper = new GoldScaper();
+			GoldScraper goldScaper = new GoldScraper();
 			goldScaper.setDate(date);
 			goldScaper.setElements(contextDocument.getElements());
 			List<AssetPrice> golds = goldScaper.getDatas();
 			golds.forEach(f-> System.out.println(f));
 			//get dollar
 			contextDocument.setCssQuery(ContextDocument.CSS_QUERY_DOLLAR);
-			DollarScaper dollarScaper = new DollarScaper();
+			DollarScraper dollarScaper = new DollarScraper();
 			dollarScaper.setDate(date);
 			dollarScaper.setElements(contextDocument.getElements());
 			List<AssetPrice> dollars = dollarScaper.getDatas();
 			dollars.forEach(f-> System.out.println(f));
 			
-		} catch (NotFoundAssetException e) {
+		} catch (ScraperException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		try {
 		//Get InterestRate at TIME NOW, vietbao.vn
 		ContextDocumentInterestRate contextDocumentInterestRate = new ContextDocumentInterestRate("http://vietbao.vn/vn/lai-suat-tiet-kiem/");
 		contextDocumentInterestRate.setCssQuery(ContextDocument.CSS_QUERY_INTERESTRATE);
-		InterestRateScaper interestRateScaper = new InterestRateScaper();
+		InterestRateScraper interestRateScaper = new InterestRateScraper();
 		interestRateScaper.setElements(contextDocumentInterestRate.getElements());
-		try {
+		
 			List<AssetPrice> irs = interestRateScaper.getDatas();
 			irs.forEach(f-> System.out.println(f));
-		} catch (NotFoundAssetException e) {
+		} catch (ScraperException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

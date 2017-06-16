@@ -9,7 +9,7 @@ import main.tdt.it.finalproject.jsondata.AssetPrice;
 import main.tdt.it.finalproject.jsondata.DollarPrice;
 import main.tdt.it.finalproject.jsondata.service.SummaryDollar;
 
-public class SummaryAssetTest {
+public class TestSummaryAsset {
 
 	@Test
 	public void testDollar() {

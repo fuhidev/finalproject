@@ -11,7 +11,7 @@ import main.tdt.it.finalproject.jsondata.AssetPrice;
 import main.tdt.it.finalproject.jsondata.DollarPrice;
 import main.tdt.it.finalproject.scraper.MultiTyGiaScaper;
 
-public class MultiTyGiaScaperTest {
+public class TestMultiTyGiaScaper {
 	private MultiTyGiaScaper scraper = new MultiTyGiaScaper();
 
 	@Test

@@ -9,7 +9,7 @@ import main.tdt.it.finalproject.jsondata.AssetPrice;
 import main.tdt.it.finalproject.jsondata.DollarPrice;
 import main.tdt.it.finalproject.jsondata.service.WriterJson;
 
-public class WriterJsonTest {
+public class TestWriterJson {
 	private WriterJson writer = new WriterJson();
 
 	@Test

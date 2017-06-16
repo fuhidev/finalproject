@@ -14,7 +14,7 @@ import main.tdt.it.finalproject.jsondata.DollarPrice;
 import main.tdt.it.finalproject.jsondata.GoldPrice;
 import main.tdt.it.finalproject.scraper.TyGiaScaper;
 
-public class TyGiaScraperTest {
+public class TestTyGiaScraper {
 	private TyGiaScaper scraper = new TyGiaScaper();
 	@Before
 	public void init(){

@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import main.tdt.it.finalproject.util.DateTimeUtil;
 
-public class DateTimeUtilTest {
+public class TestDateTimeUtil {
 	
 	@Test
 	public void toTimeStamp() {
