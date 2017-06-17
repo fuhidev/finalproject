@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import main.tdt.it.finalproject.jsondata.DollarPrice1;
 
-public class DollarPrices extends ArrayList<DollarPrice1>{
+public class DollarPrices extends ArrayList<DollarPrice>{
 
 	/**
 	 * 

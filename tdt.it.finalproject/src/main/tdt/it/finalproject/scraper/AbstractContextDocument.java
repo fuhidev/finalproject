@@ -12,7 +12,7 @@ import main.tdt.it.finalproject.exception.ScraperException;
 
 public abstract class AbstractContextDocument {
 
-	public static final String CSS_QUERY_DOLLAR = "#ratetb tr:first-child td.c1 b,#ratetb tr:first-child td span.c2,#ratetb tr:first-child td span.c3, #ratetb tr:first-child td span.c4";
+	public static final String CSS_QUERY_DOLLAR = "#ratetb tr:first-child td:first-child b,#ratetb tr:first-child td:last-child span.c4";
 	public static final String CSS_QUERY_GOLD = "#gold_tb #goldtb #SJCH_Ch_Minh td.c1 b,#gold_tb #goldtb #SJCH_Ch_Minh span.c2,#gold_tb #goldtb #SJCH_Ch_Minh span.c4";
 	public static final String CSS_QUERY_INTERESTRATE = ".ruler1 tr:gt(0) td:nth-child(1),.ruler1 tr:gt(0) td:nth-child(2) img[src],.ruler1 tr:gt(0) td:nth-child(3)";
 	public static final String CSS_QUERY_WORLDGOLD = "#wgold table tbody tr:nth-child(2) td div:nth-child(1) span, #wgold table tbody tr:nth-child(3) #2GROUPSPOT_GOLDSJC span.c2, #wgold table tbody tr:nth-child(3) #2GROUPSPOT_GOLDSJC span.c4";

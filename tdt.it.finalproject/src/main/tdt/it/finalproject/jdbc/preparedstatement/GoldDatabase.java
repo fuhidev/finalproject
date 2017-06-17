@@ -11,7 +11,7 @@ import main.tdt.it.finalproject.modal.GoldPrice;
 
 public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 
-	private final String SQL_INSERT = "Insert into VNGold values(?,?,?)";
+	private final String SQL_INSERT = "Insert into VNGold(name,buyprice,sellprice,datetime) values(?,?,?,?)";
 
 	@Override
 	public Boolean add(GoldPrice goldPrice) {
@@ -23,7 +23,7 @@ public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 			pstm.setDouble(2, goldPrice.getBuyPrice());
 			pstm.setDouble(3, goldPrice.getSellPrice());
 			pstm.setString(4, goldPrice.getDateTime());
-			return pstm.execute();
+			pstm.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -39,7 +39,7 @@ public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 				e.printStackTrace();
 			}
 		}
-		return false;
+		return true;
 	}
 
 	@Override
@@ -55,6 +55,7 @@ public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 					pstm.setDouble(2, goldPrice.getBuyPrice());
 					pstm.setDouble(3, goldPrice.getSellPrice());
 					pstm.setString(4, goldPrice.getDateTime());
+					System.out.println(goldPrice.getName() + "-" + goldPrice.getBuyPrice());
 					pstm.addBatch();
 				}
 				pstm.executeBatch();

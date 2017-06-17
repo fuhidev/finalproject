@@ -23,8 +23,8 @@ import main.tdt.it.finalproject.scraper.InterestRateScraper;
 import main.tdt.it.finalproject.scraper.WorldGoldScraper;
 
 public class MainRun {
-	private static final String END = "20170616";
-	private static final String BEGIN = "20170610";
+	private static final String END = "20170617";
+	private static final String BEGIN = "20170617";
 //	private static final int MAX = 365 * 2 - 1;// ghi du lieu 2 nam 1 lan
 	
 	@SuppressWarnings("unchecked")
@@ -65,7 +65,7 @@ public class MainRun {
 				goldScaper.setDate(lstDay.get(i));
 				goldScaper.setElements(contextDocument.getElements());
 				List<? extends AbstractPrice> golds = goldScaper.getDatas();
-				goldDatabase.adds((Iterator<GoldPrice>) golds.iterator());
+				goldDatabase.add((GoldPrice) golds.get(i));
 			} catch (ScraperException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -87,8 +87,8 @@ public class MainRun {
 				DollarScraper dollarScaper = new DollarScraper();
 				dollarScaper.setDate(lstDay.get(i));
 				dollarScaper.setElements(contextDocument.getElements());
-				List<? extends AbstractPrice> dollar = dollarScaper.getDatas();
-				dollarDatabase.adds((Iterator<DollarPrice>) dollar.iterator());
+				List<? extends AbstractPrice> dollars = dollarScaper.getDatas();
+				dollarDatabase.add((DollarPrice) dollars.get(i));
 			} catch (ScraperException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -116,8 +116,9 @@ public class MainRun {
 
 	}
 	public static void main(String[] args) {
-		getScaperInDay();
+//		getScaperInDay();
 //		getDollarScraper();
-//		getWorldGoldScraper();
+//		getGoldScraper();
+		getWorldGoldScraper();
 	}
 }

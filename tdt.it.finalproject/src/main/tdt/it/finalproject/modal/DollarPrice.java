@@ -14,7 +14,8 @@ public class DollarPrice extends ForeignCurrencyPrice{
 		super(id,"USD", price);
 		this.dateTime = new Date();
 	}
-
+	
+	
 	@Override
 	public void setName(String name) {
 	}
