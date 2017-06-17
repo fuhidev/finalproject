@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.tdt.it.finalproject.exception.NotFoundAssetException;
-import main.tdt.it.finalproject.modal.AbstractPrice;
 import main.tdt.it.finalproject.modal.GoldPrice;
+import main.tdt.it.finalproject.modal.GoldPrices;
 
-public class GoldScraper implements IScraper {
+public class GoldScraper implements IScraper<GoldPrices> {
 
 	private ArrayList<String> elements;
 	private String date;
@@ -34,8 +34,8 @@ public class GoldScraper implements IScraper {
 	}
 
 	@Override
-	public List<AbstractPrice> getDatas() throws NotFoundAssetException {
-		List<AbstractPrice> rs = new ArrayList<AbstractPrice>();
+	public GoldPrices getDatas() throws NotFoundAssetException {
+		GoldPrices rs = new GoldPrices();
 		if (this.elements == null || this.elements.size() == 0)
 			throw new NotFoundAssetException("Gold in " + this.date);
 		for (int count = 0, i = 0; i < this.elements.size(); i += 3, count++) {

@@ -7,7 +7,6 @@ import main.tdt.it.finalproject.exception.ScraperException;
 import main.tdt.it.finalproject.generateday.GenerateDay;
 import main.tdt.it.finalproject.jdbc.preparedstatement.DollarDatabase;
 import main.tdt.it.finalproject.jdbc.preparedstatement.GoldDatabase;
-import main.tdt.it.finalproject.jdbc.preparedstatement.Gold_DollarPreparedStatement;
 import main.tdt.it.finalproject.jdbc.preparedstatement.InterestRateDatabase;
 import main.tdt.it.finalproject.jdbc.preparedstatement.WorldGoldDatabase;
 import main.tdt.it.finalproject.modal.AbstractPrice;

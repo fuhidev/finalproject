@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.tdt.it.finalproject.exception.NotFoundAssetException;
-import main.tdt.it.finalproject.jsondata.DollarPrice1;
-import main.tdt.it.finalproject.modal.AbstractPrice;
 import main.tdt.it.finalproject.modal.DollarPrice;
+import main.tdt.it.finalproject.modal.DollarPrices;
 import main.tdt.it.finalproject.util.DateTimeUtil;
 
-public class DollarScraper implements IScraper {
+public class DollarScraper implements IScraper<DollarPrices> {
 
 	private ArrayList<String> elements;
 	private String date;
@@ -28,8 +27,8 @@ public class DollarScraper implements IScraper {
 	}
 
 	@Override
-	public List<AbstractPrice> getDatas() throws NotFoundAssetException {
-		List<AbstractPrice> rs = new ArrayList<AbstractPrice>();
+	public DollarPrices getDatas() throws NotFoundAssetException {
+		DollarPrices rs = new DollarPrices();
 		if (this.elements == null || this.elements.size() == 0)
 			throw new NotFoundAssetException("Dollar in " + this.date);
 		for (int i = 0; i < this.elements.size(); i += 2) {
