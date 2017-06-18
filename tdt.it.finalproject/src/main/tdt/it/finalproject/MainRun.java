@@ -22,8 +22,8 @@ import main.tdt.it.finalproject.scraper.InterestRateScraper;
 import main.tdt.it.finalproject.scraper.WorldGoldScraper;
 
 public class MainRun {
-	private static final String END = "20170617";
-	private static final String BEGIN = "20170617";
+	private static final String END = "20170618";
+	private static final String BEGIN = "20170618";
 //	private static final int MAX = 365 * 2 - 1;// ghi du lieu 2 nam 1 lan
 	
 	@SuppressWarnings("unchecked")
@@ -115,9 +115,9 @@ public class MainRun {
 
 	}
 	public static void main(String[] args) {
-//		getScaperInDay();
+		getScaperInDay();
 //		getDollarScraper();
 //		getGoldScraper();
-		getWorldGoldScraper();
+//		getWorldGoldScraper();
 	}
 }
