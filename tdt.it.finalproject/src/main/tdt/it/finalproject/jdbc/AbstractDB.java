@@ -3,7 +3,7 @@ package main.tdt.it.finalproject.jdbc;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class AbstractDB<Model,ReturnType,IdType> {
+public abstract class AbstractDB<Model,ReturnType ,IdType> {
 	protected IConnection condb;
 	
 	public AbstractDB() {

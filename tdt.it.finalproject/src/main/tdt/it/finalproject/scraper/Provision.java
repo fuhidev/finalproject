@@ -1,5 +1,7 @@
 package main.tdt.it.finalproject.scraper;
 
+import java.util.ArrayList;
+
 import main.tdt.it.finalproject.exception.ScraperException;
 import main.tdt.it.finalproject.modal.InterestRatePrices;
 
@@ -10,7 +12,8 @@ public class Provision {
 					"http://vietbao.vn/vn/lai-suat-tiet-kiem/");
 			contextDocumentInterestRate.setCssQuery(ContextDocument.CSS_QUERY_INTERESTRATE);
 			InterestRateScraper interestRateScaper = new InterestRateScraper();
-			interestRateScaper.setElements(contextDocumentInterestRate.getElements());
+			ArrayList<String> elements = contextDocumentInterestRate.getElements();
+			interestRateScaper.setElements(elements);
 
 			InterestRatePrices irs = interestRateScaper.getDatas();
 			irs.forEach(f -> System.out.println(f));
