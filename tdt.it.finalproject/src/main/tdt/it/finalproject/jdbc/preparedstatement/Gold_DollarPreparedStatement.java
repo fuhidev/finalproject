@@ -13,9 +13,9 @@ import java.util.List;
 import com.mysql.cj.api.jdbc.Statement;
 
 import main.tdt.it.finalproject.jdbc.ConnectionUtils;
-import main.tdt.it.finalproject.jsondata.WorldGold;
 import main.tdt.it.finalproject.modal.DollarPrice;
 import main.tdt.it.finalproject.modal.GoldPrice;
+import main.tdt.it.finalproject.modal.WorldGold;
 import main.tdt.it.finalproject.util.DateTimeUtil;
 
 @Deprecated

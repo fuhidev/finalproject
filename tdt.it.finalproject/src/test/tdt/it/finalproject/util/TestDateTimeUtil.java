@@ -1,8 +1,7 @@
 package test.tdt.it.finalproject.util;
 
-import static org.junit.Assert.*;
-
-import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Test;
@@ -10,14 +9,14 @@ import org.junit.Test;
 import main.tdt.it.finalproject.util.DateTimeUtil;
 
 public class TestDateTimeUtil {
-	
+
 	@Test
-	public void toTimeStamp() {
-		Calendar date = Calendar.getInstance();
-		date.set(2010, 10, 10, 0, 0, 0);
-		System.out.println(date.getTime());
-		System.out.println(DateTimeUtil.toTimeStamp(date.getTime()));
-		assertEquals(1497509607,DateTimeUtil.toTimeStamp(date.getTime()));
+	public void formatStringToDate() throws ParseException {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyyMMdd");
+		Date ex = 
+				myFormat.parse("20170616");
+		System.out.println(ex);
+		System.out.println(DateTimeUtil.formatStringToDate("20170616"));
 	}
 
 }

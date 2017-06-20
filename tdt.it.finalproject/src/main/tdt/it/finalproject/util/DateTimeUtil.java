@@ -21,16 +21,27 @@ public class DateTimeUtil {
 	public static String formatDateToString(Date date) {
 		return formatDateToString(date, "yyyyMMdd");
 	}
+	
 	/**
 	 * Convert String to Date
 	 * @param date with format yyyyMMdd
 	 * @return Date parsed
 	 * @throws ParseException
 	 */
-	public static Date formatStringToDate(String date) throws ParseException {
+	public static Date formatStringToDate(String date) {
+		return formatStringToDate(date,"yyyyMMdd");
+	}
+	public static Date formatStringToDate(String date,String format) {
+		try {
 		SimpleDateFormat sdf = 
-			      new SimpleDateFormat("yyyyMMdd");
-		return sdf.parse(date);
+			      new SimpleDateFormat(format);
+		
+			return sdf.parse(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	/**
 	 * Convert Get Year 

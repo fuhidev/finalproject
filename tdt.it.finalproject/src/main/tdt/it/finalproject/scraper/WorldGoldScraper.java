@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.tdt.it.finalproject.exception.NotFoundAssetException;
-import main.tdt.it.finalproject.jsondata.WorldGold;
+import main.tdt.it.finalproject.modal.WorldGold;
 import main.tdt.it.finalproject.modal.WorldGoldPrices;
 
 public class WorldGoldScraper implements IScraper<WorldGoldPrices>{

@@ -3,9 +3,7 @@ package main.tdt.it.finalproject.scraper;
 import java.util.ArrayList;
 
 import main.tdt.it.finalproject.exception.ScraperException;
-import main.tdt.it.finalproject.modal.InterestRatePrices;
-
-public class Provision {
+import main.tdt.it.finalproject.modal.InterestRatePrices;public class Provision {
 	public static void main(String[] args) {
 		try {
 			ContextDocumentInterestRate contextDocumentInterestRate = new ContextDocumentInterestRate(

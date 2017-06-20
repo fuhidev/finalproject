@@ -10,7 +10,7 @@ public class MySQLConnUtils implements IConnection {
 	String dbName = "finalproject";
 	String userName = "root";
 	String password = "";
-
+@Deprecated
 	public static Connection getMySQLConnection() throws SQLException, ClassNotFoundException {
 		String hostName = "localhost";
 		String dbName = "finalproject";
@@ -18,7 +18,7 @@ public class MySQLConnUtils implements IConnection {
 		String password = "";
 		return getMySQLConnection(hostName, dbName, userName, password);
 	}
-
+@Deprecated
 	public static Connection getMySQLConnection(String hostName, String dbName, String userName, String password)
 			throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.cj.jdbc.Driver");

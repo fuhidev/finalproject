@@ -2,7 +2,7 @@ package main.tdt.it.finalproject.jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
+@Deprecated
 public class ConnectionUtils {
 	public static Connection getMyConnection() throws ClassNotFoundException,
 			SQLException {
