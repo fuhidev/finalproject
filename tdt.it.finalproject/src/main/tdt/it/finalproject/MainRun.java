@@ -20,12 +20,14 @@ import main.tdt.it.finalproject.scraper.DollarScraper;
 import main.tdt.it.finalproject.scraper.GoldScraper;
 import main.tdt.it.finalproject.scraper.InterestRateScraper;
 import main.tdt.it.finalproject.scraper.WorldGoldScraper;
+import main.tdt.it.finalproject.util.DateTimeUtil;
 
 public class MainRun {
-	private static final String END = "20170618";
-	private static final String BEGIN = "20170618";
-//	private static final int MAX = 365 * 2 - 1;// ghi du lieu 2 nam 1 lan
-	
+
+	private static final String END = "20170623";
+	private static final String BEGIN = "20170623";
+	// private static final int MAX = 365 * 2 - 1;// ghi du lieu 2 nam 1 lan
+
 	@SuppressWarnings("unchecked")
 	public static void getWorldGoldScraper() {
 		GenerateDay generateDay = new GenerateDay();
@@ -40,16 +42,15 @@ public class MainRun {
 				worldGoldScraper.setDate(lstDay.get(i));
 				worldGoldScraper.setElements(contextDocument.getElements());
 				List<? extends AbstractPrice> worldGold = worldGoldScraper.getDatas();
-				database.adds( (Iterator<WorldGold>) worldGold.iterator());
+				database.adds((Iterator<WorldGold>) worldGold.iterator());
 			} catch (ScraperException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public static void getGoldScraper() {
 		GenerateDay generateDay = new GenerateDay();
@@ -69,10 +70,10 @@ public class MainRun {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 
 		}
 	}
+
 	@SuppressWarnings("unchecked")
 	public static void getDollarScraper() {
 		GenerateDay generateDay = new GenerateDay();
@@ -92,32 +93,33 @@ public class MainRun {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public static void getScaperInDay() {
 		try {
-		//Get InterestRate at TIME NOW, vietbao.vn
-		ContextDocumentInterestRate contextDocumentInterestRate = new ContextDocumentInterestRate("http://vietbao.vn/vn/lai-suat-tiet-kiem/");
-		contextDocumentInterestRate.setCssQuery(ContextDocument.CSS_QUERY_INTERESTRATE);
-		InterestRateScraper interestRateScaper = new InterestRateScraper();
-		interestRateScaper.setElements(contextDocumentInterestRate.getElements());
-		InterestRateDatabase database = new InterestRateDatabase();
-		List<? extends AbstractPrice> irs = interestRateScaper.getDatas();
-		database.adds((Iterator<InterestRate>) irs.iterator());
+			// Get InterestRate at TIME NOW, vietbao.vn
+			ContextDocumentInterestRate contextDocumentInterestRate = new ContextDocumentInterestRate(
+					"http://vietbao.vn/vn/lai-suat-tiet-kiem/");
+			contextDocumentInterestRate.setCssQuery(ContextDocument.CSS_QUERY_INTERESTRATE);
+			InterestRateScraper interestRateScaper = new InterestRateScraper();
+			interestRateScaper.setElements(contextDocumentInterestRate.getElements());
+			InterestRateDatabase database = new InterestRateDatabase();
+			List<? extends AbstractPrice> irs = interestRateScaper.getDatas();
+			database.adds((Iterator<InterestRate>) irs.iterator());
 		} catch (ScraperException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
+
 	public static void main(String[] args) {
-		getScaperInDay();
-//		getDollarScraper();
-//		getGoldScraper();
-//		getWorldGoldScraper();
+//		 getScaperInDay();
+//		 getDollarScraper();
+//		 getGoldScraper();
+		getWorldGoldScraper();
 	}
 }

@@ -2,8 +2,6 @@ package main.tdt.it.finalproject.modal;
 
 import java.util.ArrayList;
 
-import main.tdt.it.finalproject.jsondata.WorldGold;
-
 public class WorldGoldPrices extends ArrayList<WorldGold>{
 
 	/**
