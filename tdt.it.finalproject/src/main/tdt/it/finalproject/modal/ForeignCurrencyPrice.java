@@ -7,11 +7,13 @@ public class ForeignCurrencyPrice extends AbstractPrice{
 
 	public ForeignCurrencyPrice(String name, double price) {
 		this.name = name;
+		this.price=price;
 	}
 
 	public ForeignCurrencyPrice(long id, String name,double price) {
 		super(id);
 		this.name = name;
+		this.price=price;
 	}
 
 	public double getPrice() {
@@ -28,6 +30,11 @@ public class ForeignCurrencyPrice extends AbstractPrice{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "ForeignCurrencyPrice [price=" + price + ", name=" + name + "]";
 	}
 
 	

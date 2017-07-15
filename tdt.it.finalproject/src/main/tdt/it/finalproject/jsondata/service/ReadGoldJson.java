@@ -52,7 +52,7 @@ public class ReadGoldJson implements IReadJson{
 				double buyPrice = (double) jsonObject.get("buyPrice");
 				double sellPrice = (double) jsonObject.get("sellPrice");
 				String date = (String) jsonObject.get("date");
-				result.add(new GoldPrice(id, name, buyPrice, sellPrice, date));
+//				result.add(new GoldPrice(id, name, buyPrice, sellPrice, date));
 			}
 			file.close();
 		} catch (IOException e) {

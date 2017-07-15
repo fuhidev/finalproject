@@ -1,11 +1,13 @@
 package main.tdt.it.finalproject.scraper;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import main.tdt.it.finalproject.exception.NotFoundAssetException;
 import main.tdt.it.finalproject.modal.GoldPrice;
 import main.tdt.it.finalproject.modal.GoldPrices;
+import main.tdt.it.finalproject.util.DateTimeUtil;
 
 public class GoldScraper implements IScraper<GoldPrices> {
 
@@ -40,8 +42,14 @@ public class GoldScraper implements IScraper<GoldPrices> {
 			throw new NotFoundAssetException("Gold in " + this.date);
 		for (int count = 0, i = 0; i < this.elements.size(); i += 3, count++) {
 			if (i != this.elements.size() - 2) {
-				GoldPrice js = new GoldPrice(count, this.elements.get(i).toString(), this.elements.get(i + 1).toString(),
-						this.elements.get(i + 2).toString(), date);
+				String name =  this.elements.get(i).toString();
+				double buyPrice = Double.parseDouble(this.elements.get(i + 1).toString());
+				double sellPrice = Double.parseDouble(this.elements.get(i + 2).toString());
+				Date date = DateTimeUtil.formatStringToDate(this.date);
+				GoldPrice js = new GoldPrice(count,name,sellPrice);
+				js.setDate(date);
+				js.setBuyPrice(buyPrice);
+				 
 				rs.add(js);
 			}
 		}

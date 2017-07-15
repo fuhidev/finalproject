@@ -7,6 +7,17 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateTimeUtil {
+	public static int getDate(Date date,int field) {
+			Calendar instance = Calendar.getInstance();
+			instance.setTime(date);
+			return instance.get(field);
+	}
+	public static Date addDays(Date date,int day) {
+		Calendar c = Calendar.getInstance(); 
+		c.setTime(date); 
+		c.add(Calendar.DATE, day);
+		return c.getTime();
+	}
 	
 	public static String formatDateToString(Date date,String format) {
 		SimpleDateFormat sdf = 
