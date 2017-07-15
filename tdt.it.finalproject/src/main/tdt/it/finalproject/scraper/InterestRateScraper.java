@@ -35,7 +35,7 @@ public class InterestRateScraper implements IScraper<InterestRatePrices> {
 			if (i != this.elements.size() - 3) {
 				
 				InterestRate js = new InterestRate(this.elements.get(i).toString(), this.elements.get(i + 1).toString(),
-						this.elements.get(i + 2).toString());
+						Double.parseDouble(this.elements.get(i + 2).toString()));
 				
 				Pattern pattern = Pattern.compile("/images/v2011/logo/");
 				Matcher matcher = pattern.matcher(js.getNameBank());

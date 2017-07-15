@@ -24,8 +24,7 @@ import main.tdt.it.finalproject.util.DateTimeUtil;
 
 public class MainRun {
 
-	private static final String END = "20170623";
-	private static final String BEGIN = "20170623";
+	
 	// private static final int MAX = 365 * 2 - 1;// ghi du lieu 2 nam 1 lan
 
 	@SuppressWarnings("unchecked")
@@ -115,7 +114,8 @@ public class MainRun {
 		}
 
 	}
-
+	private static final String END = "20170702";
+	private static final String BEGIN = "20170702";
 	public static void main(String[] args) {
 //		 getScaperInDay();
 //		 getDollarScraper();
