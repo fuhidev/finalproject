@@ -3,6 +3,7 @@ package main.tdt.it.finalproject.jsondata.service;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.json.simple.JSONArray;
@@ -10,8 +11,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import main.tdt.it.finalproject.jsondata.DollarPrice1;
+import main.tdt.it.finalproject.jsondata.DollarPrice;
 import main.tdt.it.finalproject.modal.AbstractPrice;
+import main.tdt.it.finalproject.util.DateTimeUtil;
 
 public class ReadDollarJson implements IReadJson {
 	private final String PATH = "jsonFile/";
@@ -47,12 +49,9 @@ public class ReadDollarJson implements IReadJson {
 			for (int i = 0; i < jsonArray.size(); i++) {
 				JSONObject jsonObject = (JSONObject) jsonArray.get(i);
 				int id = Integer.parseInt((String) jsonObject.get("id"));
-				String name = (String) jsonObject.get("name");
-				double buyCash = (double) jsonObject.get("buyCash");
-				double buyTransfer = (double) jsonObject.get("buyTransfer");
-				double sellPrice = (double) jsonObject.get("sellPrice");
-				String date = (String) jsonObject.get("date");
-				result.add(new DollarPrice1(id, name, buyCash, buyTransfer, sellPrice, date));
+				double price = (double) jsonObject.get("price");
+				Date date = DateTimeUtil.formatStringToDate((String) jsonObject.get("date"));
+				result.add(new DollarPrice(id, price, date));
 			}
 			
 		} catch (ParseException | IOException e) {

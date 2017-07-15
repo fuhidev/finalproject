@@ -1,11 +1,14 @@
 package main.tdt.it.finalproject.modal;
 
+import java.util.Date;
+
 public class InterestRate extends AbstractPrice {
 	private String kyHan;
 	private String nameBank;
 	private String percentInterestRate;
 	
-	public InterestRate(String kyHan, String nameBank, String percentInterestRate) {
+	public InterestRate(String kyHan, String nameBank, String percentInterestRate,Date date) {
+		super(date);
 		this.kyHan = kyHan;
 		this.nameBank = nameBank;
 		this.percentInterestRate = percentInterestRate;

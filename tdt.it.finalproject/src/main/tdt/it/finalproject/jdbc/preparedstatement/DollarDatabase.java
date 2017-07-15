@@ -12,7 +12,6 @@ import com.mysql.cj.api.jdbc.Statement;
 
 import main.tdt.it.finalproject.jdbc.AbstractDB;
 import main.tdt.it.finalproject.modal.DollarPrice;
-import main.tdt.it.finalproject.modal.InterestRate;
 import main.tdt.it.finalproject.util.DateTimeUtil;
 
 public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
@@ -30,8 +29,7 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 				pstm = connection.prepareStatement(this.SQL_INSERT);
 			pstm.setString(1, dollar.getName());
 			pstm.setDouble(2, dollar.getPrice());
-			pstm.setDate(3, DateTimeUtil.convertUtilToSQL(dollar.getDateTime()));
-			System.out.println(dollar.getPrice() + "-" + DateTimeUtil.convertUtilToSQL(dollar.getDateTime()));
+			pstm.setDate(3, DateTimeUtil.convertUtilToSQL(dollar.getDate()));
 			pstm.executeUpdate();
 
 		} catch (SQLException e) {
@@ -60,8 +58,7 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 			while (iterator.hasNext()) {
 				DollarPrice price = iterator.next();
 				pstm.setDouble(1, price.getPrice());
-				pstm.setDate(2, DateTimeUtil.convertUtilToSQL(price.getDateTime()));
-				System.out.println(price.getPrice() + "-" + DateTimeUtil.convertUtilToSQL(price.getDateTime()));
+				pstm.setDate(2, DateTimeUtil.convertUtilToSQL(price.getDate()));
 				pstm.addBatch();
 			}
 			pstm.executeBatch();

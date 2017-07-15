@@ -4,23 +4,19 @@ import java.util.Date;
 
 public class GoldPrice extends ForeignCurrencyPrice {
 	private double buyPrice;
-	private Date date;
 	
-	public GoldPrice(long id, String name, double price) {
-		super(id, name, price);
+	public GoldPrice(long id, String name, double price,Date date) {
+		super(id, name, price,date);
 		// TODO Auto-generated constructor stub
 	}
 	public GoldPrice(String name, double buyPrice, double sellPrice, Date date) {
-		super(name,sellPrice);
-		this.name = name;
+		super(name,sellPrice,date);
 		this.buyPrice = buyPrice;
-		this.date = date;
 	}
 	public GoldPrice(long id,String name, double buyPrice, double sellPrice, Date date) {
-		super(id,name,sellPrice);
+		super(id,name,sellPrice,date);
 		this.name = name;
 		this.buyPrice = buyPrice;
-		this.date = date;
 	}
 	public String getName() {
 		return name;

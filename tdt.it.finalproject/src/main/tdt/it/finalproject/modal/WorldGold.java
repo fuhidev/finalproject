@@ -2,7 +2,6 @@ package main.tdt.it.finalproject.modal;
 
 import java.util.Date;
 
-import main.tdt.it.finalproject.util.DateTimeUtil;
 import main.tdt.it.finalproject.util.ScraperUtil;
 
 public class WorldGold  extends AbstractPrice{
@@ -21,41 +20,13 @@ public class WorldGold  extends AbstractPrice{
 	}
 
 	public WorldGold(String name, double usPrice, double vnPrice, Date dateTime) {
-		super();
+		super(dateTime);
 		this.name = name;
 		this.usPrice = usPrice;
 		this.vnPrice = vnPrice;
 		this.dateTime = dateTime;
 	}
-
-	public WorldGold(String name, double usPrice, double vnPrice, String dateTime) {
-		super();
-		this.name = name;
-		this.usPrice = usPrice;
-		this.vnPrice = vnPrice;
-		this.dateTime = DateTimeUtil.formatStringToDate(dateTime);
-	}
 	
-	public WorldGold(String name, String usPrice, String vnPrice, String dateTime) {
-		super();
-		this.name = name;
-		this.setUsPrice(usPrice);
-		this.setVnPrice(vnPrice);
-		this.dateTime = DateTimeUtil.formatStringToDate(dateTime);
-		System.out.println(this.dateTime);
-	}
-	
-	public WorldGold(double usPrice, double vnPrice, Date dateTime2) {
-		super();
-		this.name = "us";
-		this.usPrice = usPrice;
-		this.vnPrice = vnPrice;
-		this.dateTime = dateTime2;
-	}
-
-	public WorldGold() {
-		// TODO Auto-generated constructor stub
-	}
 	public String getName() {
 		return name;
 	}
