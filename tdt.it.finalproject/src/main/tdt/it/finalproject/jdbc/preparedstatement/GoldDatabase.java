@@ -8,6 +8,7 @@ import java.util.List;
 
 import main.tdt.it.finalproject.jdbc.AbstractDB;
 import main.tdt.it.finalproject.modal.GoldPrice;
+import main.tdt.it.finalproject.util.DateTimeUtil;
 
 public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 
@@ -22,7 +23,7 @@ public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 			pstm.setString(1, goldPrice.getName());
 			pstm.setDouble(2, goldPrice.getBuyPrice());
 			pstm.setDouble(3, goldPrice.getSellPrice());
-			pstm.setString(4, goldPrice.getDateTime());
+			pstm.setDate(4, DateTimeUtil.convertUtilToSQL(goldPrice.getDate()));
 			pstm.executeUpdate();
 
 		} catch (SQLException e) {
@@ -54,7 +55,7 @@ public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 					pstm.setString(1, goldPrice.getName());
 					pstm.setDouble(2, goldPrice.getBuyPrice());
 					pstm.setDouble(3, goldPrice.getSellPrice());
-					pstm.setString(4, goldPrice.getDateTime());
+					pstm.setDate(4, DateTimeUtil.convertUtilToSQL(goldPrice.getDate()));
 					System.out.println(goldPrice.getName() + "-" + goldPrice.getBuyPrice());
 					pstm.addBatch();
 				}

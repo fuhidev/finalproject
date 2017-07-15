@@ -2,49 +2,32 @@ package main.tdt.it.finalproject.modal;
 
 import java.util.Date;
 
-public class GoldPrice extends AbstractPrice {
-	private String name;
+public class GoldPrice extends ForeignCurrencyPrice {
 	private double buyPrice;
-	private double sellPrice;
-	private String dateTime;
 	private Date date;
-	public GoldPrice(int id, String name, double buyPrice, double sellPrice, String dateTime) {
-		super(id);
-		this.setName(name);
-		this.buyPrice = buyPrice;
-		this.sellPrice = sellPrice;
-		this.dateTime = dateTime;
-	}
-	public GoldPrice(int id, String name, String buyPrice, String sellPrice, String dateTime) {
-		super(id);
-		this.setName(name);
-		this.setBuyPrice(buyPrice);
-		this.setSellPrice(sellPrice);
-		this.dateTime = dateTime;
-	}
-	public GoldPrice(int id, String name, String buyPrice, String sellPrice, Date dateTime) {
-		super(id);
-		this.setName(name);
-		this.setBuyPrice(buyPrice);
-		this.setSellPrice(sellPrice);
-		this.date = dateTime;
-	}
 	
+	public GoldPrice(long id, String name, double price) {
+		super(id, name, price);
+		// TODO Auto-generated constructor stub
+	}
+	public GoldPrice(String name, double buyPrice, double sellPrice, Date date) {
+		super(name,sellPrice);
+		this.name = name;
+		this.buyPrice = buyPrice;
+		this.date = date;
+	}
+	public GoldPrice(long id,String name, double buyPrice, double sellPrice, Date date) {
+		super(id,name,sellPrice);
+		this.name = name;
+		this.buyPrice = buyPrice;
+		this.date = date;
+	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDateTime() {
-		return dateTime;
-	}
-
-	public void setDateTime(String dateTime) {
-		this.dateTime = dateTime;
-	}
-	
-	
 
 	public Date getDate() {
 		return date;
@@ -61,11 +44,11 @@ public class GoldPrice extends AbstractPrice {
 	}
 
 	public double getSellPrice() {
-		return sellPrice;
+		return super.getPrice();
 	}
 
 	public void setSellPrice(String sellPrice) {
-		this.sellPrice = Double.parseDouble(sellPrice.replace(",", ""));
+		super.setPrice(Double.parseDouble(sellPrice.replace(",", "")));
 	}
 	
 
@@ -74,18 +57,10 @@ public class GoldPrice extends AbstractPrice {
 	}
 
 	public void setSellPrice(double sellPrice) {
-		this.sellPrice = sellPrice;
+		super.setPrice(sellPrice);
 	}
 
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "GoldPrice [buyPrice=" + buyPrice + ", sellPrice=" + sellPrice + ", dateTime=" + dateTime + ", id=" + id
-				+ ", name=" + name + "]";
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -93,30 +68,33 @@ public class GoldPrice extends AbstractPrice {
 		long temp;
 		temp = Double.doubleToLongBits(buyPrice);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((dateTime == null) ? 0 : dateTime.hashCode());
-		temp = Double.doubleToLongBits(sellPrice);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (!super.equals(obj))
 			return false;
-		if (!(obj instanceof GoldPrice))
+		if (getClass() != obj.getClass())
 			return false;
 		GoldPrice other = (GoldPrice) obj;
 		if (Double.doubleToLongBits(buyPrice) != Double.doubleToLongBits(other.buyPrice))
 			return false;
-		if (dateTime == null) {
-			if (other.dateTime != null)
+		if (date == null) {
+			if (other.date != null)
 				return false;
-		} else if (!dateTime.equals(other.dateTime))
-			return false;
-		if (Double.doubleToLongBits(sellPrice) != Double.doubleToLongBits(other.sellPrice))
+		} else if (!date.equals(other.date))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "GoldPrice [buyPrice=" + buyPrice + ", date=" + date + ", price=" + price + ", name=" + name + ", id="
+				+ id + "]";
 	}
 
 
