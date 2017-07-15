@@ -3,68 +3,54 @@ package main.tdt.it.finalproject.modal;
 import java.util.Date;
 
 public class InterestRate extends AbstractPrice {
-	private String kyHan;
+	private String period;
 	private String nameBank;
-	private String percentInterestRate;
-	
-	public InterestRate(String kyHan, String nameBank, String percentInterestRate,Date date) {
+	private float percentInterestRate;
+	private Date date;
+
+	public InterestRate(String kyHan, String nameBank, float percentInterestRate, Date date) {
 		super(date);
-		this.kyHan = kyHan;
+		this.period = kyHan;
 		this.nameBank = nameBank;
 		this.percentInterestRate = percentInterestRate;
+		this.date = date;
 	}
-	public String getKyHan() {
-		return kyHan;
+
+	public String getPeriod() {
+		return period;
 	}
-	public void setKyHan(String kyHan) {
-		this.kyHan = kyHan;
+
+	public void setPeriod(String kyHan) {
+		this.period = kyHan;
 	}
-	
+
 	public String getNameBank() {
 		return nameBank;
 	}
+
 	public void setNameBank(String nameBank) {
 		this.nameBank = nameBank;
 	}
-	public String getPercentInterestRate() {
+
+	public float getPercentInterestRate() {
 		return percentInterestRate;
 	}
-	public void setPercentInterestRate(String percentInterestRate) {
+
+	public void setPercentInterestRate(float percentInterestRate) {
 		this.percentInterestRate = percentInterestRate;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((kyHan == null) ? 0 : kyHan.hashCode());
-		result = prime * result + ((percentInterestRate == null) ? 0 : percentInterestRate.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		InterestRate other = (InterestRate) obj;
-		if (kyHan == null) {
-			if (other.kyHan != null)
-				return false;
-		} else if (!kyHan.equals(other.kyHan))
-			return false;
-		if (percentInterestRate == null) {
-			if (other.percentInterestRate != null)
-				return false;
-		} else if (!percentInterestRate.equals(other.percentInterestRate))
-			return false;
-		return true;
-	}
-	@Override
-	public String toString() {
-		return "InterestRate [kyHan=" + kyHan + ", percentInterestRate=" + percentInterestRate + "]";
+
+	public Date getDate() {
+		return date;
 	}
 
-	
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	@Override
+	public String toString() {
+		return "InterestRate [period=" + period + ", percentInterestRate=" + percentInterestRate + "]";
+	}
+
 }

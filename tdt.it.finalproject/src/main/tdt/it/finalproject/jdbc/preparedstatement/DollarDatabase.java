@@ -113,7 +113,6 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return rs;
 	}
 
