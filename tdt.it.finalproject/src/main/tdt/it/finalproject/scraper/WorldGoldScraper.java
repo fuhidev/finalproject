@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.tdt.it.finalproject.exception.NotFoundAssetException;
-import main.tdt.it.finalproject.modal.WorldGold;
 import main.tdt.it.finalproject.modal.WorldGoldPrices;
 
 public class WorldGoldScraper implements IScraper<WorldGoldPrices>{
@@ -37,9 +36,9 @@ public class WorldGoldScraper implements IScraper<WorldGoldPrices>{
 			throw new NotFoundAssetException("Gold in " + this.date);
 		for (int count = 0, i = 0; i < this.elements.size(); i += 3, count++) {
 			if (i != this.elements.size() - 2) {
-				WorldGold js = new WorldGold(this.elements.get(i).toString(), this.elements.get(i + 1).toString(),
-						this.elements.get(i + 2).toString(), date);
-				rs.add(js);
+//				WorldGold js = new WorldGold(this.elements.get(i).toString(), this.elements.get(i + 1).toString(),
+//						this.elements.get(i + 2).toString(), date);
+//				rs.add(js);
 			}
 		}
 		return rs;

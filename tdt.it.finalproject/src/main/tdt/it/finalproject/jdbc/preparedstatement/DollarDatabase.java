@@ -31,8 +31,8 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 				pstm = connection.prepareStatement(this.SQL_INSERT);
 			pstm.setString(1, dollar.getName());
 			pstm.setDouble(2, dollar.getPrice());
-			pstm.setDate(3, DateTimeUtil.convertUtilToSQL(dollar.getDateTime()));
-			System.out.println(dollar.getPrice() + "-" + DateTimeUtil.convertUtilToSQL(dollar.getDateTime()));
+			pstm.setDate(3, DateTimeUtil.convertUtilToSQL(dollar.getDate()));
+			System.out.println(dollar.getPrice() + "-" + DateTimeUtil.convertUtilToSQL(dollar.getDate()));
 			pstm.executeUpdate();
 
 		} catch (SQLException e) {
@@ -61,8 +61,8 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 			while (iterator.hasNext()) {
 				DollarPrice price = iterator.next();
 				pstm.setDouble(1, price.getPrice());
-				pstm.setDate(2, DateTimeUtil.convertUtilToSQL(price.getDateTime()));
-				System.out.println(price.getPrice() + "-" + DateTimeUtil.convertUtilToSQL(price.getDateTime()));
+				pstm.setDate(2, DateTimeUtil.convertUtilToSQL(price.getDate()));
+				System.out.println(price.getPrice() + "-" + DateTimeUtil.convertUtilToSQL(price.getDate()));
 				pstm.addBatch();
 			}
 			pstm.executeBatch();
@@ -110,7 +110,10 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 			Statement statement = (Statement) connection.createStatement();
 			ResultSet rsSet = statement.executeQuery(this.SQL_SELECT);
 			while (rsSet.next()) {
-				rs.add(new DollarPrice(rsSet.getString(1), rsSet.getDouble(2), rsSet.getDate(3)));
+				String name = rsSet.getString(2);
+				double price =  rsSet.getDouble(3);
+				Date date = rsSet.getDate(4);
+				rs.add(new DollarPrice(name,price,DateTimeUtil.convertUtilToSQL(date) ));
 			}
 			statement.close();
 		} catch (SQLException e) {

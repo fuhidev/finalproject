@@ -3,42 +3,43 @@ package main.tdt.it.finalproject.modal;
 import java.util.Date;
 
 public class InterestRate extends AbstractPrice {
-	private String kyHan;
+	private String period;
 	private String nameBank;
-	private double percentInterestRate;
+	private float percentInterestRate;
 	private Date date;
-	public InterestRate(String kyHan, String nameBank, Double percentInterestRate) {
-		this.kyHan = kyHan;
-		this.nameBank = nameBank;
-		this.percentInterestRate = percentInterestRate;
-	}
-	
-	public InterestRate(String kyHan, String nameBank, Double percentInterestRate, Date date) {
-		this.kyHan = kyHan;
+
+	public InterestRate(String kyHan, String nameBank, float percentInterestRate, Date date) {
+		super(date);
+		this.period = kyHan;
 		this.nameBank = nameBank;
 		this.percentInterestRate = percentInterestRate;
 		this.date = date;
 	}
-	public String getKyHan() {
-		return kyHan;
+
+	public String getPeriod() {
+		return period;
 	}
-	public void setKyHan(String kyHan) {
-		this.kyHan = kyHan;
+
+	public void setPeriod(String kyHan) {
+		this.period = kyHan;
 	}
-	
+
 	public String getNameBank() {
 		return nameBank;
 	}
+
 	public void setNameBank(String nameBank) {
 		this.nameBank = nameBank;
 	}
-	public double getPercentInterestRate() {
+
+	public float getPercentInterestRate() {
 		return percentInterestRate;
 	}
-	public void setPercentInterestRate(double percentInterestRate) {
+
+	public void setPercentInterestRate(float percentInterestRate) {
 		this.percentInterestRate = percentInterestRate;
 	}
-	
+
 	public Date getDate() {
 		return date;
 	}
@@ -47,14 +48,9 @@ public class InterestRate extends AbstractPrice {
 		this.date = date;
 	}
 
-	public void setPercentInterestRate(Double percentInterestRate) {
-		this.percentInterestRate = percentInterestRate;
-	}
-
 	@Override
 	public String toString() {
-		return "InterestRate [kyHan=" + kyHan + ", percentInterestRate=" + percentInterestRate + "]";
+		return "InterestRate [period=" + period + ", percentInterestRate=" + percentInterestRate + "]";
 	}
 
-	
 }

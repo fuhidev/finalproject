@@ -18,8 +18,8 @@ import main.tdt.it.finalproject.util.DateTimeUtil;
 
 public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 
-	private final String SQL_INSERT = "Insert into VNGold(name,buyprice,sellprice,datetime) values(?,?,?,?)";
-	private final String SQL_SELECT = "SELECT * FROM VNGold";
+	private final String SQL_INSERT = "Insert into vngold(name,buyprice,sellprice,datetime) values(?,?,?,?)";
+	private final String SQL_SELECT = "SELECT * FROM vngold";
 	@Override
 	public Boolean add(GoldPrice goldPrice) {
 		PreparedStatement pstm = null;

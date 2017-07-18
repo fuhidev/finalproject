@@ -13,7 +13,6 @@ import com.mysql.cj.api.jdbc.Statement;
 
 import main.tdt.it.finalproject.jdbc.AbstractDB;
 import main.tdt.it.finalproject.modal.InterestRate;
-import main.tdt.it.finalproject.modal.WorldGold;
 
 public class InterestRateDatabase extends AbstractDB<InterestRate, Boolean, Long> {
 	private final String SQL_INSERT = "INSERT INTO interestrate(kyhan,namebank,percentinterestrate,datetime) VALUES(?,?,?,?)";
@@ -25,7 +24,7 @@ public class InterestRateDatabase extends AbstractDB<InterestRate, Boolean, Long
 			Connection connection = this.condb.getConnection();
 			if (connection != null)
 				pstm = connection.prepareStatement(SQL_INSERT);
-			pstm.setString(1, model.getKyHan());
+			pstm.setString(1, model.getPeriod());
 
 			pstm.setString(2, model.getNameBank());
 			pstm.setDouble(3, model.getPercentInterestRate());
@@ -60,13 +59,13 @@ public class InterestRateDatabase extends AbstractDB<InterestRate, Boolean, Long
 				pstm = connection.prepareStatement(SQL_INSERT);
 			while (iterator.hasNext()) {
 				InterestRate iRate = iterator.next();
-				pstm.setString(1, iRate.getKyHan());
+				pstm.setString(1, iRate.getPeriod());
 				pstm.setString(2, iRate.getNameBank());
 				pstm.setDouble(3, iRate.getPercentInterestRate());
 				long millis = System.currentTimeMillis();
 				Date date = new java.sql.Date(millis);
 				pstm.setDate(4, date);
-				System.out.println("Kỳ hạn: " + iRate.getKyHan() + "- Tên ngân hàng: " + iRate.getNameBank() + "- Phần trăm: " + iRate.getPercentInterestRate() + "- Ngày: " + date);
+				System.out.println("Kỳ hạn: " + iRate.getPeriod() + "- Tên ngân hàng: " + iRate.getNameBank() + "- Phần trăm: " + iRate.getPercentInterestRate() + "- Ngày: " + date);
 				pstm.addBatch();
 			}
 			pstm.executeBatch();
@@ -102,7 +101,10 @@ public class InterestRateDatabase extends AbstractDB<InterestRate, Boolean, Long
 			Statement statement = (Statement) connection.createStatement();
 			ResultSet rsSet = statement.executeQuery(this.SQL_SELECT);
 			while (rsSet.next()) {
-				rs.add(new InterestRate(rsSet.getString("name"), rsSet.getString("vnprice"), rsSet.getDouble("usprice"), rsSet.getDate("datetime")));
+				String period  = rsSet.getString("kyhan");
+				String name = rsSet.getString("namebank");
+				float percent = (float) rsSet.getDouble("percentinterestrate");
+				rs.add(new InterestRate(period,name ,percent , rsSet.getDate("datetime")));
 			}
 			statement.close();
 		} catch (SQLException e) {
@@ -134,7 +136,7 @@ public class InterestRateDatabase extends AbstractDB<InterestRate, Boolean, Long
 			Statement statement = (Statement) connection.createStatement();
 			ResultSet rsSet = statement.executeQuery(sql);
 			while (rsSet.next()) {
-				rs.add(new InterestRate(rsSet.getString("name"), rsSet.getString("vnprice"), rsSet.getDouble("usprice"), rsSet.getDate("datetime")));
+//				rs.add(new InterestRate(rsSet.getString("name"), rsSet.getString("vnprice"),rsSet.getDouble("usprice"), rsSet.getDate("datetime")));
 			}
 			statement.close();
 		} catch (SQLException e) {

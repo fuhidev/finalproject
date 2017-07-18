@@ -43,11 +43,10 @@ public class GoldScraper implements IScraper<GoldPrices> {
 		for (int count = 0, i = 0; i < this.elements.size(); i += 3, count++) {
 			if (i != this.elements.size() - 2) {
 				String name =  this.elements.get(i).toString();
-				Date date = DateTimeUtil.formatStringToDate(this.date);
 				double buyPrice = Double.parseDouble(this.elements.get(i + 1).toString().replaceAll(",", ""));
 				double sellPrice = Double.parseDouble(this.elements.get(i + 2).toString().replaceAll(",", ""));
-				GoldPrice js = new GoldPrice(count,name,sellPrice);
-				js.setDate(date);
+				Date date = DateTimeUtil.formatStringToDate(this.date);
+				GoldPrice js = new GoldPrice(count,name,sellPrice,date);
 				js.setBuyPrice(buyPrice);
 
 				rs.add(js);

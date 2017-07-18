@@ -1,17 +1,18 @@
 package main.tdt.it.finalproject.modal;
 
+import java.util.Date;
+
 public class ForeignCurrencyPrice extends AbstractPrice{
 	protected double price;
 	protected String name;
 
-
-	public ForeignCurrencyPrice(String name, double price) {
+	public ForeignCurrencyPrice(String name, double price,Date date) {
+		super(date);
 		this.name = name;
 		this.price=price;
 	}
-
-	public ForeignCurrencyPrice(long id, String name,double price) {
-		super(id);
+	public ForeignCurrencyPrice(long id, String name,double price,Date date) {
+		super(id,date);
 		this.name = name;
 		this.price=price;
 	}

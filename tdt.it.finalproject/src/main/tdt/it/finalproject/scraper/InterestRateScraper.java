@@ -1,6 +1,7 @@
 package main.tdt.it.finalproject.scraper;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,9 +34,10 @@ public class InterestRateScraper implements IScraper<InterestRatePrices> {
 		for (int i = 0; i < this.elements.size(); i += 3) {
 
 			if (i != this.elements.size() - 3) {
-				
-				InterestRate js = new InterestRate(this.elements.get(i).toString(), this.elements.get(i + 1).toString(),
-						Double.parseDouble(this.elements.get(i + 2).toString()));
+				String period = this.elements.get(i).toString();
+				String name = this.elements.get(i + 1).toString();
+				float percent = Float.parseFloat(this.elements.get(i + 2).toString());
+				InterestRate js = new InterestRate(period,name ,percent,Calendar.getInstance().getTime());
 				
 				Pattern pattern = Pattern.compile("/images/v2011/logo/");
 				Matcher matcher = pattern.matcher(js.getNameBank());
