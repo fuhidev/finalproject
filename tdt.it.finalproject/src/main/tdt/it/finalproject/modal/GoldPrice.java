@@ -86,11 +86,15 @@ public class GoldPrice extends ForeignCurrencyPrice {
 			return false;
 		return true;
 	}
-
+//
+//	@Override
+//	public String toString() {
+//		return "GoldPrice [buyPrice=" + buyPrice + ", date=" + date + ", price=" + price + ", name=" + name + ", id="
+//				+ id + "]\r\n";
+//	}
 	@Override
 	public String toString() {
-		return "GoldPrice [buyPrice=" + buyPrice + ", date=" + date + ", price=" + price + ", name=" + name + ", id="
-				+ id + "]";
+		return "Vàng [giá mua=" + buyPrice + ", giá bán=" + price + ", ngày=" + date + "]\r\n";
 	}
 
 

@@ -19,8 +19,13 @@ public class DollarPrice extends ForeignCurrencyPrice {
 
 	@Override
 	public String toString() {
-		return "DollarPrice [price=" + price + ", name=" + name + ", id=" + id + ", date=" + date + "]";
+		return "Đô la [giá=" + price + ", ngày=" + date + "]\r\n";
 	}
+
+//	@Override
+//	public String toString() {
+//		return "DollarPrice [price=" + price + ", name=" + name + ", id=" + id + ", date=" + date + "]\r\n";
+//	}
 	
 
 	

@@ -2,12 +2,12 @@ package main.tdt.it.finalproject.portfolio.modal;
 
 public class ExpectedReturns {
 	private Period period;
-	private double price;
+	private float percent;
 
-	public ExpectedReturns(Period period, double price) {
+	public ExpectedReturns(Period period, float price) {
 		super();
 		this.period = period;
-		this.price = price;
+		this.percent = price;
 	}
 
 	public Period getPeriod() {
@@ -18,17 +18,17 @@ public class ExpectedReturns {
 		this.period = period;
 	}
 
-	public double getPrice() {
-		return price;
+	public float getPrice() {
+		return percent;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public void setPrice(float price) {
+		this.percent = price;
 	}
 
 	@Override
 	public String toString() {
-		return "SuatSinhLoiKyVong [period=" + period + ", price=" + price + "]";
+		return "SuatSinhLoiKyVong [period=" + period + ", price=" + percent + "]";
 	}
 
 }

@@ -9,7 +9,7 @@ public class MySQLConnUtils implements IConnection {
 	String hostName = "localhost";
 	String dbName = "finalproject";
 	String userName = "root";
-	String password = "";
+	String password = "123";
 @Deprecated
 	public static Connection getMySQLConnection() throws SQLException, ClassNotFoundException {
 		String hostName = "localhost";
