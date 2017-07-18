@@ -20,6 +20,7 @@ public abstract class AbstractDB<Model,ReturnType ,IdType> {
 	public abstract ReturnType update (Model model);
 	public abstract Model find(IdType id);
 	public abstract List<Model> getAll();
+	public abstract List<Model> getByTime(String startDay, String endDay);
 	@Override
 	protected void finalize() throws Throwable {
 		this.condb.close();
