@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -119,5 +120,26 @@ public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 		}
 		return rs;
 	}
+
+	@Override
+	public List<GoldPrice> getByTime(String startDay, String endDay) {
+		String sql = "SELECT * FROM VNGold WHERE datetime >= '"+ startDay + "' AND datetime <= '" + endDay + "'";
+		List<GoldPrice> rs = new ArrayList<GoldPrice>();
+		Connection connection = this.condb.getConnection();
+		try {
+			Statement statement = (Statement) connection.createStatement();
+			ResultSet rsSet = statement.executeQuery(sql);
+			while (rsSet.next()) {
+				rs.add(new GoldPrice(rsSet.getString("name"), rsSet.getDouble("buyprice"), rsSet.getDouble("sellprice"), rsSet.getDate("datetime")));
+			}
+			statement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+
+	
 
 }

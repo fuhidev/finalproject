@@ -34,7 +34,7 @@ public class GoldPrice extends ForeignCurrencyPrice {
 	public double getBuyPrice() {
 		return buyPrice;
 	}
-
+	
 	public void setBuyPrice(String buyPrice) {
 		this.buyPrice = Double.parseDouble(buyPrice.replace(",", ""));
 	}

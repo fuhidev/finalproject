@@ -125,4 +125,24 @@ public class InterestRateDatabase extends AbstractDB<InterestRate, Boolean, Long
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	@Override
+	public List<InterestRate> getByTime(String startDay, String endDay) {
+		String sql = "SELECT * FROM interestrate WHERE datetime >= '"+ startDay + "' AND datetime <= '" + endDay + "'";
+		List<InterestRate> rs = new ArrayList<InterestRate>();
+		Connection connection = this.condb.getConnection();
+		try {
+			Statement statement = (Statement) connection.createStatement();
+			ResultSet rsSet = statement.executeQuery(sql);
+			while (rsSet.next()) {
+//				rs.add(new InterestRate(rsSet.getString("name"), rsSet.getString("vnprice"),rsSet.getDouble("usprice"), rsSet.getDate("datetime")));
+			}
+			statement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
 }

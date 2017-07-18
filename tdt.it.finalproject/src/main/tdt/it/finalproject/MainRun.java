@@ -114,8 +114,8 @@ public class MainRun {
 		}
 
 	}
-	private static final String END = "20170702";
-	private static final String BEGIN = "20170702";
+	private static final String END = "20170718";
+	private static final String BEGIN = "20170718";
 	public static void main(String[] args) {
 //		 getScaperInDay();
 //		 getDollarScraper();

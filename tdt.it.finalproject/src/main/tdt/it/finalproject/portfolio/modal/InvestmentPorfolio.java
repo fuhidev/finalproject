@@ -20,4 +20,5 @@ public class InvestmentPorfolio {
 	public int size(){
 		return hashmap.size();
 	}
+
 }

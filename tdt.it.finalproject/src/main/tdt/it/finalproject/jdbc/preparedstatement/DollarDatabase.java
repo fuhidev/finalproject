@@ -1,11 +1,11 @@
 package main.tdt.it.finalproject.jdbc.preparedstatement;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,6 +13,7 @@ import com.mysql.cj.api.jdbc.Statement;
 
 import main.tdt.it.finalproject.jdbc.AbstractDB;
 import main.tdt.it.finalproject.modal.DollarPrice;
+import main.tdt.it.finalproject.modal.InterestRate;
 import main.tdt.it.finalproject.util.DateTimeUtil;
 
 public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
@@ -31,6 +32,7 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 			pstm.setString(1, dollar.getName());
 			pstm.setDouble(2, dollar.getPrice());
 			pstm.setDate(3, DateTimeUtil.convertUtilToSQL(dollar.getDate()));
+			System.out.println(dollar.getPrice() + "-" + DateTimeUtil.convertUtilToSQL(dollar.getDate()));
 			pstm.executeUpdate();
 
 		} catch (SQLException e) {
@@ -60,6 +62,7 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 				DollarPrice price = iterator.next();
 				pstm.setDouble(1, price.getPrice());
 				pstm.setDate(2, DateTimeUtil.convertUtilToSQL(price.getDate()));
+				System.out.println(price.getPrice() + "-" + DateTimeUtil.convertUtilToSQL(price.getDate()));
 				pstm.addBatch();
 			}
 			pstm.executeBatch();
@@ -107,12 +110,10 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 			Statement statement = (Statement) connection.createStatement();
 			ResultSet rsSet = statement.executeQuery(this.SQL_SELECT);
 			while (rsSet.next()) {
-				if(rsSet.getInt(1) > 5166){
 				String name = rsSet.getString(2);
 				double price =  rsSet.getDouble(3);
 				Date date = rsSet.getDate(4);
 				rs.add(new DollarPrice(name,price,DateTimeUtil.convertUtilToSQL(date) ));
-				}
 			}
 			statement.close();
 		} catch (SQLException e) {
@@ -121,5 +122,26 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 		}
 		return rs;
 	}
+
+	@Override
+	public List<DollarPrice> getByTime(String startDay, String endDay) {
+		String sql = "SELECT * FROM dollar WHERE date >= '"+ startDay + "' AND date <= '" + endDay + "'";
+		List<DollarPrice> rs = new ArrayList<DollarPrice>();
+		Connection connection = this.condb.getConnection();
+		try {
+			Statement statement = (Statement) connection.createStatement();
+			ResultSet rsSet = statement.executeQuery(sql);
+			while (rsSet.next()) {
+				rs.add(new DollarPrice(rsSet.getString(1), rsSet.getDouble(2), rsSet.getDate(3)));
+			}
+			statement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+
+	
 
 }
