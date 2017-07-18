@@ -154,11 +154,5 @@ public class WorldGoldDatabase extends AbstractDB<WorldGold, Boolean, Long> {
 		}
 		return rs;
 	}
-	public static void main(String[] args) {
-		WorldGoldDatabase database = new WorldGoldDatabase();
-		List<WorldGold> db = database.getByTime("2017-07-10", "2017-07-18");
-		for (WorldGold item : db) {
-			System.out.println(item);
-		}
-	}
+	
 }
