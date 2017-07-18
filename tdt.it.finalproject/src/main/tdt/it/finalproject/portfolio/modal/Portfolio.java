@@ -7,72 +7,61 @@ public class Portfolio {
 	private final int RETURN_YEAR = 2;
 	private final int RETURN_MONTH = 1;
 	private final int RETURN_WEEK = 0;
-	private Return[] returns;
-	private double[] variance;
+	private float[] returns;
+	private float[] variance;
 
 	public Portfolio() {
 		super();
-		this.returns = new Return[3];
-		this.variance = new double[3];
+		this.returns = new float[3];
+		this.variance = new float[3];
 	}
 
-	public Return getReturnMonth() {
+	public float getReturnMonth() {
 		return this.returns[RETURN_MONTH];
 	}
 
-	public Return getReturnWeek() {
+	public float getReturnWeek() {
 		return this.returns[RETURN_WEEK];
 	}
 
-	public Return getReturnYear() {
+	public float getReturn() {
 		return this.returns[RETURN_YEAR];
 	}
 
-	public double getVarianceMonth() {
+	public float getVarianceMonth() {
 		return this.variance[RETURN_MONTH];
 	}
 
-	public double getVarianceWeek() {
+	public float getVarianceWeek() {
 		return this.variance[RETURN_WEEK];
 	}
 
-	public double getVarianceYear() {
+	public float getVariance() {
 		return this.variance[RETURN_YEAR];
 	}
 
-	public void setReturnMonth(Return val) {
+	public void setReturnMonth(float val) {
 		this.returns[RETURN_MONTH] = val;
 	}
 
-	public void setReturnWeek(Return val) {
+	public void setReturnWeek(float val) {
 		this.returns[RETURN_WEEK] = val;
 	}
 
-	public void setReturnYear(Return val) {
+	public void setReturnYear(float val) {
 		this.returns[RETURN_YEAR] = val;
 	}
 
-	public void setReturnMonth(float val) {
-		this.returns[RETURN_MONTH] = new Return(Period.MONTH, val);
-	}
 
-	public void setReturnWeek(float val) {
-		this.returns[RETURN_WEEK] = new Return(Period.WEEK, val);
-	}
-
-	public void setReturnYear(float val) {
-		this.returns[RETURN_YEAR] = new Return(Period.YEAR, val);
-	}
-
-	public void setVarianceMonth(double val) {
+	public void setVarianceMonth(float val) {
 		this.variance[RETURN_MONTH] = val;
 	}
 
-	public void setVarianceWeek(double val) {
+	public void setVarianceWeek(float val) {
 		this.variance[RETURN_WEEK] = val;
 	}
 
-	public void setVarianceYear(double val) {
+	public void setVarianceYear(float val) {
 		this.variance[RETURN_YEAR] = val;
 	}
 
