@@ -1,106 +1,168 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/favicon.ico">
-    <title>Gold-Dollar Chart</title>
-    <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="css/styles.css" rel="stylesheet">
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#"><img src="http://assets.thefreelogomakers.com/generators/free-logo-maker/images/tflm.co.OBSVFJISY.png        
-                 " class="img-responsive logo"></a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-    <div class="container">
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			   <div id="line_top_x"></div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 col-md-offset-1">
-				<div class="form-group">
-					<label for="input" class="col-sm-2 control-label">From:</label>
-					<div class="col-sm-10">
-						<input type="date" name="" id="fromDate" class="form-control" value="" required="required" title="">
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-				<div class="form-group">
-					<label for="input" class="col-sm-2 control-label">To:</label>
-					<div class="col-sm-10">
-						<input type="date" name="" id="toDate" class="form-control" value="" required="required" title="">
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-				<div class="btn-group btn-time">
-					<button type="button" name="period" class="btn btn-default" data-period='1w'>1w</button>
-					<button type="button" name="period" class="btn btn-default" data-period='3m'>3m</button>
-					<button type="button" name="period" class="btn btn-default" data-period='6m'>6m</button>
-					<button type="button" name="period" class="btn btn-default" data-period='1y'>1y</button>
-					<button type="button" name="period" class="btn btn-default" data-period='3y'>3y</button>
-					<button type="button" name="period" class="btn btn-default" data-period='10y'>10y</button>
-					<button type="button" name="period" class="btn btn-default" data-period='max'>MAX</button>
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-1 col-md-1 col-lg-1">
-				<button type="button" class="btn btn-success" id="download">Download</button>
-			</div>
-		</div>
-    </div><!-- /.container -->
-    <div id="loading">
-      
-    </div>
-	<footer class="footer">
-      <div class="container">
-        <p class="text-muted text-center text-info">This website served for display gold and dollar chart</p>
-      </div>
-    </footer>
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="js/download.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="js/chart/chart.js"></script>
-    <script type="text/javascript" charset="utf-8" async defer>
-        $(document).ready(function() {
-            $(".btn-time").children().click(function(){
-              $(".btn-time").children().removeClass("active");
-              $(this).addClass("active");
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+    <meta http-equi.j examples</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <style>
+    html,body,#chartdiv{
+        width: 100%;
+        height: 85vmin;
+    }
+    </style>
+    <script src="amcharts/amcharts.js" type="text/javascript"></script>
+    <script src="amcharts/serial.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        function loadData(url = 'http://localhost:8080/finalproject/services.php/goldworld', table = 'goldworld') {
+            return new Promise((resolve, reject) => {
+                var datas;
+
+                $.ajax({
+                    url: url,
+                    async: false,
+                    // beforeSend: function(){
+                    //      $('#loading').html("<img src='images/loading2.gif'id='loaded'/>").fadeIn();
+                    // },
+                    success: function (respone, status, xhr) {
+                        if (respone != undefined) {
+                            datas = respone[table].records;
+
+                        }
+                    }
+                });
+                resolve(datas);
             });
+
+
+        }
+        var chart;
+        var graph, graph1;
+
+        var chartData = [];
+        let gold = loadData('http://localhost/services.php/goldworld');
+        let dollar = loadData('http://localhost/services.php/dollar','dollar');
+        Promise.all([gold, dollar]).then((records) => {
+            let recordGolds = records[0],
+                recordDollars = records[1];
+                let firstDollarPrice = 4508.637,
+    firstGoldPrice = 1842229.15654;
+            for (var index = 0; index < records[0].length; index++) {
+                let goldRc = recordGolds[index],
+                    dollarRc = recordDollars[index],
+                    time = goldRc[4],
+                    goldPrice = goldRc[2],
+                    dollarPrice = dollarRc[2];
+                data = {
+                    "time":time,
+                    "value":Math.round(((goldPrice - firstGoldPrice)/firstGoldPrice)*1000)/1000, 
+                    "value1":Math.round(((dollarPrice - firstDollarPrice)/firstDollarPrice)*1000)/1000
+                }
+                chartData.push(data);
+            }
+
+        })
+
+
+        AmCharts.ready(function () {
+            // SERIAL CHART
+            chart = new AmCharts.AmSerialChart();
+
+            chart.dataProvider = chartData;
+            chart.marginLeft = 10;
+            chart.categoryField = "time";
+            // chart.language = "cn";
+            // chart.dataDateFormat = "YYY-MM-DD";
+
+            // listen for "dataUpdated" event (fired when chart is inited) and call zoomChart method when it happens
+            chart.addListener("dataUpdated", zoomChart);
+
+            // AXES
+            // category
+            var categoryAxis = chart.categoryAxis;
+            categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+            // categoryAxis.minPeriod = "dd/MM/YYYY"; // our data is yearly, so we set minPeriod to YYYY
+            categoryAxis.dashLength = 3;
+            categoryAxis.minorGridEnabled = true;
+            categoryAxis.minorGridAlpha = 0.1;
+
+            // value
+            var valueAxis = new AmCharts.ValueAxis();
+            valueAxis.axisAlpha = 0;
+            valueAxis.inside = true;
+            valueAxis.dashLength = 3;
+            chart.addValueAxis(valueAxis);
+
+            // GRAPH
+            graph = new AmCharts.AmGraph();
+            graph.type = "smoothedLine"; // this line makes the graph smoothed line.
+            graph.lineColor = "#d1655d";
+            // graph.negativeLineColor = "#637bb6"; // this line makes the graph to change color when it drops below 0
+            // graph.bullet = "round";
+            // graph.bulletSize = 8;
+            // graph.bulletBorderColor = "#FFFFFF";
+            // graph.bulletBorderAlpha = 1;
+            // graph.bulletBorderThickness = 2;
+            graph.lineThickness = 2;
+            graph.valueField = "value";
+            graph.balloonText = "[[time]]<br><b><span style='font-size:14px;'>[[value]]</span></b>";
+            chart.addGraph(graph);
+            graph1 = new AmCharts.AmGraph();
+            // graph1.type = "smoothedLine"; // this line makes the graph1 smoothed line.
+            graph1.lineColor = "#2980B9";
+            // graph1.negativeLineColor = "#154360"; // this line makes the graph1 to change color when it drops below 0
+            // graph1.bullet = "round";
+            // graph1.bulletSize = 8;
+            // graph1.bulletBorderColor = "#FFFFFF";
+            // graph1.bulletBorderAlpha = 1;
+            // graph1.bulletBorderThickness = 2;
+            graph1.lineThickness = 2;
+            graph1.valueField = "value1";
+            graph1.balloonText = "[[time]]<br><b><span style='font-size:14px;'>[[value1]]</span></b>";
+            chart.addGraph(graph1);
+            // CURSOR
+            var chartCursor = new AmCharts.ChartCursor();
+            chartCursor.cursorAlpha = 0;
+            chartCursor.cursorPosition = "mouse";
+            chartCursor.pan = true;
+            // chartCursor.categoryBalloonDateFormat = "YYYY";
+            chart.addChartCursor(chartCursor);
+
+            // SCROLLBAR
+            var chartScrollbar = new AmCharts.ChartScrollbar();
+            chart.addChartScrollbar(chartScrollbar);
+
+            chart.creditsPosition = "bottom-right";
+
+            // WRITE
+            chart.write("chartdiv");
         });
-      </script>
-  </body>
+
+        // this method is called when chart is first inited as we listen for "dataUpdated" event
+        function zoomChart() {
+            // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+            const PERIOD = 10;
+            let currentDate = new Date(),
+            from = new Date(currentDate.getFullYear() - PERIOD,0),
+            to = currentDate;
+            chart.zoomToDates(from,to);
+        }
+    </script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="chartdiv"></div>
+    </div>
+</div>
+   
+</div>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</body>
 
 </html>
