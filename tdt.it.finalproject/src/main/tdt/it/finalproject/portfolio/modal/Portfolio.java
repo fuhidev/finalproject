@@ -8,12 +8,12 @@ public class Portfolio {
 	private final int RETURN_MONTH = 1;
 	private final int RETURN_WEEK = 0;
 	private float[] returns;
-	private float[] variance;
+	private float[] standardDeviation;
 
 	public Portfolio() {
 		super();
 		this.returns = new float[3];
-		this.variance = new float[3];
+		this.standardDeviation = new float[3];
 	}
 
 	public float getReturnMonth() {
@@ -28,16 +28,16 @@ public class Portfolio {
 		return this.returns[RETURN_YEAR];
 	}
 
-	public float getVarianceMonth() {
-		return this.variance[RETURN_MONTH];
+	public float getStandardDeviationMonth() {
+		return this.standardDeviation[RETURN_MONTH];
 	}
 
-	public float getVarianceWeek() {
-		return this.variance[RETURN_WEEK];
+	public float getStandardDeviationWeek() {
+		return this.standardDeviation[RETURN_WEEK];
 	}
 
-	public float getVariance() {
-		return this.variance[RETURN_YEAR];
+	public float getStandardDeviation() {
+		return this.standardDeviation[RETURN_YEAR];
 	}
 
 	public void setReturnMonth(float val) {
@@ -53,18 +53,18 @@ public class Portfolio {
 	}
 
 
-	public void setVarianceMonth(float val) {
-		this.variance[RETURN_MONTH] = val;
+	public void setStandardDeviationMonth(float val) {
+		this.standardDeviation[RETURN_MONTH] = val;
 	}
 
-	public void setVarianceWeek(float val) {
-		this.variance[RETURN_WEEK] = val;
+	public void setStandardDeviationWeek(float val) {
+		this.standardDeviation[RETURN_WEEK] = val;
 	}
 
-	public void setVarianceYear(float val) {
-		this.variance[RETURN_YEAR] = val;
+	public void setStandardDeviationYear(float val) {
+		this.standardDeviation[RETURN_YEAR] = val;
 	}
-
+	
 	public String getId() {
 		return id;
 	}
@@ -75,7 +75,7 @@ public class Portfolio {
 
 	@Override
 	public String toString() {
-		return "Portfolio [returns=" + Arrays.toString(returns) + ", variance=" + Arrays.toString(variance) + "]";
+		return "Portfolio [returns=" + Arrays.toString(returns) + ", variance=" + Arrays.toString(standardDeviation) + "]";
 	}
 	
 

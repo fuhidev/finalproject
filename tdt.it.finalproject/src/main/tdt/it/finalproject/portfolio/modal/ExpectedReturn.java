@@ -1,10 +1,10 @@
 package main.tdt.it.finalproject.portfolio.modal;
 
-public class ExpectedReturns {
+public class ExpectedReturn {
 	private Period period;
 	private float percent;
 
-	public ExpectedReturns(Period period, float price) {
+	public ExpectedReturn(Period period, float price) {
 		super();
 		this.period = period;
 		this.percent = price;

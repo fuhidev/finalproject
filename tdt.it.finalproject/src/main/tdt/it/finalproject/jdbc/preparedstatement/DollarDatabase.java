@@ -13,7 +13,6 @@ import com.mysql.cj.api.jdbc.Statement;
 
 import main.tdt.it.finalproject.jdbc.AbstractDB;
 import main.tdt.it.finalproject.modal.DollarPrice;
-import main.tdt.it.finalproject.modal.InterestRate;
 import main.tdt.it.finalproject.util.DateTimeUtil;
 
 public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
@@ -132,7 +131,10 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 			Statement statement = (Statement) connection.createStatement();
 			ResultSet rsSet = statement.executeQuery(sql);
 			while (rsSet.next()) {
-				rs.add(new DollarPrice(rsSet.getString(1), rsSet.getDouble(2), rsSet.getDate(3)));
+				String name = rsSet.getString(2);
+				double price =  rsSet.getDouble(3);
+				Date date = rsSet.getDate(4);
+				rs.add(new DollarPrice(name,price,DateTimeUtil.convertUtilToSQL(date) ));
 			}
 			statement.close();
 		} catch (SQLException e) {

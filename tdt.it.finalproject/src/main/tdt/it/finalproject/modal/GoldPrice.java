@@ -15,7 +15,6 @@ public class GoldPrice extends ForeignCurrencyPrice {
 	}
 	public GoldPrice(long id,String name, double buyPrice, double sellPrice, Date date) {
 		super(id,name,sellPrice,date);
-		this.name = name;
 		this.buyPrice = buyPrice;
 	}
 	public String getName() {

@@ -5,14 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import com.mysql.cj.api.jdbc.Statement;
 
 import main.tdt.it.finalproject.jdbc.AbstractDB;
-import main.tdt.it.finalproject.modal.DollarPrice;
 import main.tdt.it.finalproject.modal.GoldPrice;
 import main.tdt.it.finalproject.util.DateTimeUtil;
 
@@ -123,7 +121,7 @@ public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 
 	@Override
 	public List<GoldPrice> getByTime(String startDay, String endDay) {
-		String sql = "SELECT * FROM VNGold WHERE datetime >= '"+ startDay + "' AND datetime <= '" + endDay + "'";
+		String sql = "SELECT * FROM vngold WHERE datetime >= '"+ startDay + "' AND datetime <= '" + endDay + "'";
 		List<GoldPrice> rs = new ArrayList<GoldPrice>();
 		Connection connection = this.condb.getConnection();
 		try {

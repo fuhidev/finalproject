@@ -7,6 +7,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateTimeUtil {
+	public static Date dateTime(int year,int month,int day) {
+		Calendar instance = Calendar.getInstance();
+		instance.set(year, month, day);
+		return instance.getTime();
+	}
 	public static int getDate(Date date,int field) {
 			Calendar instance = Calendar.getInstance();
 			instance.setTime(date);
