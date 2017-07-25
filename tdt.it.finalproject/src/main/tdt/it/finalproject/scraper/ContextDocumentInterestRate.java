@@ -28,5 +28,4 @@ public class ContextDocumentInterestRate extends ContextDocument {
 		}
 		return result;
 	}
-
 }

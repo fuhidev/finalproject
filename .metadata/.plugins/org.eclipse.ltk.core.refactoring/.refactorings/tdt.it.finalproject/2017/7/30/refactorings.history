@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;tdt.it.finalproject&apos;&#x0D;&#x0A;- Original project: &apos;tdt.it.finalproject&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     tdt.it.finalproject/src/main.tdt.it.finalproject.jsondata&#x0D;&#x0A;     tdt.it.finalproject/src/main.tdt.it.finalproject.jsondata.factory&#x0D;&#x0A;     tdt.it.finalproject/src/main.tdt.it.finalproject.jsondata.service" description="Delete elements" element1="/src&lt;main.tdt.it.finalproject.jsondata.service" element2="/src&lt;main.tdt.it.finalproject.jsondata.factory" element3="/src&lt;main.tdt.it.finalproject.jsondata" elements="3" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1500892497962" subPackages="false" version="1.0"/>
+</session>

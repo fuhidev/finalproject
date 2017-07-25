@@ -48,7 +48,6 @@ public class GoldScraper implements IScraper<GoldPrices> {
 				Date date = DateTimeUtil.formatStringToDate(this.date);
 				GoldPrice js = new GoldPrice(count,name,sellPrice,date);
 				js.setBuyPrice(buyPrice);
-
 				rs.add(js);
 			}
 		}
