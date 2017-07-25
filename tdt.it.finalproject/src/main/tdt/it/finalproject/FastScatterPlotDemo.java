@@ -1,4 +1,4 @@
-package main.tdt.it.finalproject;
+ package main.tdt.it.finalproject;
 
 import java.awt.RenderingHints;
 import java.util.Arrays;

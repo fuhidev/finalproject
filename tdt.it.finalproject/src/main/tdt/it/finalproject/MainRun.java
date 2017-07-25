@@ -120,6 +120,6 @@ public class MainRun {
 //		 getScaperInDay();
 //		 getDollarScraper();
 //		 getGoldScraper();
-		getWorldGoldScraper();
+//		getWorldGoldScraper();
 	}
 }

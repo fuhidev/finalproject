@@ -62,5 +62,5 @@ public class ContextDocument extends AbstractContextDocument {
 			throw new NullContextDocumentException(cssQuery);
 		return aElements.iterator();
 	}
-
+	
 }

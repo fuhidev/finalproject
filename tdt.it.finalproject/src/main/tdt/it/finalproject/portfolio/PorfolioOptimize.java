@@ -361,9 +361,9 @@ public class PorfolioOptimize {
 		float rf = optimize.getBankPercent();
 		float minReturn = Math.min(r1, r2);
 		float maxReturn = Math.max(r1, r2);
-		if (rf > maxReturn) {
-System.out.println("Nên đầu tư vào vàng");
-		} else {
+//		if (rf > maxReturn) {
+//System.out.println("Nên đầu tư vào vàng");
+//		} else {
 			float sharp = optimize.getSharp();
 			float sigmap = sharp / optimize.A;
 			float rt = optimize.getRt();
@@ -397,7 +397,7 @@ System.out.println("Nên đầu tư vào vàng");
 			demo.pack();
 			RefineryUtilities.centerFrameOnScreen(demo);
 			demo.setVisible(true);
-		}
+//		}
 	}
 
 }
