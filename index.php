@@ -7,7 +7,7 @@
     <style>
     html,body,#chartdiv{
         width: 100%;
-        height: 85vmin;
+        height: 65vmin;
     }
     </style>
     <script src="amcharts/amcharts.js" type="text/javascript"></script>
