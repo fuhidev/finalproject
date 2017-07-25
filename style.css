@@ -8,3 +8,12 @@ a:link {color: #84c4e2;}
 a:visited {color:#84c4e2;}
 a:hover {color: #cd82ad;}
 a:active {color: #84c4e2;}
+.bs-callout{
+	padding: 20px;
+    margin: 20px 0;
+    border-left: 3px solid #eee;
+}
+.bs-callout-info{
+	background-color: #f4f8fa;
+    border-color: #5bc0de;
+}
