@@ -75,8 +75,7 @@ public class Portfolio {
 
 	@Override
 	public String toString() {
-		return "Portfolio [returns=" + Arrays.toString(returns) + ", variance=" + Arrays.toString(standardDeviation) + "]";
+		return "Portfolio [returns=" + Arrays.toString(returns) + ", standardDeviation="
+				+ Arrays.toString(standardDeviation) + "]";
 	}
-	
-
 }
