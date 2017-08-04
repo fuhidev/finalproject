@@ -1,4 +1,4 @@
-function loadData(url = 'http://localhost:8080/finalproject/services.php/goldworld', table = 'goldworld') {
+function loadData(url = '/services.php/goldworld', table = 'goldworld') {
             return new Promise((resolve, reject) => {
                 var datas;
 
@@ -24,8 +24,8 @@ function loadData(url = 'http://localhost:8080/finalproject/services.php/goldwor
         var graph, graph1;
 
         var chartData = [];
-        let gold = loadData('http://localhost/services.php/goldworld');
-        let dollar = loadData('http://localhost/services.php/dollar','dollar');
+        let gold = loadData('/services.php/goldworld');
+        let dollar = loadData('/services.php/dollar','dollar');
         Promise.all([gold, dollar]).then((records) => {
             let recordGolds = records[0],
                 recordDollars = records[1];
