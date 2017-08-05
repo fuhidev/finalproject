@@ -52,98 +52,98 @@ public class PorfolioRun {
 		System.out.println("dola" + pflDola);
 		
 
-//		float r_gold = pflVang.getReturn(), r_dola = pflDola.getReturn(), std_vang = pflVang.getStandardDeviation(),
-//				std_dollar = pflDola.getStandardDeviation(),
-//				cov_vangdola = optimize.cov(sslVangs, sslDolas, pflVang, pflDola);
-//
-//		optimize.IOS(std_vang, std_dollar, cov_vangdola, r_gold, r_dola);
-//
-//		float r0 = optimize.getBankPercent();
-//		float rf = optimize.getBankPercent();
-//		float minReturn = Math.min(r_gold, r_dola);
-//		float maxReturn = Math.max(r_gold, r_dola);
-//
-//		float w_tknh, w_gold, w_dollar;
-//
-//		if (rf > maxReturn) {
-//			w_tknh = 1;
-//			w_gold = 0;
-//			w_dollar = 0;
-//		} else {
-//			float maxSharp = 0;
-//			Point pointT = new Point();
-//			for (float y = minReturn; y <= maxReturn; y += 0.000001f) {
-//				float x = optimize.fy(y);
-//				float tmpSharp = (y - rf) / x;
-//				if (tmpSharp > maxSharp) {
-//					maxSharp = tmpSharp;
-//					pointT.setExpectedReturn(y);
-//					pointT.setStandardDeviation(x);
+		float r_gold = pflVang.getReturn(), r_dola = pflDola.getReturn(), std_vang = pflVang.getStandardDeviation(),
+				std_dollar = pflDola.getStandardDeviation(),
+				cov_vangdola = optimize.cov(sslVangs, sslDolas, pflVang, pflDola);
+
+		optimize.IOS(std_vang, std_dollar, cov_vangdola, r_gold, r_dola);
+
+		float r0 = optimize.getBankPercent();
+		float rf = optimize.getBankPercent();
+		float minReturn = Math.min(r_gold, r_dola);
+		float maxReturn = Math.max(r_gold, r_dola);
+
+		float w_tknh, w_gold, w_dollar;
+
+		if (rf > maxReturn) {
+			w_tknh = 1;
+			w_gold = 0;
+			w_dollar = 0;
+		} else {
+			float maxSharp = 0;
+			Point pointT = new Point();
+			for (float y = minReturn; y <= maxReturn; y += 0.000001f) {
+				float x = optimize.fy(y);
+				float tmpSharp = (y - rf) / x;
+				if (tmpSharp > maxSharp) {
+					maxSharp = tmpSharp;
+					pointT.setExpectedReturn(y);
+					pointT.setStandardDeviation(x);
+				}
+			}
+			float sharp = maxSharp;
+			float rt = pointT.getExpectedReturn();
+			float stdt = pointT.getStandardDeviation();
+			System.out.println("PointT" + pointT);
+//			float[][] data = new float[2][10000000];
+//			int i = 0;
+			w_tknh = 1 - (sharp / (A * stdt));
+			if (w_tknh < 0) {
+				w_tknh = 0;
+				w_gold = (rt - r_dola) / (r_gold - r_dola);
+				w_dollar = (r_gold - rt) / (r_gold - r_dola);
+
+			} else {
+				float b = optimize.getBankPercent();
+				float a = (rt - b) / stdt;
+				float rp = ((rf + ((rt - rf) / stdt)) * a + rf) / (a + 1);
+				float stdp = (rp - rf) / a;
+				System.out.println(new Point(stdp, rp));
+				w_dollar = (r_gold - w_tknh * r_gold + w_tknh * r0 - rp) / (r_gold - r_dola);
+
+				w_gold = 1 - w_tknh - w_dollar;
+
+				if (w_tknh < 0) {
+					w_tknh = 0;
+					float w = w_gold + w_dollar;
+					w_gold = w_gold / w;
+					w_dollar = w_dollar / w;
+				}
+				if (w_gold < 0) {
+					w_gold = 0;
+					float w = w_tknh + w_dollar;
+					w_tknh = w_tknh / w;
+					w_dollar = w_dollar / w;
+				}
+				if (w_dollar < 0) {
+					w_dollar = 0;
+					float w = w_tknh + w_gold;
+					w_tknh = w_tknh / w;
+					w_gold = w_gold / w;
+				}
+
+//				for (float x = 0; x <= stdt; x += 0.000001f, i++) {
+//					float y = a * x + b;
+//					data[0][i] = x;
+//					data[1][i] = y;
 //				}
+
+			}
+//			// ve do thi
+//
+//			for (float y = minReturn; y <= maxReturn; y += 0.000001f, i++) {
+//				float x = (float) Math
+//						.sqrt(optimize.getAlpha() * y * y - 2 * optimize.getBeta() * y + optimize.getGamma());
+//				data[0][i] = x;
+//				data[1][i] = y;
 //			}
-//			float sharp = maxSharp;
-//			float rt = pointT.getExpectedReturn();
-//			float stdt = pointT.getStandardDeviation();
-//			System.out.println("PointT" + pointT);
-////			float[][] data = new float[2][10000000];
-////			int i = 0;
-//			w_tknh = 1 - (sharp / (A * stdt));
-//			if (w_tknh < 0) {
-//				w_tknh = 0;
-//				w_gold = (rt - r_dola) / (r_gold - r_dola);
-//				w_dollar = (r_gold - rt) / (r_gold - r_dola);
-//
-//			} else {
-//				float b = optimize.getBankPercent();
-//				float a = (rt - b) / stdt;
-//				float rp = ((rf + ((rt - rf) / stdt)) * a + rf) / (a + 1);
-//				float stdp = (rp - rf) / a;
-//				System.out.println(new Point(stdp, rp));
-//				w_dollar = (r_gold - w_tknh * r_gold + w_tknh * r0 - rp) / (r_gold - r_dola);
-//
-//				w_gold = 1 - w_tknh - w_dollar;
-//
-//				if (w_tknh < 0) {
-//					w_tknh = 0;
-//					float w = w_gold + w_dollar;
-//					w_gold = w_gold / w;
-//					w_dollar = w_dollar / w;
-//				}
-//				if (w_gold < 0) {
-//					w_gold = 0;
-//					float w = w_tknh + w_dollar;
-//					w_tknh = w_tknh / w;
-//					w_dollar = w_dollar / w;
-//				}
-//				if (w_dollar < 0) {
-//					w_dollar = 0;
-//					float w = w_tknh + w_gold;
-//					w_tknh = w_tknh / w;
-//					w_gold = w_gold / w;
-//				}
-//
-////				for (float x = 0; x <= stdt; x += 0.000001f, i++) {
-////					float y = a * x + b;
-////					data[0][i] = x;
-////					data[1][i] = y;
-////				}
-//
-//			}
-////			// ve do thi
-////
-////			for (float y = minReturn; y <= maxReturn; y += 0.000001f, i++) {
-////				float x = (float) Math
-////						.sqrt(optimize.getAlpha() * y * y - 2 * optimize.getBeta() * y + optimize.getGamma());
-////				data[0][i] = x;
-////				data[1][i] = y;
-////			}
-////			Plot.showScatter("Biểu đồ danh mục đầu tư", data);
-//
-//		}
-//
-//		InvestmentPorfolio investmentPorfolio = new InvestmentPorfolio(w_gold, w_dollar, w_tknh,
-//				DateTimeUtil.formatStringToDate(beginTime,"yyyy-MM-dd"), DateTimeUtil.formatStringToDate(endTime,"yyyy-MM-dd"));
-//		PorfolioDatabase porfolioDatabase = new PorfolioDatabase();
-//		porfolioDatabase.add(investmentPorfolio);
+//			Plot.showScatter("Biểu đồ danh mục đầu tư", data);
+
+		}
+
+		InvestmentPorfolio investmentPorfolio = new InvestmentPorfolio(w_gold, w_dollar, w_tknh,
+				DateTimeUtil.formatStringToDate(beginTime,"yyyy-MM-dd"), DateTimeUtil.formatStringToDate(endTime,"yyyy-MM-dd"));
+		PorfolioDatabase porfolioDatabase = new PorfolioDatabase();
+		porfolioDatabase.add(investmentPorfolio);
 	}
 }
