@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <meta http-equi.j examples</title>
+    <title>Chương trình bảo vệ tài sản tránh lạm phát - HÙYNH NGỌC TIỄN, HÒ PHƯƠNG HIẾU - ĐẠI HỌC TÔN ĐỨC THẮNG</title>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <style>
     html,body,#chartdiv{
