@@ -24,8 +24,8 @@ var chart;
 var graph, graph1;
 
 var chartData = [];
-let gold = loadData('/services.php/goldworld');
-let dollar = loadData('/services.php/dollar', 'dollar');
+let gold = loadData('http://baovetaisan.ml/services.php/goldworld');
+let dollar = loadData('http://baovetaisan.ml/services.php/dollar', 'dollar');
 Promise.all([gold, dollar]).then((records) => {
     let recordGolds = records[0],
         recordDollars = records[1];
