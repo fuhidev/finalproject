@@ -29,6 +29,20 @@
         padding: 30px 0px 20px 0px;
         margin-bottom: -10px;
     }
+    .line{
+        height: 1px;
+        
+        width: 100px;
+        content: "";
+        display: inline-block;
+    }
+    .red{
+        border-top: 3px solid #d1655d;
+    }
+    .blue{
+        margin-left: 5px;
+        border-top: 3px solid #2980b9;
+    }
     </style>
 </head>
 
@@ -54,6 +68,10 @@
     <div class="row">
          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div id="chartdiv"></div>
+            <div class="notes">
+                <p>Vàng <span class="line red"></span></p>
+                <p>Đôla <span class="line blue"></span></p>
+            </div>
             <div id="recommend">
                 <div class="bs-callout bs-callout-info">
                     <h1>Khuyến cáo đầu tư</h1>
@@ -89,6 +107,9 @@
                     <li>Lớp: <strong>13050303</strong></li>
                     <li>Khóa: <strong>17</strong></li>
                 </ul>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h4 class="text-center">Chương trình được thực hiện tại trường đại học Tôn Đức Thắng</h4>
             </div>
         </div>
     </div>
