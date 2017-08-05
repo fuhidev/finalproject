@@ -2,6 +2,7 @@ package main.tdt.it.finalproject.scraper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,24 +14,33 @@ import main.tdt.it.finalproject.modal.InterestRatePrices;
 public class InterestRateScraper implements IScraper<InterestRatePrices> {
 
 	private ArrayList<String> elements;
-	private String date;
+	private Date date;
 	
 	
 
 	public InterestRateScraper() {
 		super();
 	}
-
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	public Date getDate() {
+		if(this.date == null){
+			return Calendar.getInstance().getTime();
+		}
+		return this.date;
+	}
 	@Override
 	public void setElements(List<String> elements) {
 		this.elements = (ArrayList<String>) elements;
 	}
 
 	@Override
-	public InterestRatePrices getDatas() throws NotFoundAssetException {
+	public InterestRatePrices getData() throws NotFoundAssetException {
 		InterestRatePrices rs = new InterestRatePrices();
 		if (this.elements == null || this.elements.size() == 0)
-			throw new NotFoundAssetException("InterestRate in " + this.date);
+			throw new NotFoundAssetException("InterestRate in " + this.getDate());
 		for (int i = 0; i < this.elements.size(); i += 3) {
 
 			if (i != this.elements.size() - 3) {

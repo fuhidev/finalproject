@@ -3,55 +3,25 @@ package main.tdt.it.finalproject;
 import java.util.Iterator;
 import java.util.List;
 
-import main.tdt.it.finalproject.exception.NotFoundAssetException;
 import main.tdt.it.finalproject.exception.ScraperException;
 import main.tdt.it.finalproject.generateday.GenerateDay;
 import main.tdt.it.finalproject.jdbc.preparedstatement.DollarDatabase;
 import main.tdt.it.finalproject.jdbc.preparedstatement.GoldDatabase;
 import main.tdt.it.finalproject.jdbc.preparedstatement.InterestRateDatabase;
-import main.tdt.it.finalproject.jdbc.preparedstatement.WorldGoldDatabase;
 import main.tdt.it.finalproject.modal.AbstractPrice;
 import main.tdt.it.finalproject.modal.DollarPrice;
 import main.tdt.it.finalproject.modal.GoldPrice;
 import main.tdt.it.finalproject.modal.InterestRate;
-import main.tdt.it.finalproject.modal.WorldGold;
 import main.tdt.it.finalproject.scraper.ContextDocument;
 import main.tdt.it.finalproject.scraper.ContextDocumentInterestRate;
 import main.tdt.it.finalproject.scraper.DollarScraper;
 import main.tdt.it.finalproject.scraper.GoldScraper;
 import main.tdt.it.finalproject.scraper.InterestRateScraper;
-import main.tdt.it.finalproject.scraper.WorldGoldScraper;
 import main.tdt.it.finalproject.util.DateTimeUtil;
 
 public class MainRun {
 
 	
-	// private static final int MAX = 365 * 2 - 1;// ghi du lieu 2 nam 1 lan
-
-	@SuppressWarnings("unchecked")
-	public static void getWorldGoldScraper() {
-		GenerateDay generateDay = new GenerateDay();
-		List<String> lstDay = generateDay.generate(BEGIN, END);
-		for (int i = 0; i < lstDay.size(); i++) {
-			WorldGoldDatabase database = new WorldGoldDatabase();
-			try {
-				ContextDocument contextDocument = new ContextDocument(
-						"https://www.tygia.com/?nganhang=VIETCOM&ngay=" + lstDay.get(i));
-				contextDocument.setCssQuery(ContextDocument.CSS_QUERY_WORLDGOLD);
-				WorldGoldScraper worldGoldScraper = new WorldGoldScraper();
-				worldGoldScraper.setDate(lstDay.get(i));
-				worldGoldScraper.setElements(contextDocument.getElements());
-				List<? extends AbstractPrice> worldGold = worldGoldScraper.getDatas();
-				database.adds((Iterator<WorldGold>) worldGold.iterator());
-			} catch (ScraperException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
-	}
-
-	@SuppressWarnings("unchecked")
 	public static void getGoldScraper() {
 		GenerateDay generateDay = new GenerateDay();
 		List<String> lstDay = generateDay.generate(BEGIN, END);
@@ -62,9 +32,9 @@ public class MainRun {
 						"https://www.tygia.com/" + lstDay.get(i));
 				contextDocument.setCssQuery(ContextDocument.CSS_QUERY_GOLD);
 				GoldScraper goldScaper = new GoldScraper();
-				goldScaper.setDate(lstDay.get(i));
+				goldScaper.setDate(DateTimeUtil.formatStringToDate(lstDay.get(i)));
 				goldScaper.setElements(contextDocument.getElements());
-				List<? extends AbstractPrice> golds = goldScaper.getDatas();
+				List<? extends AbstractPrice> golds = goldScaper.getData();
 				goldDatabase.add((GoldPrice) golds.get(i));
 			} catch (ScraperException e) {
 				getGoldBackupScraper(lstDay, goldDatabase, i);
@@ -73,7 +43,6 @@ public class MainRun {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public static void getDollarScraper() {
 		GenerateDay generateDay = new GenerateDay();
 		List<String> lstDay = generateDay.generate(BEGIN, END);
@@ -84,9 +53,9 @@ public class MainRun {
 						"https://www.tygia.com/?nganhang=VIETCOM&ngay=" + lstDay.get(i));
 				contextDocument.setCssQuery(ContextDocument.CSS_QUERY_DOLLAR);
 				DollarScraper dollarScaper = new DollarScraper();
-				dollarScaper.setDate(lstDay.get(i));
+				dollarScaper.setDate(DateTimeUtil.formatStringToDate(lstDay.get(i)));
 				dollarScaper.setElements(contextDocument.getElements());
-				List<? extends AbstractPrice> dollars = dollarScaper.getDatas();
+				List<? extends AbstractPrice> dollars = dollarScaper.getData();
 				dollarDatabase.add((DollarPrice) dollars.get(i));
 				
 			} catch (ScraperException e) {
@@ -107,7 +76,7 @@ public class MainRun {
 			InterestRateScraper interestRateScaper = new InterestRateScraper();
 			interestRateScaper.setElements(contextDocumentInterestRate.getElements());
 			InterestRateDatabase database = new InterestRateDatabase();
-			List<? extends AbstractPrice> irs = interestRateScaper.getDatas();
+			List<? extends AbstractPrice> irs = interestRateScaper.getData();
 			database.adds((Iterator<InterestRate>) irs.iterator());
 		} catch (ScraperException e) {
 			// TODO Auto-generated catch block
@@ -121,10 +90,10 @@ public class MainRun {
 					"https://vietcombank.com.vn/");
 			contextDocument.setCssQuery(ContextDocument.CSS_QUERY_DOLLAR_BACKUP);
 			DollarScraper dollarScaper = new DollarScraper();
-			dollarScaper.setDate(lstDay.get(i));
+//			dollarScaper.setDate(lstDay.get(i));
 			dollarScaper.setElements(contextDocument.getElements());
 			List<? extends AbstractPrice> dollars;
-			dollars = dollarScaper.getDatas();
+			dollars = dollarScaper.getData();
 			dollarDatabase.add((DollarPrice) dollars.get(i));
 		} catch (ScraperException e) {
 			// TODO Auto-generated catch block
@@ -139,9 +108,9 @@ public class MainRun {
 					"http://banggia.giavang.net/");
 			contextDocument.setCssQuery(ContextDocument.CSS_QUERY_GOLD_BACKUP);
 			GoldScraper goldScaper = new GoldScraper();
-			goldScaper.setDate(lstDay.get(i));
+//			goldScaper.setDate(lstDay.get(i));
 			goldScaper.setElements(contextDocument.getElements());
-			List<? extends AbstractPrice> golds = goldScaper.getDatas();
+			List<? extends AbstractPrice> golds = goldScaper.getData();
 			goldDatabase.add((GoldPrice) golds.get(i));
 		} catch (ScraperException e) {
 			// TODO Auto-generated catch block

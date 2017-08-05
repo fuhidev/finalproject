@@ -20,6 +20,8 @@ public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 	private final String SQL_SELECT = "SELECT * FROM vngold";
 	@Override
 	public Boolean add(GoldPrice goldPrice) {
+		if(goldPrice == null)
+			return false;
 		PreparedStatement pstm = null;
 		try {
 			if (this.condb.getConnection() != null)
@@ -56,6 +58,9 @@ public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 			if (connection != null) {
 				while (iterator.hasNext()) {
 					GoldPrice goldPrice = iterator.next();
+					if(goldPrice == null){
+						continue;
+					}
 					pstm.setString(1, goldPrice.getName());
 					pstm.setDouble(2, goldPrice.getBuyPrice());
 					pstm.setDouble(3, goldPrice.getSellPrice());

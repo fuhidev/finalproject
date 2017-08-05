@@ -19,6 +19,8 @@ public class InterestRateDatabase extends AbstractDB<InterestRate, Boolean, Long
 	private final String SQL_SELECT = "SELECT * FROM interestrate";
 	@Override
 	public Boolean add(InterestRate model) {
+		if(model == null)
+			return false;
 		PreparedStatement pstm = null;
 		try {
 			Connection connection = this.condb.getConnection();
@@ -59,6 +61,8 @@ public class InterestRateDatabase extends AbstractDB<InterestRate, Boolean, Long
 				pstm = connection.prepareStatement(SQL_INSERT);
 			while (iterator.hasNext()) {
 				InterestRate iRate = iterator.next();
+				if(iRate == null)
+					continue;
 				pstm.setString(1, iRate.getPeriod());
 				pstm.setString(2, iRate.getNameBank());
 				pstm.setDouble(3, iRate.getPercentInterestRate());

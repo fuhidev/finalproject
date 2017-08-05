@@ -22,6 +22,8 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 
 	@Override
 	public Boolean add(DollarPrice dollar) {
+		if(dollar == null)
+			return false;
 		PreparedStatement pstm = null;
 		try {
 			Connection connection = this.condb.getConnection();
@@ -31,7 +33,6 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 			pstm.setString(1, dollar.getName());
 			pstm.setDouble(2, dollar.getPrice());
 			pstm.setDate(3, DateTimeUtil.convertUtilToSQL(dollar.getDate()));
-			System.out.println(dollar.getPrice() + "-" + DateTimeUtil.convertUtilToSQL(dollar.getDate()));
 			pstm.executeUpdate();
 
 		} catch (SQLException e) {
@@ -59,9 +60,11 @@ public class DollarDatabase extends AbstractDB<DollarPrice, Boolean, Integer> {
 				pstm = connection.prepareStatement(this.SQL_INSERT);
 			while (iterator.hasNext()) {
 				DollarPrice price = iterator.next();
-				pstm.setDouble(1, price.getPrice());
-				pstm.setDate(2, DateTimeUtil.convertUtilToSQL(price.getDate()));
-				System.out.println(price.getPrice() + "-" + DateTimeUtil.convertUtilToSQL(price.getDate()));
+				if(price == null)
+					continue;
+				pstm.setString(1, price.getName());
+				pstm.setDouble(2, price.getPrice());
+				pstm.setDate(3, DateTimeUtil.convertUtilToSQL(price.getDate()));
 				pstm.addBatch();
 			}
 			pstm.executeBatch();

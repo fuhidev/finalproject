@@ -8,7 +8,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-@SuppressWarnings("unused")
 public class GenerateDay {
 	/**
 	 * Táº¡o ra má»™t chuá»—i thï¿½?i gian kiá»ƒu String tá»« thï¿½?i gian báº¯t
