@@ -19,12 +19,13 @@
             <div id="chartdiv"></div>
             <div id="recommend">
                 <div class="bs-callout bs-callout-info">
-                    <h4>Trong giai đoạn <b id="start">07-2012</b> đến <b id="end">07-2017</b> người dân nên đầu tư vào</h4>
+                    <h1>Khuyến cáo đầu tư</h1>
                     <ul>
-                        <li>Đầu tư vào vàng: <b>0%</b></li>
-                        <li>Đầu tư vào dollar: <b>0%</b></li>
-                        <li>Gửi lãi suất tiết kiệm ngân hàng: <b>100%</b></li>
+                        <li>Đầu tư vào vàng: <b id="pfl_gold">0%</b></li>
+                        <li>Đầu tư vào dollar: <b id="pfl_dollar">0%</b></li>
+                        <li>Gửi lãi suất tiết kiệm ngân hàng: <b id="pfl_bank">100%</b></li>
                     </ul>
+                    <p>Dữ liệu được phân tích từ <i id="pfl_from"></i> đến <i id="pfl_to"></i></p>
                 </div>
             </div>
     </div>
