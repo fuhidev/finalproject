@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class MySQLConnUtils implements IConnection {
 	String hostName = "localhost";
-	String dbName = "test";
+	String dbName = "finalproject";
 	String userName = "root";
 	String password = "";
 @Deprecated
