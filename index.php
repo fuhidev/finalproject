@@ -39,6 +39,7 @@
     <script src="js/amcharts/amcharts.js" type="text/javascript"></script>
     <script src="js/amcharts/serial.js" type="text/javascript"></script>
     <script src="js/chart.js"></script>
+    <script src="js/porfolio.js"></script>
 </body>
 
 </html>
