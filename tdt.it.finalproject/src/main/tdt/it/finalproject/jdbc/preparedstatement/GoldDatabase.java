@@ -137,7 +137,10 @@ public class GoldDatabase extends AbstractDB<GoldPrice, Boolean, Integer> {
 		}
 		return rs;
 	}
-
+public static void main(String[] args) {
+	GoldDatabase database  = new GoldDatabase();
+	database.add(new GoldPrice("s", 1, 1, DateTimeUtil.formatStringToDate("2017-12-12")));
+}
 	
 
 }
