@@ -59,7 +59,7 @@ public class MainRun {
 			GoldDatabase goldDatabase = new GoldDatabase();
 			try {
 				ContextDocument contextDocument = new ContextDocument(
-						"https://www.tygia.com/?nganhang=VIETCOM" + lstDay.get(i));
+						"https://www.tygia.com/" + lstDay.get(i));
 				contextDocument.setCssQuery(ContextDocument.CSS_QUERY_GOLD);
 				GoldScraper goldScaper = new GoldScraper();
 				goldScaper.setDate(lstDay.get(i));

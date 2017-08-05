@@ -2,6 +2,8 @@ package main.tdt.it.finalproject.portfolio.modal;
 
 import java.util.Date;
 
+import main.tdt.it.finalproject.util.DateTimeUtil;
+
 public class Return {
 	private String id;
 	private Period period;
@@ -49,7 +51,7 @@ public class Return {
 
 	@Override
 	public String toString() {
-		return "SuatSinhLoiKyVong [period=" + period + ", percent=" + percent + "]";
+		return String.format("%s: %s", DateTimeUtil.formatDateToString(getTime(),"dd/MM/yyyy"),String.format("%.5f",getPercent()));
 	}
 
 }
